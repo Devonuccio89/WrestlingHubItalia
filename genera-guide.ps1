@@ -89,7 +89,7 @@ New-Item -ItemType Directory -Force $guideDir | Out-Null
 $guides = @(Read-Content (Join-Path $root 'contenuti/guide') | Sort-Object { [int]$_.order })
 
 foreach ($g in $guides) {
-  $url = "$site/guide/$($g.slug).html"
+  $url = "$site/guide/$($g.slug)"
   $jsonLd = '  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"' + (J $g.title) +
     '","description":"' + (J $g.description) + '","dateModified":"' + $g.updated + '","inLanguage":"it-IT","mainEntityOfPage":"' + $url +
     '","author":{"@type":"Organization","name":"WrestlingHub Italia"},"publisher":{"@type":"Organization","name":"WrestlingHub Italia","url":"' + $site + '"}}</script>'
@@ -125,7 +125,7 @@ $indexBody = @"
     <div class="section-title"><h1>Guide</h1><span class="updated">Dove vederlo, per chi inizia, classifiche</span></div>
 $sectionsHtml
 "@
-Write-Utf8 (Join-Path $guideDir 'index.html') (Page $indexMeta "$site/guide/index.html" 'website' '' $indexBody 'guide')
+Write-Utf8 (Join-Path $guideDir 'index.html') (Page $indexMeta "$site/guide/" 'website' '' $indexBody 'guide')
 
 # articoli originali da mostrare nel flusso notizie della home (riepilogo piu' recente prima, poi le classifiche)
 $feedSections = @('Riepilogo settimanale', 'Classifiche ed elenchi')
@@ -146,7 +146,7 @@ $withPages = @($eventsData.events | Where-Object { $eventContent.ContainsKey($_.
 $pageMap = [ordered]@{}
 foreach ($ev in $withPages) {
   $c = $eventContent[$ev.id]
-  $url = "$site/eventi/$($ev.id).html"
+  $url = "$site/eventi/$($ev.id)"
   $pageMap[$ev.id] = "eventi/$($ev.id).html"
 
   function Day-Text([datetime]$d) { $t = $d.ToString('dddd d MMMM yyyy', $it); return $t.Substring(0, 1).ToUpper() + $t.Substring(1) }
@@ -203,13 +203,14 @@ $otherEvents
 Write-Utf8 (Join-Path $root 'data/pagine-eventi.js') ('window.WH_EVENT_PAGES = ' + ($pageMap | ConvertTo-Json -Compress) + ';')
 
 # =================== SITEMAP E ROBOTS ===================
+# indirizzi senza .html: Cloudflare Pages reindirizza /pagina.html a /pagina
 $today = (Get-Date).ToString('yyyy-MM-dd')
 $urls = @(
-  @("$site/", $today, 'hourly'), @("$site/calendario.html", $today, 'daily'), @("$site/italia.html", $today, 'weekly'),
-  @("$site/guide/index.html", $today, 'weekly'), @("$site/fonti.html", $today, 'monthly')
+  @("$site/", $today, 'hourly'), @("$site/calendario", $today, 'daily'), @("$site/italia", $today, 'weekly'),
+  @("$site/guide/", $today, 'weekly'), @("$site/fonti", $today, 'monthly')
 )
-foreach ($g in $guides) { $urls += ,@("$site/guide/$($g.slug).html", $g.updated, 'monthly') }
-foreach ($ev in $withPages) { $urls += ,@("$site/eventi/$($ev.id).html", $eventContent[$ev.id].updated, 'daily') }
+foreach ($g in $guides) { $urls += ,@("$site/guide/$($g.slug)", $g.updated, 'monthly') }
+foreach ($ev in $withPages) { $urls += ,@("$site/eventi/$($ev.id)", $eventContent[$ev.id].updated, 'daily') }
 $xml = '<?xml version="1.0" encoding="UTF-8"?>' + "`n" + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + "`n" +
   (($urls | ForEach-Object { "  <url><loc>$($_[0])</loc><lastmod>$($_[1])</lastmod><changefreq>$($_[2])</changefreq></url>" }) -join "`n") + "`n</urlset>`n"
 Write-Utf8 (Join-Path $root 'sitemap.xml') $xml

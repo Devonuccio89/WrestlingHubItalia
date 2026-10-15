@@ -1,6 +1,6 @@
 # WrestlingHub Italia - aggiornamento e pubblicazione automatica.
 # Ogni 30 minuti (e a ogni modifica caricata su GitHub): scarica le notizie,
-# rigenera guide/eventi, salva i dati nel repository e pubblica su Cloudflare Pages.
+# rigenera guide/eventi e pubblica su Cloudflare Pages. Non modifica il repository.
 # Segreti richiesti (GitHub > Settings > Secrets and variables > Actions):
 #   CLOUDFLARE_API_TOKEN  - token con permesso "Cloudflare Pages: Edit"
 #   CLOUDFLARE_ACCOUNT_ID - ID dell'account Cloudflare
@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: pubblica
@@ -27,26 +27,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Lo storico delle notizie (data/news.json) vive nella cache di GitHub Actions,
+      # cosi' l'automazione non modifica mai il repository (niente conflitti con GitHub Desktop).
+      - name: Recupera lo storico delle notizie
+        uses: actions/cache/restore@v4
+        with:
+          path: data/news.json
+          key: news-${{ github.run_id }}
+          restore-keys: news-
+
       - name: Aggiorna le notizie
         shell: pwsh
         run: ./aggiorna.ps1
 
+      - name: Salva lo storico delle notizie
+        uses: actions/cache/save@v4
+        with:
+          path: data/news.json
+          key: news-${{ github.run_id }}
+
       - name: Genera guide e schede evento
         shell: pwsh
         run: ./genera-guide.ps1
-
-      - name: Salva i dati aggiornati nel repository
-        run: |
-          git config user.name "wrestlinghub-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add data guide eventi sitemap.xml robots.txt
-          if git diff --cached --quiet; then
-            echo "Nessuna modifica da salvare"
-          else
-            git commit -m "Aggiornamento automatico notizie"
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
 
       - name: Prepara i file del sito
         run: |
