@@ -1,0 +1,239 @@
+window.WH_ITALIA = {
+  "updated": "2026-10-14",
+  "intro": "Dai campioni emigrati che riempivano il Madison Square Garden alle federazioni nate nelle palestre di provincia, fino al primo grande evento WWE a Torino: il wrestling italiano ha una storia lunga e una scena indipendente più viva che mai. Qui trovi le federazioni attive, le tappe che hanno segnato la nostra storia e gli approfondimenti della redazione.",
+  "newsPattern": "\\bICW\\b|\\bSIW\\b|\\bNWE\\b|Superior Italian|Italian Championship Wrestling|wrestling italiano|Francesco Akira|Giovanni Vinci|Clash in Italy|Sammartino|Dan Peterson|Torino|Bologna",
+  "companies": [
+    {
+      "id": "icw",
+      "name": "Italian Championship Wrestling",
+      "acronym": "ICW",
+      "active": true,
+      "color": "#0b8a3e",
+      "founded": "2000-2001",
+      "founders": "Nino Baldan ed Emilio Bernocchi",
+      "city": "Lombardia",
+      "description": "La federazione più longeva ancora in attività in Italia. Ha superato quota 550 eventi, ha una propria accademia e un calendario fisso di show annuali, ed è stata tra i fondatori della UEWA, l'associazione delle federazioni europee.",
+      "championships": ["Italian Heavyweight", "Interregional", "Italian Tag Team", "Italian Lightweight", "Fight Forever", "Italian Women's"],
+      "school": "ICW Academy",
+      "events": ["Il Numero Uno (torneo)", "Academy Cup", "WrestleFest", "Cold War", "Pandemonium", "Fight Forever", "La Legge del Più Forte"],
+      "alumni": ["Francesco Akira (NJPW)"],
+      "milestones": [
+        { "year": "2004", "text": "Prima edizione del torneo Il Numero Uno." },
+        { "year": "2009", "text": "Tra i membri fondatori della UEWA, l'unione delle federazioni europee." },
+        { "year": "2021", "text": "Superata la soglia dei 550 eventi organizzati." },
+        { "year": "2022", "text": "Pandemonium XX viene trasmesso integralmente in diretta su YouTube." }
+      ],
+      "links": { "site": "https://icwwrestling.it", "tickets": "https://www.ticketone.it/artist/wrestling/" }
+    },
+    {
+      "id": "siw",
+      "name": "Superior Italian Wrestling",
+      "acronym": "SIW",
+      "active": true,
+      "color": "#c8102e",
+      "founded": "2017",
+      "founders": "Alex Flash",
+      "city": "Cascina (PI) · grandi eventi a Firenze",
+      "description": "Nata come scuola di wrestling e diventata in pochi anni la realtà italiana più seguita online, con uno show settimanale su YouTube e due grandi eventi all'anno al Teatro Cartiere Carrara di Firenze.",
+      "championships": ["Superior Italian Championship", "Titoli di coppia", "Titolo femminile"],
+      "school": "Centro Invictus, Cascina",
+      "events": ["Tuesday Night System (settimanale su YouTube)", "Giorno del Giudizio (primavera)", "Colossal (autunno)"],
+      "alumni": ["Francesco Akira (NJPW)", "Mirko Mori", "Swan", "Wild Electra", "Nico Inverardi"],
+      "milestones": [
+        { "year": "2017", "text": "Nasce come Scuola Italiana Wrestling." },
+        { "year": "2022", "text": "Diventa Superior Italian Wrestling." },
+        { "year": "2024", "text": "Giorno del Giudizio a Firenze supera i mille spettatori paganti e ospita il primo steel cage femminile in Italia, vinto da Swan." },
+        { "year": "2024", "text": "Steve Valentino è il primo Superior Italian Champion." }
+      ],
+      "links": { "tickets": "https://www.ticketone.it/event/wrestling-siw-colossal-2026-teatro-cartiere-carrara-extuscanyhall-21489850/" }
+    },
+    {
+      "id": "nwe",
+      "name": "New Wrestling Evolution",
+      "acronym": "NWE",
+      "active": true,
+      "color": "#7b2cbf",
+      "founded": "2005",
+      "founders": "Roberto Indiano",
+      "city": "Torino · eventi anche a Napoli",
+      "description": "Nata come Nu-Wrestling Evolution, è la federazione italiana che ha portato più star internazionali sul ring: Scott Steiner, Ultimate Warrior, Raven, Vampiro. Ferma dal 2013, è tornata nel 2024 con un evento da oltre 2.000 spettatori a Napoli.",
+      "championships": ["NWE World Heavyweight", "NWE World Women's"],
+      "events": ["NWE Destiny (show TV, La7 Sport e Odeon TV)", "American Wrestling Purgatory"],
+      "alumni": ["Ultimate Warrior", "Scott Steiner", "Mr. Anderson", "Raven", "Vampiro", "Dolph Ziggler", "Alberto Del Rio", "Ultimo Dragon"],
+      "milestones": [
+        { "year": "2005", "text": "Fondata a Torino il 22 ottobre; a novembre Black Pearl batte Scott Steiner a Napoli e diventa il primo campione mondiale NWE." },
+        { "year": "2008", "text": "Durante il tour in Spagna torna sul ring Ultimate Warrior." },
+        { "year": "2013", "text": "Ultimo show il 6 settembre, poi una lunga pausa." },
+        { "year": "2024", "text": "Ritorno il 12 ottobre al PalaPartenope di Napoli con Dolph Ziggler, Alberto Del Rio, Ultimo Dragon e Vampiro." },
+        { "year": "2025", "text": "Riattivato il titolo mondiale e istituito quello femminile: la prima campionessa è Nightshade." }
+      ],
+      "links": {}
+    },
+    {
+      "id": "tcw",
+      "name": "Total Combat Wrestling",
+      "acronym": "TCW",
+      "active": true,
+      "color": "#e36414",
+      "founded": "metà anni 2000",
+      "city": "Varesotto, Lombardia",
+      "description": "Realtà storica del wrestling lombardo, con circa 160 show all'attivo e una presenza costante nelle fiere e nei palazzetti della provincia di Varese e dell'hinterland milanese.",
+      "events": ["Show a MalpensaFiere", "Show natalizi nell'hinterland milanese"],
+      "links": {}
+    },
+    {
+      "id": "nuova-generazione",
+      "name": "La nuova generazione",
+      "acronym": "NEW",
+      "active": true,
+      "color": "#2ec4b6",
+      "founded": "2019-2023",
+      "city": "Milano, Torino, Salerno, Roma, Frosinone",
+      "description": "Negli ultimi anni sono nate diverse nuove federazioni in tutta Italia, segno di una scena in crescita: Milano Wrestling (2019), DREAM Pro Wrestling a Salerno (2021), BREAK Pro Wrestling a Roma (2022), Wrestling Torino (2023), oltre a Squash A Jobber a Milano e Italian Wrestling Association a Frosinone.",
+      "links": {}
+    }
+  ],
+  "timeline": [
+    { "year": "1946", "title": "Primo Carnera sale sul ring", "text": "L'ex campione del mondo dei pesi massimi di pugilato si dà al wrestling e mette insieme una lunghissima serie di imbattibilità. Nel 2019 entrerà nella WWE Hall of Fame." },
+    { "year": "1949", "title": "Antonino Rocca conquista New York", "text": "Nato a Treviso ed emigrato in Argentina, Rocca diventa una star del Madison Square Garden con il suo stile acrobatico e a piedi nudi. Hall of Fame WWE nel 1995." },
+    { "year": "1961", "title": "Il debutto di Tony Parisi", "text": "Il cosentino Antonio Pugliese debutta a Detroit; a metà anni '70 sarà campione di coppia WWWF insieme a Louis Cerdan." },
+    { "year": "1963", "title": "Bruno Sammartino campione del mondo", "text": "L'abruzzese di Pizzoferrato batte Buddy Rogers in meno di un minuto al Madison Square Garden. Il suo primo regno dura quasi otto anni: un record mai battuto." },
+    { "year": "Anni '80-'90", "title": "L'era di Italia 1 e Dan Peterson", "text": "Il wrestling WWF, e poi WCW, arriva nelle case italiane con la telecronaca inconfondibile di Dan Peterson. Hulk Hogan diventa un'icona pop anche da noi." },
+    { "year": "2000", "title": "Nasce la ICW", "text": "Prende vita la Italian Championship Wrestling, oggi la federazione più longeva ancora attiva in Italia." },
+    { "year": "2003", "title": "SmackDown in prima serata", "text": "Italia 1 trasmette SmackDown con Ciccio Valenti e Christian Recalcati: tra il 2003 e il 2007 il wrestling vive il suo picco di popolarità in Italia." },
+    { "year": "2005", "title": "Nasce la NWE", "text": "A Torino nasce la Nu-Wrestling Evolution, che porterà in Italia leggende come Scott Steiner e Ultimate Warrior." },
+    { "year": "2007", "title": "Lo stop su Italia 1", "text": "Dopo il caso Benoit, Mediaset toglie il wrestling dalla TV in chiaro. La WWE resta su Sky, con il commento di Michele Posa e Luca Franchini." },
+    { "year": "2015", "title": "Arriva il WWE Network", "text": "Dal 13 gennaio anche in Italia si può vedere la WWE in streaming." },
+    { "year": "2017", "title": "Nasce la SIW", "text": "Alex Flash fonda in Toscana la Scuola Italiana Wrestling, che diventerà Superior Italian Wrestling." },
+    { "year": "2020", "title": "Il ritorno in chiaro su DMAX", "text": "Accordo pluriennale tra WWE e Discovery Italia: Raw, SmackDown e NXT tornano gratis in TV." },
+    { "year": "2022", "title": "Francesco Akira in NJPW", "text": "Il bergamasco cresciuto nelle federazioni italiane debutta in New Japan e a giugno vince i titoli IWGP Junior di coppia." },
+    { "year": "2024", "title": "La WWE torna in Italia", "text": "Il 1° maggio show dal vivo all'Unipol Arena di Bologna. A ottobre la NWE torna sul ring a Napoli dopo 11 anni." },
+    { "year": "2025", "title": "SmackDown da Bologna", "text": "Il 21 marzo SmackDown va in onda in diretta dall'Unipol Arena di Bologna." },
+    { "year": "2026", "title": "Netflix e Clash in Italy", "text": "Dal 1° aprile tutta la WWE è su Netflix. Il 31 maggio, all'Inalpi Arena di Torino, si svolge il primo Premium Live Event WWE della storia in Italia." }
+  ],
+  "articles": [
+    {
+      "id": "clash-in-italy-2026",
+      "kicker": "Evento storico",
+      "title": "Clash in Italy: la notte in cui la WWE ha fatto tappa a Torino",
+      "lede": "Il 31 maggio 2026 l'Inalpi Arena ha ospitato il primo Premium Live Event WWE mai organizzato in Italia. Ecco com'è andata.",
+      "minutes": 4,
+      "body": [
+        "Per decenni i fan italiani hanno visto i grandi eventi WWE di notte, in differita o in streaming. Il 31 maggio 2026 la prospettiva si è ribaltata: per la prima volta un Premium Live Event è andato in scena in Italia, in prima serata, all'Inalpi Arena di Torino.",
+        { "h": "Dall'annuncio al tutto esaurito" },
+        "L'idea di un grande evento italiano era stata anticipata dal presidente WWE Nick Khan nel settembre 2025. La conferma ufficiale di Triple H è arrivata il 18 febbraio 2026. Il giorno dello show l'arena ha registrato quasi 13.000 spettatori.",
+        { "h": "La card" },
+        "Cody Rhodes ha difeso il titolo WWE indiscusso contro Gunther, Rhea Ripley ha avuto la meglio su Jade Cargill, Brock Lesnar ha battuto Oba Femi in quello che è stato il suo ultimo grande evento fuori dagli Stati Uniti prima del ritiro. L'unico cambio di titolo della serata è stato di Sol Ruca, che ha strappato il Women's Intercontinental Championship a Becky Lynch.",
+        "Nel main event Roman Reigns ha sconfitto Jacob Fatu in un Tribal Combat durato oltre 27 minuti, conservando il World Heavyweight Championship.",
+        { "h": "Una settimana di WWE in Italia" },
+        "Clash in Italy è stato il cuore di un vero tour: Raw a Torino il giorno dopo, SmackDown a Bologna il 5 giugno e house show a Roma e Firenze nel weekend successivo. In telecronaca, per il pubblico italiano su Netflix, le voci storiche di Michele Posa e Luca Franchini."
+      ],
+      "facts": [
+        "Data: domenica 31 maggio 2026, ore 20:00",
+        "Luogo: Inalpi Arena, Torino",
+        "Spettatori: circa 13.000",
+        "Main event: Roman Reigns contro Jacob Fatu (Tribal Combat)",
+        "Trasmissione in Italia: Netflix"
+      ],
+      "sources": ["https://www.wwe.com/shows/wwe-clash-in-italy/wwe-clash-in-italy-2026/results", "https://en.wikipedia.org/wiki/Clash_in_Italy"]
+    },
+    {
+      "id": "bruno-sammartino",
+      "kicker": "Leggende",
+      "title": "Bruno Sammartino, il campione venuto dall'Abruzzo",
+      "lede": "Dal paesino di Pizzoferrato al Madison Square Garden: la storia del campione con il regno più lungo di sempre.",
+      "minutes": 4,
+      "body": [
+        "Bruno Sammartino nasce il 6 ottobre 1935 a Pizzoferrato, in provincia di Chieti. La sua famiglia attraversa gli anni durissimi della Seconda guerra mondiale e poi emigra a Pittsburgh, dove il giovane Bruno, gracile e spesso malato, scopre il sollevamento pesi e la lotta.",
+        { "h": "48 secondi per la storia" },
+        "Il 17 maggio 1963, al Madison Square Garden, Sammartino affronta il campione Buddy Rogers e lo batte in meno di un minuto. È l'inizio di un regno da campione WWWF che durerà 7 anni, 8 mesi e 1 giorno, fino alla sconfitta contro Ivan Koloff nel 1971. Nessuno, in tutta la storia della federazione, è mai rimasto campione così a lungo.",
+        "Tornerà campione nel 1973 e terrà la cintura fino al 1977, per un totale di oltre undici anni da campione del mondo.",
+        { "h": "Il re di New York" },
+        "Sammartino è stato per anni il volto del Madison Square Garden, idolo della comunità italoamericana e non solo. Dopo un lungo rapporto conflittuale con la WWE, la riconciliazione arriva nel 2013, con l'ingresso da protagonista nella Hall of Fame.",
+        "Muore a Pittsburgh il 18 aprile 2018. Resta il simbolo di un'epoca in cui un ragazzo partito dall'Abruzzo poteva diventare il campione più amato d'America."
+      ],
+      "facts": [
+        "Nato il 6 ottobre 1935 a Pizzoferrato (CH)",
+        "Campione WWWF dal 1963 al 1971 e dal 1973 al 1977",
+        "Primo regno: 7 anni, 8 mesi e 1 giorno, il più lungo di sempre",
+        "WWE Hall of Fame 2013",
+        "Morto il 18 aprile 2018"
+      ],
+      "sources": ["https://en.wikipedia.org/wiki/Bruno_Sammartino"]
+    },
+    {
+      "id": "italiani-in-wwe",
+      "kicker": "Storia",
+      "title": "Italiani nella storia della WWE: da Rocca a Giulia",
+      "lede": "Campioni emigrati, leggende della Hall of Fame e nuove stelle: il filo tricolore che attraversa ottant'anni di wrestling americano.",
+      "minutes": 5,
+      "body": [
+        "Molto prima che il wrestling arrivasse sulle nostre TV, gli italiani erano già protagonisti sui ring americani. Molti erano emigrati, altri figli di emigrati: tutti hanno contribuito a costruire la storia di quella che oggi è la WWE.",
+        { "h": "I pionieri" },
+        "Antonino Rocca, nato a Treviso nel 1921 e cresciuto in Argentina, alla fine degli anni '40 diventa una delle più grandi attrazioni del Madison Square Garden con uno stile acrobatico e a piedi nudi, rivoluzionario per l'epoca. Primo Carnera, già campione del mondo di pugilato, passa al wrestling nel 1946 con risultati altrettanto impressionanti. Entrambi sono oggi nella Hall of Fame.",
+        "Negli anni '60 e '70 il calabrese Tony Parisi si afferma come tag team specialist e vince i titoli di coppia WWWF insieme a Louis Cerdan. Nello stesso periodo Bruno Sammartino domina come nessun altro prima e dopo di lui.",
+        { "h": "Gli italiani di oggi" },
+        "L'altoatesino Fabian Aichner, conosciuto in WWE come Giovanni Vinci, ha vinto due volte i titoli di coppia di NXT con Marcel Barthel nella stable Imperium. Lasciata la WWE nel 2025, dal maggio 2026 combatte in TNA.",
+        "Giulia, nata a Londra da padre italiano e madre giapponese, è arrivata in WWE dopo una carriera da stella in Giappone. Ha vinto il titolo femminile di NXT e il Women's United States Championship, quest'ultimo per due volte: il primo regno, di 133 giorni, è un record. Oggi combatte a SmackDown.",
+        "E dietro le quinte c'è anche chi rappresenta l'Italia senza combattere: a Clash in Italy 2026 c'era anche l'arbitro italiano Danilo Anfibio."
+      ],
+      "facts": [
+        "Antonino Rocca: Hall of Fame WWE 1995",
+        "Primo Carnera: Hall of Fame WWE (Legacy) 2019",
+        "Bruno Sammartino: Hall of Fame WWE 2013",
+        "Giovanni Vinci: 2 volte campione di coppia NXT",
+        "Giulia: campionessa NXT e 2 volte Women's US Champion"
+      ],
+      "sources": ["https://en.wikipedia.org/wiki/Antonino_Rocca", "https://www.wwe.com/superstars/primo-carnera", "https://en.wikipedia.org/wiki/Giovanni_Vinci", "https://en.wikipedia.org/wiki/Giulia_(wrestler)"]
+    },
+    {
+      "id": "wrestling-in-tv",
+      "kicker": "TV e media",
+      "title": "Dal panzone dell'Uganda a Netflix: il wrestling nella TV italiana",
+      "lede": "Dan Peterson, la prima serata di Italia 1, lo stop del 2007, DMAX e lo streaming: quarant'anni di wrestling sui nostri schermi.",
+      "minutes": 5,
+      "body": [
+        "Per un'intera generazione il wrestling ha avuto una voce sola: quella di Dan Peterson. L'allenatore di basket americano, trapiantato in Italia, a fine anni '80 diventa il telecronista della WWF su Italia 1 e poi della WCW, con uno stile inconfondibile fatto di soprannomi e battute: Kamala resta per sempre \"il panzone che vien dall'Uganda\". In quegli anni Hulk Hogan diventa un'icona pop anche in Italia.",
+        { "h": "Il boom di SmackDown" },
+        "Nel 2003 SmackDown arriva in prima serata su Italia 1, con il commento di Giacomo \"Ciccio\" Valenti e Christian Recalcati. Sono gli anni del picco: tra il 2003 e il 2007 il wrestling è un fenomeno di massa tra i più giovani.",
+        { "h": "Lo stop del 2007" },
+        "Nel giugno 2007 la tragedia di Chris Benoit cambia tutto. Mediaset decide di togliere il wrestling dalla TV in chiaro, motivando la scelta con la tutela del pubblico più giovane. La WWE resta sulla pay TV: su Sky si consolida la coppia formata da Michele Posa e Luca Franchini, destinata a diventare la voce italiana della WWE per oltre vent'anni.",
+        { "h": "Il ritorno in chiaro e lo streaming" },
+        "Nel 2015 arriva in Italia il WWE Network. Nel 2020 un accordo con Discovery riporta Raw, SmackDown e NXT in chiaro su DMAX. Dal 1° aprile 2026, infine, tutta la WWE (show settimanali e grandi eventi) è in esclusiva su Netflix, sempre con Posa e Franchini al microfono.",
+        "Dan Peterson, intanto, ha compiuto 90 anni a gennaio 2026. Tra le sue ultime avventure nel wrestling c'è stato il commento di NWE Destiny, lo show della federazione torinese."
+      ],
+      "facts": [
+        "Anni '80-'90: WWF e WCW su Italia 1 con Dan Peterson",
+        "2003-2007: SmackDown in prima serata su Italia 1",
+        "2007: stop alla TV in chiaro dopo il caso Benoit",
+        "2020: accordo WWE-Discovery, wrestling su DMAX",
+        "Dal 1° aprile 2026: tutta la WWE su Netflix"
+      ],
+      "sources": ["https://it.wikipedia.org/wiki/Dan_Peterson", "https://www.ilpost.it/2026/04/04/wrestling-torna-di-moda/", "https://www.wwe.com/worldwide/article/wwe-and-discovery-announce-new-partnership-in-italy", "https://about.netflix.com/en/news/all-wwe-is-now-live-only-on-netflix-in-italy"]
+    },
+    {
+      "id": "scena-indie-italiana",
+      "kicker": "Scena indipendente",
+      "title": "Dalle palestre al Tokyo Dome: la scena indie italiana",
+      "lede": "Federazioni storiche, nuove realtà e talenti esportati nel mondo: com'è cresciuto il wrestling made in Italy.",
+      "minutes": 4,
+      "body": [
+        "Il wrestling italiano non è solo pubblico davanti alla TV. Da oltre vent'anni esiste una scena indipendente fatta di scuole, palazzetti e appassionati che ogni weekend montano il ring in giro per l'Italia.",
+        { "h": "I pilastri" },
+        "La ICW, nata tra il 2000 e il 2001, è la federazione più longeva ancora attiva: ha superato i 550 eventi e ha formato generazioni di atleti nella sua accademia. La NWE, fondata a Torino nel 2005, ha puntato sui grandi nomi internazionali ed è tornata nel 2024 dopo undici anni di stop, con oltre 2.000 persone al PalaPartenope di Napoli.",
+        { "h": "Il fenomeno SIW" },
+        "La Superior Italian Wrestling è nata nel 2017 come scuola in provincia di Pisa ed è diventata la realtà più seguita online grazie allo show settimanale su YouTube. Nel 2024 il suo Giorno del Giudizio a Firenze ha superato i mille spettatori paganti e ha ospitato il primo steel cage femminile in Italia.",
+        { "h": "Il talento che vola via" },
+        "Il simbolo della crescita è Francesco Akira. Il bergamasco si è formato tra ICW e SIW, poi nel 2022 ha debuttato in New Japan Pro-Wrestling: tre volte campione IWGP Junior di coppia con TJP, vincitore della Super Jr. Tag League 2023 e già campione Junior in All Japan.",
+        "Tra il 2019 e il 2023 sono nate nuove federazioni a Milano, Torino, Salerno e Roma. Una scena così ampia non si era mai vista."
+      ],
+      "facts": [
+        "ICW: oltre 550 eventi, fondatrice della UEWA",
+        "SIW: oltre 1.000 spettatori a Firenze nel 2024",
+        "NWE: ritorno nel 2024 dopo 11 anni",
+        "Francesco Akira: 3 volte campione IWGP Junior di coppia"
+      ],
+      "sources": ["https://it.wikipedia.org/wiki/Italian_Championship_Wrestling", "https://movieplayer.it/articoli/giorno-del-giudizio-2024-siw-scrive-storia-wrestling-italiano_32117/", "https://it.wikipedia.org/wiki/Nu-Wrestling_Evolution", "https://en.wikipedia.org/wiki/Francesco_Akira"]
+    }
+  ]
+};

@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Modelli post Instagram | WrestlingHub Italia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- pagina di anteprima ---------- */
+    :root { --scale: .36; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #0b0b0e; color: #eee; font-family: Inter, system-ui, sans-serif; }
+    .page { max-width: 1240px; margin: 0 auto; padding: 24px 16px 60px; }
+    h1 { font-family: Oswald, sans-serif; text-transform: uppercase; margin: 0 0 6px; }
+    .intro { color: #9a9aa6; margin: 0 0 18px; max-width: 760px; }
+    .switch { display: inline-flex; background: #17171c; border: 1px solid #2a2a33; border-radius: 999px; padding: 4px; margin-bottom: 24px; }
+    .switch button { border: 0; background: none; color: #9a9aa6; font: 700 14px Inter, sans-serif; padding: 8px 16px; border-radius: 999px; cursor: pointer; }
+    .switch button.on { background: #f5b700; color: #111; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(1080px * var(--scale) + 2px), 1fr)); gap: 28px; }
+    .item h2 { font: 700 16px Inter, sans-serif; margin: 0 0 8px; }
+    .frame { width: calc(1080px * var(--scale)); height: calc(1350px * var(--scale)); overflow: hidden; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+    .frame > .post { transform: scale(var(--scale)); transform-origin: 0 0; }
+    .tools { display: flex; gap: 8px; margin: 10px 0 6px; flex-wrap: wrap; }
+    .tools button { border: 1px solid #2a2a33; background: #17171c; color: #eee; font: 600 13px Inter, sans-serif; padding: 7px 12px; border-radius: 6px; cursor: pointer; }
+    .tools button.primary { background: #e10600; border-color: #e10600; }
+    .photo-credit { font-size: 13px; color: #9a9aa6; margin: -2px 0 8px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .photo-credit a { color: #f5b700; }
+    .photo-credit button { border: 1px solid #2a2a33; background: #17171c; color: #eee; border-radius: 6px; padding: 2px 9px; cursor: pointer; }
+    textarea { width: calc(1080px * var(--scale)); height: 120px; background: #121216; color: #cfcfd6; border: 1px solid #2a2a33; border-radius: 6px; padding: 8px; font: 12.5px/1.45 Inter, sans-serif; resize: vertical; }
+    @media (max-width: 480px) { :root { --scale: .3; } }
+
+    /* ---------- il post (1080x1350, formato verticale 4:5 di Instagram) ---------- */
+    .post { width: 1080px; height: 1350px; position: relative; overflow: hidden; font-family: Inter, sans-serif; }
+    .post .brand { position: absolute; left: 70px; top: 60px; font: 700 34px Oswald, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+    .post .brand small { font-size: 22px; margin-left: 6px; }
+    .post .foot { position: absolute; left: 70px; right: 70px; bottom: 56px; display: flex; justify-content: space-between; align-items: center; font: 600 26px Inter, sans-serif; }
+
+    /* Stile A — "Ring": coerente con il sito */
+    .ring { background: radial-gradient(ellipse at 20% 0%, #5a0c08 0%, #240404 38%, #0d0d10 75%); color: #f2f2f5; }
+    .ring::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 220px, rgba(255,255,255,.035) 220px 226px); }
+    .ring .brand span { color: #e10600; } .ring .brand small { color: #f5b700; }
+    .ring .kicker { position: absolute; left: 70px; top: 190px; font: 700 34px Oswald, sans-serif; letter-spacing: 8px; text-transform: uppercase; color: #f5b700; }
+    .ring .big { font-family: Oswald, sans-serif; font-weight: 700; text-transform: uppercase; line-height: .95; }
+    .ring .panel { background: rgba(0,0,0,.45); border: 2px solid rgba(245,183,0,.35); border-radius: 24px; }
+    .ring .foot { color: #bdbdc6; border-top: 2px solid rgba(255,255,255,.12); padding-top: 26px; }
+    .ring .foot b { color: #f5b700; }
+    .ring .accent { color: #e10600; } .ring .gold { color: #f5b700; }
+
+    /* Stile B — "Poster": giallo e nero, ad alto contrasto */
+    .poster { background: #ffd400; color: #0b0b0b; }
+    .poster .art { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; z-index: 0; }
+    .poster .brand { background: #0b0b0b; color: #ffd400; padding: 8px 18px; }
+    .poster .brand span { color: #fff; } .poster .brand small { color: #ff2a1a; }
+    .poster .kicker { position: absolute; left: 70px; top: 180px; background: #ff2a1a; color: #fff; font: 400 46px Anton, sans-serif; letter-spacing: 3px; padding: 6px 22px; text-transform: uppercase; transform: rotate(-2deg); }
+    .poster .big { font-family: Anton, sans-serif; text-transform: uppercase; line-height: .9; font-weight: 400; }
+    .poster .panel { background: #0b0b0b; color: #ffd400; }
+    .poster .foot { color: #0b0b0b; z-index: 2; bottom: 40px; }
+    .poster .foot b { background: #0b0b0b; color: #ffd400; padding: 4px 12px; }
+    .poster .accent { color: #ff2a1a; } .poster .gold { color: #0b0b0b; }
+    .post > * { z-index: 1; }
+
+    /* --- Modello 1: Stanotte in TV --- */
+    .tv .main { position: absolute; left: 70px; right: 70px; top: 260px; }
+    .tv .when { font: 600 36px Inter, sans-serif; opacity: .85; margin-bottom: 26px; }
+    .tv .show { font-size: 150px; }
+    .tv .meta { display: flex; gap: 22px; margin-top: 40px; }
+    .tv .meta div { padding: 26px 30px; flex: 1; }
+    .tv .meta small { display: block; font: 700 22px Inter, sans-serif; letter-spacing: 3px; text-transform: uppercase; opacity: .7; margin-bottom: 8px; }
+    .tv .meta b { font: 700 54px Oswald, sans-serif; }
+    .poster.tv .meta b { font: 400 58px Anton, sans-serif; letter-spacing: 1px; }
+    .tv .next { position: absolute; left: 70px; right: 70px; top: 960px; }
+    .tv .next h4 { margin: 0 0 14px; font: 700 26px Inter, sans-serif; letter-spacing: 4px; text-transform: uppercase; opacity: .75; }
+    .tv .next ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .tv .next li { font: 600 30px Inter, sans-serif; display: flex; justify-content: space-between; }
+    .poster.tv .next { background: #0b0b0b; color: #ffd400; z-index: 2; top: 930px; padding: 24px 30px; }
+    .poster.tv .next h4 { color: #ff2a1a; opacity: 1; }
+    .poster.tv .next li { font: 400 40px Anton, sans-serif; letter-spacing: 1px; }
+
+    /* --- Modello 2: Conto alla rovescia --- */
+    .cd .main { position: absolute; left: 70px; right: 70px; top: 250px; }
+    .cd .num { font-size: 400px; line-height: .8; display: flex; align-items: flex-end; gap: 24px; }
+    .cd .num small { font-size: 90px; line-height: 1; padding-bottom: 30px; }
+    .cd .ev { font-size: 104px; margin-top: 30px; }
+    .cd .info { font: 600 34px Inter, sans-serif; margin-top: 18px; opacity: .9; }
+    .cd .matches { position: absolute; left: 70px; right: 70px; top: 930px; display: grid; gap: 14px; }
+    .cd .match { padding: 18px 26px; display: flex; flex-direction: column; }
+    .cd .match small { font: 700 20px Inter, sans-serif; letter-spacing: 3px; text-transform: uppercase; opacity: .75; }
+    .cd .match b { font: 700 46px Oswald, sans-serif; text-transform: uppercase; }
+    .cd .match b i { font-style: normal; margin: 0 14px; }
+    .poster.cd .main { top: 300px; }
+    .poster.cd .matches { top: 900px; z-index: 2; }
+    .poster.cd .match { background: #0b0b0b; color: #ffd400; border: 4px solid #0b0b0b; }
+    .poster.cd .match b { font: 400 50px Anton, sans-serif; letter-spacing: 1px; }
+
+    /* --- Modello 3: Classifica --- */
+    .rk .series { position: absolute; left: 70px; right: 70px; top: 255px; font: 700 40px Inter, sans-serif; }
+    .rk .pos { position: absolute; right: 50px; top: 300px; font-size: 520px; line-height: .8; opacity: .95; }
+    .ring.rk .pos { color: transparent; -webkit-text-stroke: 6px #f5b700; }
+    .poster.rk .pos { color: #ff2a1a; }
+    .rk .main { position: absolute; left: 70px; right: 70px; top: 760px; }
+    .rk .name { font-size: 112px; }
+    .rk .who { font: 700 40px Inter, sans-serif; margin-top: 14px; }
+    .rk .why { font: 500 32px/1.4 Inter, sans-serif; margin-top: 26px; max-width: 900px; opacity: .9; }
+    .poster.rk .main { top: 560px; }
+    .poster.rk .why { background: #0b0b0b; color: #ffd400; padding: 22px 26px; position: relative; z-index: 3; }
+
+    /* ===== Stile B: regole di leggibilita' =====
+       Su un telefono il post e' mostrato a circa 1/3 della sua grandezza: nessun testo sotto i 30px,
+       testi piccoli sempre su fondo pieno, numeri giganti neri con ombra rossa (il rosso su giallo da solo ha poco contrasto). */
+    .poster .post-text, .poster .main, .poster .series, .poster .next, .poster .matches { z-index: 2; }
+    .poster .brand { font-size: 38px; }
+    .poster .foot { color: #ffd400; bottom: 36px; font-size: 32px; }
+    .poster .foot b { background: #ff2a1a; color: #fff; padding: 6px 16px; }
+    .poster .big { text-shadow: 10px 10px 0 #ff2a1a; }
+    .poster.tv .when, .poster.cd .info { font: 800 40px/1.25 Inter, sans-serif; opacity: 1; }
+    .poster.tv .show { font-size: 170px; }
+    .poster.tv .meta small, .poster.cd .match small { font-size: 26px; opacity: .85; color: #fff; }
+    .poster.tv .meta b { font-size: 66px; }
+    .poster.tv .next { top: 890px; }
+    .poster.tv .next h4 { font-size: 30px; }
+    .poster.tv .next li { font-size: 46px; }
+    .poster.cd .num { color: #0b0b0b; font-size: 420px; text-shadow: 14px 14px 0 #ff2a1a; }
+    .poster.cd .num small { color: #0b0b0b; font-size: 100px; text-shadow: 6px 6px 0 #ff2a1a; }
+    .poster.cd .ev { font-size: 112px; }
+    .poster.cd .matches { top: 935px; }
+    .poster.cd .match b { font-size: 56px; }
+    .poster .match b i { color: #ff2a1a; }
+    .poster.rk .series { background: #0b0b0b; color: #ffd400; display: inline-block; right: auto; padding: 8px 18px; font-size: 38px; top: 270px; }
+    .poster.rk .pos { color: #0b0b0b; text-shadow: 16px 16px 0 #ff2a1a; right: 60px; top: 340px; }
+    .poster.rk .main { top: 620px; }
+    .poster.rk .name { font-size: 124px; }
+    .poster.rk .who { display: inline-block; background: #ff2a1a; color: #fff; padding: 6px 16px; font: 800 44px Inter, sans-serif; }
+    .poster.rk .why { font: 600 38px/1.4 Inter, sans-serif; opacity: 1; }
+
+    /* ===== Classifica con foto grande (stile B) ===== */
+    .rkp .rkp-photo { position: absolute; left: 0; top: 0; width: 1080px; height: 820px; z-index: 0; }
+    .rkp .brand, .rkp .kicker { z-index: 3; }
+    .rkp .rkp-series { position: absolute; left: 70px; top: 262px; z-index: 3; background: #0b0b0b; color: #ffd400; font: 700 36px Inter, sans-serif; padding: 8px 18px; }
+    .rkp .rkp-credit { position: absolute; right: 24px; top: 690px; z-index: 3; background: rgba(0,0,0,.6); color: #fff; font: 600 20px Inter, sans-serif; padding: 5px 12px; }
+    .rkp .rkp-pos { position: absolute; left: 70px; top: 620px; z-index: 3; width: 210px; height: 230px; background: #0b0b0b; color: #ffd400;
+      font: 400 200px/230px Anton, sans-serif; text-align: center; transform: rotate(-4deg); box-shadow: 12px 12px 0 #ff2a1a; }
+    .rkp .rkp-main { position: absolute; left: 70px; right: 70px; top: 880px; z-index: 2; }
+    .rkp .name { font-size: 112px; }
+    .rkp .who { display: inline-block; background: #ff2a1a; color: #fff; padding: 6px 16px; font: 800 42px Inter, sans-serif; margin-top: 12px; }
+    .rkp .why { background: #0b0b0b; color: #ffd400; font: 600 34px/1.35 Inter, sans-serif; padding: 18px 24px; margin-top: 18px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Modelli post Instagram</h1>
+    <p class="intro">Le grafiche si compongono da sole con i dati del sito: calendario, show settimanali e classifiche. Scegli lo stile che preferisci. Con "Scarica PNG" ottieni l'immagine a 1080×1350, il formato verticale consigliato da Instagram, e la didascalia è pronta da copiare.</p>
+    <div class="switch" id="style">
+      <button data-s="ring">Stile A · Ring</button>
+      <button data-s="poster" class="on">Stile B · Poster</button>
+    </div>
+    <div class="switch" id="bg" style="margin-left:10px">
+      <button data-bg="photo" class="on">Sfondo foto</button>
+      <button data-bg="art">Sfondo illustrato</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script src="../data/events.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var TZ = 'Europe/Rome';
+    var ev = window.WH_EVENTS || { events: [], weekly: [] };
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    function fmt(d, o) { return new Intl.DateTimeFormat('it-IT', Object.assign({ timeZone: TZ }, o)).format(d); }
+    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+    // "oggi" secondo l'ora italiana, a mezzogiorno UTC (cosi' i calcoli sui giorni non dipendono dal fuso del dispositivo)
+    function romeToday() { return new Date(new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(new Date()) + 'T12:00:00Z'); }
+    var DAYS = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
+    var brand = '<div class="brand">Wrestling<span>Hub</span><small>Italia</small></div>';
+    var foot = '<div class="foot"><span>wrestlinghubitalia.com</span><b>Link in bio</b></div>';
+
+    // ----- Sfondi illustrati per lo stile B (SVG disegnato da noi: nessun diritto d'immagine) -----
+    function rng(seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+    function sunburst(cx, cy) {
+      var s = '', n = 28, R = 1700;
+      for (var i = 0; i < n; i += 2) {
+        var a1 = i / n * Math.PI * 2, a2 = (i + 1) / n * Math.PI * 2;
+        s += '<polygon points="' + cx + ',' + cy + ' ' + (cx + R * Math.cos(a1)).toFixed(0) + ',' + (cy + R * Math.sin(a1)).toFixed(0) + ' ' +
+          (cx + R * Math.cos(a2)).toFixed(0) + ',' + (cy + R * Math.sin(a2)).toFixed(0) + '"/>';
+      }
+      return '<g fill="#000" opacity=".075">' + s + '</g>';
+    }
+    function halftone(x0, y0, w, h) { // puntinato da fumetto in un angolo, che sfuma
+      var s = '';
+      for (var y = 0; y <= h; y += 28) for (var x = 0; x <= w; x += 28) {
+        var r = 11 * (1 - Math.hypot(x / w, y / h) / 1.42);
+        if (r > 1.2) s += '<circle cx="' + (x0 + x + (y / 28 % 2) * 14) + '" cy="' + (y0 + y) + '" r="' + r.toFixed(1) + '"/>';
+      }
+      return '<g fill="#000" opacity=".16">' + s + '</g>';
+    }
+    function ropes(y, tilt) { // le tre corde del ring, in leggera prospettiva
+      return '<g stroke="#000" stroke-width="16" stroke-linecap="round" opacity=".22">' + [0, 70, 140].map(function (d, i) {
+        return '<line x1="-20" y1="' + (y + d) + '" x2="1100" y2="' + (y + d + tilt - i * 6) + '"/>';
+      }).join('') + '</g>';
+    }
+    function turnbuckle(x, y) { // paletto d'angolo con i cuscinetti rossi
+      return '<g opacity=".9"><rect x="' + (x + 22) + '" y="' + (y - 40) + '" width="36" height="560" fill="#0b0b0b"/>' +
+        [0, 70, 140].map(function (d) { return '<rect x="' + x + '" y="' + (y + d) + '" width="80" height="46" rx="12" fill="#ff2a1a" stroke="#0b0b0b" stroke-width="6"/>'; }).join('') + '</g>';
+    }
+    function crowd(seed) { // folla in silhouette, con qualche braccio alzato
+      var r = rng(seed), back = '', front = '';
+      for (var x = -30; x < 1120; x += 46 + r() * 22) {
+        var hy = 1150 + r() * 30, hr = 22 + r() * 7;
+        back += '<circle cx="' + x.toFixed(0) + '" cy="' + hy.toFixed(0) + '" r="' + hr.toFixed(0) + '"/><ellipse cx="' + x.toFixed(0) + '" cy="' + (hy + hr + 48).toFixed(0) + '" rx="' + (hr * 1.7).toFixed(0) + '" ry="58"/>';
+        if (r() < .22) back += '<rect x="' + (x + hr).toFixed(0) + '" y="' + (hy - 95).toFixed(0) + '" width="13" height="120" rx="6" transform="rotate(' + (8 + r() * 14).toFixed(0) + ' ' + (x + hr).toFixed(0) + ' ' + (hy + 20).toFixed(0) + ')"/>';
+      }
+      for (var x2 = -10; x2 < 1120; x2 += 64 + r() * 26) {
+        var fy = 1215 + r() * 26, fr = 33 + r() * 9;
+        front += '<circle cx="' + x2.toFixed(0) + '" cy="' + fy.toFixed(0) + '" r="' + fr.toFixed(0) + '"/><ellipse cx="' + x2.toFixed(0) + '" cy="' + (fy + fr + 60).toFixed(0) + '" rx="' + (fr * 1.8).toFixed(0) + '" ry="72"/>';
+        if (r() < .3) front += '<rect x="' + (x2 - fr - 14).toFixed(0) + '" y="' + (fy - 120).toFixed(0) + '" width="17" height="150" rx="8" transform="rotate(' + (-10 - r() * 14).toFixed(0) + ' ' + (x2 - fr).toFixed(0) + ' ' + (fy + 20).toFixed(0) + ')"/>';
+      }
+      return '<g fill="#0b0b0b" opacity=".45">' + back + '</g><g fill="#0b0b0b">' + front + '<rect x="0" y="1272" width="1080" height="80"/></g>';
+    }
+    function art(kind) {
+      var parts = {
+        tv: [sunburst(540, 470), halftone(760, 40, 320, 300), crowd(7)],
+        cd: [sunburst(330, 560), halftone(760, 40, 320, 300), ropes(640, 40), crowd(11)],
+        rk: [sunburst(830, 560), halftone(760, 40, 320, 300), ropes(560, 60), crowd(23)]
+      }[kind];
+      return '<svg class="art" viewBox="0 0 1080 1350" width="1080" height="1350" xmlns="http://www.w3.org/2000/svg">' + parts.join('') + '</svg>';
+    }
+    // ----- Foto di sfondo (licenza Unsplash: uso commerciale libero) con effetto serigrafia giallo/nero -----
+    var PHOTOS = [
+      { id: 'pSWfkJgAKGg', img: 'photo-1636391134068-083dd5e3209b', desc: 'Ring in un\'arena vuota' },
+      { id: '_wCdhOulQVc', img: 'photo-1564097147829-44f8c74a8549', desc: 'Pubblico intorno al ring' },
+      { id: 'OHGgeOyJ5s0', img: 'photo-1786215327483-0a47e29abf2f', desc: 'Lottatore con la maschera alzata' },
+      { id: 'MJ-J88FjQw0', img: 'photo-1788804360944-e4666418e9d7', desc: 'Lottatore mascherato sulle corde' },
+      { id: 'oucIW6G-3h4', img: 'photo-1657672825833-7b2ad6fae220', desc: 'Presa sul ring davanti alla folla' },
+      { id: 'uHx-_x-WaJs', img: 'photo-1736723212593-2183d03535df', desc: 'Match con la folla' },
+      { id: '75PCQsLWcjg', img: 'photo-1786215327494-f136f019bf51', desc: 'Lottatore mascherato alle corde' },
+      { id: 'h39HBKBclNM', img: 'photo-1575654402720-0af3480d1fad', desc: 'Ring visto dall\'alto' }
+    ];
+    var photoMode = true;
+    var photoSel = { tv: 1, cd: 0, rk: 2 };
+    var duoCache = {};
+    // Converte la foto in due toni: le ombre diventano senape scuro, le luci giallo pieno.
+    // Il tono piu' scuro resta abbastanza chiaro da far leggere sempre il testo nero sopra.
+    function duotone(p) {
+      if (duoCache[p.id]) return Promise.resolve(duoCache[p.id]);
+      return new Promise(function (resolve) {
+        var im = new Image();
+        im.crossOrigin = 'anonymous';
+        im.onload = function () {
+          var W = 1080, H = 1350, c = document.createElement('canvas'); c.width = W; c.height = H;
+          var x = c.getContext('2d');
+          var s = Math.max(W / im.width, H / im.height), w = im.width * s, h = im.height * s;
+          x.drawImage(im, (W - w) / 2, (H - h) / 2, w, h);
+          var d = x.getImageData(0, 0, W, H), a = d.data;
+          var dark = [160, 124, 0], light = [255, 218, 0];
+          for (var i = 0; i < a.length; i += 4) {
+            var l = (0.299 * a[i] + 0.587 * a[i + 1] + 0.114 * a[i + 2]) / 255;
+            l = Math.pow(Math.min(1, Math.max(0, (l - 0.06) * 1.6)), 0.75); // piu' contrasto, toni spinti verso il giallo pieno
+            a[i] = dark[0] + (light[0] - dark[0]) * l; a[i + 1] = dark[1] + (light[1] - dark[1]) * l; a[i + 2] = dark[2] + (light[2] - dark[2]) * l;
+          }
+          x.putImageData(d, 0, 0);
+          resolve(duoCache[p.id] = c.toDataURL('image/jpeg', 0.9));
+        };
+        im.onerror = function () { resolve(null); };
+        im.src = 'https://images.unsplash.com/' + p.img + '?w=1350&q=80&fm=jpg';
+      });
+    }
+    function photoArt(kind) {
+      var src = duoCache[PHOTOS[photoSel[kind]].id];
+      if (!src) return art(kind);
+      return '<img class="art" src="' + src + '" alt="">' +
+        '<svg class="art" viewBox="0 0 1080 1350" width="1080" height="1350" xmlns="http://www.w3.org/2000/svg">' + halftone(760, 40, 320, 300) + crowd(kind.length * 7) + '</svg>';
+    }
+    function openPost(kind, style) {
+      return '<div class="post ' + kind + ' ' + style + '">' + (style === 'poster' ? (photoMode ? photoArt(kind) : art(kind)) : '');
+    }
+
+    // ----- Modello 1: Stanotte in TV -----
+    // Gli orari settimanali sono indicati come "Martedì notte" = la notte che porta al martedì (es. Raw alle 02:00)
+    function showsFor(dayIdx) {
+      return (ev.weekly || []).filter(function (w) { return w.day && w.day.toLowerCase().indexOf(DAYS[dayIdx]) === 0; });
+    }
+    function tvPost(style) {
+      var now = romeToday();
+      var tomorrow = new Date(now.getTime() + 864e5);
+      var shows = showsFor(tomorrow.getUTCDay());
+      var s = shows[0] || { show: 'Nessuno show', timeIT: '—', broadcastIT: '—' };
+      var nexts = [];
+      for (var i = 2; i <= 6 && nexts.length < 3; i++) {
+        var d = new Date(now.getTime() + i * 864e5);
+        showsFor(d.getUTCDay()).forEach(function (w) { if (nexts.length < 3) nexts.push({ d: d, w: w }); });
+      }
+      var when = 'Notte tra ' + fmt(now, { weekday: 'long', day: 'numeric' }) + ' e ' + fmt(tomorrow, { weekday: 'long', day: 'numeric', month: 'long' });
+      var html = openPost('tv', style) + brand + '<div class="kicker">Stanotte in TV</div>' +
+        '<div class="main"><div class="when">' + esc(cap(when)) + '</div><div class="big show">' + esc(s.show) + '</div>' +
+        '<div class="meta"><div class="panel"><small>Ora italiana</small><b>' + esc((s.timeIT || '—').replace('circa ', '~')) + '</b></div>' +
+        '<div class="panel"><small>Dove vederlo</small><b>' + esc(s.broadcastIT.replace(/\s*\(.*\)/, '')) + '</b></div></div></div>' +
+        '<div class="next"><h4>Le prossime notti</h4><ul>' + nexts.map(function (n) {
+          return '<li><span>' + esc(cap(fmt(n.d, { weekday: 'short' }))) + ' · ' + esc(n.w.show) + '</span><span>' + esc(n.w.timeIT || '') + '</span></li>';
+        }).join('') + '</ul></div>' + foot + '</div>';
+      var caption = '📺 STANOTTE IN TV: ' + s.show + ' alle ' + (s.timeIT || '') + ' (ora italiana) su ' + s.broadcastIT + '.\n\n' +
+        'Tutti gli orari degli show e i prossimi grandi eventi: link in bio 👆\n\n#wrestling #' + (s.promotion || 'wrestling').toLowerCase() + ' #wrestlingitalia #wrestlinghubitalia';
+      return { title: 'Stanotte in TV (ogni giorno)', html: html, caption: caption, file: 'stanotte-in-tv' };
+    }
+
+    // ----- Modello 2: Conto alla rovescia -----
+    function cdPost(style) {
+      var today = romeToday();
+      var next = (ev.events || []).filter(function (e) { return new Date(e.date + 'T12:00:00Z') >= today; })
+        .sort(function (a, b) { return a.date < b.date ? -1 : 1; })[0];
+      if (!next) return null;
+      var start = new Date(next.startUtc || next.date + 'T12:00:00Z');
+      var days = Math.round((new Date(next.date + 'T12:00:00Z') - today) / 864e5);
+      var when = cap(fmt(start, { weekday: 'long', day: 'numeric', month: 'long' })) + (next.startUtc ? ' · ore ' + fmt(start, { hour: '2-digit', minute: '2-digit' }) : ' · orario da confermare');
+      var html = openPost('cd', style) + brand + '<div class="kicker">Conto alla rovescia</div>' +
+        '<div class="main"><div class="big num accent">' + days + '<small class="gold">' + (days === 1 ? 'giorno' : 'giorni') + '</small></div>' +
+        '<div class="big ev">' + esc(next.name.replace(/ 20\d\d$/, '')) + '</div>' +
+        '<div class="info">' + esc(when) + '<br>' + esc(next.city) + ' · in Italia su ' + esc(next.broadcastIT.replace(/\s*\(.*\)/, '')) + '</div></div>' +
+        '<div class="matches">' + (next.card || []).slice(0, 3).map(function (m) {
+          return '<div class="match panel"><small>' + esc(m.title) + '</small><b>' + esc(m.a) + '<i class="accent">vs</i>' + esc(m.b) + '</b></div>';
+        }).join('') + '</div>' + foot + '</div>';
+      var caption = '⏳ Mancano ' + days + ' giorni a ' + next.name + '!\n\n📍 ' + next.city + '\n🗓 ' + when + '\n📺 In Italia: ' + next.broadcastIT +
+        ((next.card || []).length ? '\n\n🔥 La card:\n' + next.card.map(function (m) { return '• ' + m.a + ' vs ' + m.b + ' (' + m.title + ')'; }).join('\n') : '') +
+        '\n\nCard completa, orario italiano e biglietti: link in bio 👆\n\n#' + next.promotion.toLowerCase() + ' #' + next.name.replace(/[^A-Za-z]/g, '').replace(/^(WWE|AEW|TNA|NJPW)/, '').toLowerCase() + ' #wrestlingitalia #wrestlinghubitalia';
+      return { title: 'Conto alla rovescia (prima dei grandi eventi)', html: html, caption: caption, file: 'countdown-' + next.id };
+    }
+
+    // ----- Modello 3: Classifica a puntate -----
+    // foto: Wikimedia Commons, licenze Creative Commons (uso commerciale consentito citando autore e licenza)
+    var FINISHERS = [
+      { n: 'Stone Cold Stunner', w: 'Stone Cold Steve Austin', why: 'Il simbolo dell\'Attitude Era: semplice, improvvisa, irresistibile. L\'hanno subita proprio tutti.',
+        photo: { file: 'Stone Cold Steve Austin 2016-03-31 (cropped).jpg', by: 'Miguel Discart', lic: 'CC BY-SA 2.0', focus: .3 } },
+      { n: 'Tombstone Piledriver', w: 'The Undertaker', why: 'Braccia incrociate, lingua fuori: se partiva il Tombstone, il match era finito.',
+        photo: { file: 'Undertaker, Circa 2009 02.jpg', by: 'jorgebueno', lic: 'CC BY-SA 2.0', focus: .35 } },
+      { n: 'Sweet Chin Music', w: 'Shawn Michaels', why: 'Il piede che batte sul tappeto, il pubblico che tiene il tempo, poi il calcio.',
+        photo: { file: 'Shawn Michaels, April 2004 04.jpg', by: 'STEPHVE', lic: 'CC BY 2.0', focus: .3 } },
+      { n: 'RKO', w: 'Randy Orton', why: 'Può arrivare da qualunque posizione: "RKO outta nowhere" è diventato un tormentone.',
+        photo: { file: 'Randy Orton Tribute to the Troops 2010.jpg', by: 'Shamsuddin Muhammad', lic: 'CC BY 2.0', focus: .25 } },
+      { n: 'Rock Bottom', w: 'The Rock', why: 'La mossa che vince i match. Lo spettacolo, invece, ce lo mette la People\'s Elbow.',
+        photo: { file: 'Dwayne Johnson-1764 (cropped).jpg', by: 'Harald Krichel', lic: 'CC BY-SA 4.0', focus: .25 } }
+    ];
+    var rankIdx = 0;
+    var portraitCache = {};
+    // Scarica la miniatura da Commons e la ritaglia a 1080x820 (a colori, contrasto leggermente aumentato)
+    function portrait(ph) {
+      if (portraitCache[ph.file]) return Promise.resolve(portraitCache[ph.file]);
+      var api = 'https://commons.wikimedia.org/w/api.php?origin=*&format=json&action=query&prop=imageinfo&iiprop=url&iiurlwidth=1400&titles=' + encodeURIComponent('File:' + ph.file);
+      return fetch(api).then(function (r) { return r.json(); }).then(function (j) {
+        var info = Object.values(j.query.pages)[0].imageinfo[0];
+        return new Promise(function (resolve) {
+          var im = new Image(); im.crossOrigin = 'anonymous';
+          im.onload = function () {
+            var W = 1080, H = 820, c = document.createElement('canvas'); c.width = W; c.height = H;
+            var x = c.getContext('2d');
+            x.filter = 'contrast(1.12) saturate(1.1)';
+            var s = Math.max(W / im.width, H / im.height), w = im.width * s, h = im.height * s;
+            x.drawImage(im, (W - w) / 2, -(h - H) * ph.focus, w, h);
+            resolve(portraitCache[ph.file] = c.toDataURL('image/jpeg', 0.92));
+          };
+          im.onerror = function () { resolve(null); };
+          im.src = info.thumburl || info.url;
+        });
+      }).catch(function () { return null; });
+    }
+    function rkPhotoPost(m) {
+      var ph = m.photo, src = portraitCache[ph.file];
+      var html = '<div class="post rkp poster">' +
+        '<img class="rkp-photo" src="' + src + '" alt="">' +
+        '<svg class="art" viewBox="0 0 1080 1350" width="1080" height="1350" xmlns="http://www.w3.org/2000/svg">' +
+        '<polygon points="0,800 1080,740 1080,1350 0,1350" fill="#ffd400"/><polygon points="0,786 1080,726 1080,748 0,808" fill="#0b0b0b"/>' +
+        halftone(760, 1040, 320, 220) + '<rect x="0" y="1272" width="1080" height="80" fill="#0b0b0b"/></svg>' +
+        brand + '<div class="kicker">Classifica</div>' +
+        '<div class="rkp-series">Le 10 mosse finali più iconiche</div>' +
+        '<div class="rkp-credit">Foto: ' + esc(ph.by) + ' · ' + esc(ph.lic) + ' · Wikimedia Commons</div>' +
+        '<div class="rkp-pos">' + (rankIdx + 1) + '</div>' +
+        '<div class="rkp-main"><div class="big name">' + esc(m.n) + '</div><div class="who">' + esc(m.w) + '</div>' +
+        '<div class="why">' + esc(m.why) + '</div></div>' + foot + '</div>';
+      return html;
+    }
+    function rkPost(style) {
+      var m = FINISHERS[rankIdx];
+      var credit = m.photo ? '\n\n📸 Foto: ' + m.photo.by + ' (' + m.photo.lic + ', Wikimedia Commons)' : '';
+      var caption = '🏆 N. ' + (rankIdx + 1) + ' delle 10 mosse finali più iconiche di sempre: ' + m.n + ' di ' + m.w + '!\n\n' + m.why +
+        '\n\nSei d\'accordo? Scrivi nei commenti la tua mossa preferita 👇\nLa classifica completa: link in bio.\n\n#wrestling #wwe #classifica #wrestlingitalia #wrestlinghubitalia';
+      if (style === 'poster' && photoMode && m.photo && portraitCache[m.photo.file]) {
+        return { title: 'Classifica a puntate', html: rkPhotoPost(m), caption: caption + credit, file: 'classifica-mosse-' + (rankIdx + 1), nav: true };
+      }
+      var html = openPost('rk', style) + brand + '<div class="kicker">Classifica</div>' +
+        '<div class="series">Le 10 mosse finali più iconiche</div>' +
+        '<div class="big pos">' + (rankIdx + 1) + '</div>' +
+        '<div class="main"><div class="big name">' + esc(m.n) + '</div><div class="who accent">' + esc(m.w) + '</div>' +
+        '<div class="why">' + esc(m.why) + '</div></div>' + foot + '</div>';
+      var caption = '🏆 N. ' + (rankIdx + 1) + ' delle 10 mosse finali più iconiche di sempre: ' + m.n + ' di ' + m.w + '!\n\n' + m.why +
+        '\n\nSei d\'accordo? Scrivi nei commenti la tua mossa preferita 👇\nLa classifica completa: link in bio.\n\n#wrestling #wwe #classifica #wrestlingitalia #wrestlinghubitalia';
+      return { title: 'Classifica a puntate', html: html, caption: caption, file: 'classifica-mosse-' + (rankIdx + 1), nav: true };
+    }
+
+    // ----- rendering della pagina -----
+    var style = 'poster';
+    function render() {
+      var posts = [['tv', tvPost], ['cd', cdPost], ['rk', rkPost]].map(function (t) {
+        var p = t[1](style); if (p) p.kind = t[0]; return p;
+      }).filter(Boolean);
+      var usePhoto = photoMode && style === 'poster';
+      document.getElementById('grid').innerHTML = posts.map(function (p, i) {
+        var ph = PHOTOS[photoSel[p.kind]];
+        var photoTools = usePhoto && p.html.indexOf('rkp') < 0 ? '<div class="photo-credit"><button data-photo="' + p.kind + '" data-dir="-1">◀</button> Foto: ' + esc(ph.desc) +
+          ' — <a href="https://unsplash.com/photos/' + ph.id + '" target="_blank" rel="noopener">Unsplash</a> <button data-photo="' + p.kind + '" data-dir="1">▶</button></div>' : '';
+        return '<div class="item"><h2>' + esc(p.title) + '</h2>' + photoTools + '<div class="frame" id="f' + i + '">' + p.html + '</div>' +
+          '<div class="tools"><button class="primary" data-dl="' + i + '" data-file="' + p.file + '-' + style + '">Scarica PNG</button>' +
+          '<button data-copy="' + i + '">Copia didascalia</button>' +
+          (p.nav ? '<button data-rank="-1">◀ Posizione</button><button data-rank="1">Posizione ▶</button>' : '') + '</div>' +
+          '<textarea id="c' + i + '" readonly>' + esc(p.caption) + '</textarea></div>';
+      }).join('');
+    }
+
+    document.getElementById('style').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      style = b.dataset.s;
+      this.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      refresh();
+    });
+
+    document.getElementById('grid').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.rank) { rankIdx = (rankIdx + Number(b.dataset.rank) + FINISHERS.length) % FINISHERS.length; refresh(); return; }
+      if (b.dataset.copy) {
+        var t = document.getElementById('c' + b.dataset.copy);
+        navigator.clipboard.writeText(t.value).then(function () { b.textContent = 'Copiata ✓'; }, function () { t.select(); });
+        return;
+      }
+      if (b.dataset.dl) {
+        // copia il post fuori schermo a grandezza reale (senza la riduzione dell'anteprima) e lo cattura
+        var src = document.querySelector('#f' + b.dataset.dl + ' .post');
+        var holder = document.createElement('div');
+        holder.style.cssText = 'position:fixed;left:-20000px;top:0;';
+        holder.appendChild(src.cloneNode(true));
+        document.body.appendChild(holder);
+        b.textContent = 'Creo il PNG…';
+        html2canvas(holder.firstChild, { width: 1080, height: 1350, scale: 1, backgroundColor: null, useCORS: true }).then(function (canvas) {
+          var a = document.createElement('a');
+          a.download = b.dataset.file + '.png';
+          a.href = canvas.toDataURL('image/png');
+          a.click();
+          holder.remove();
+          b.textContent = 'Scarica PNG';
+        });
+      }
+    });
+
+    // carica subito tutti i font (anche quelli dello stile non visibile), altrimenti il primo disegno e il PNG userebbero un font di riserva
+    var fontsReady = document.fonts
+      ? Promise.all(['400 40px Anton', '700 40px Oswald', '600 40px Inter', '800 40px Inter'].map(function (f) { return document.fonts.load(f); }))
+      : Promise.resolve();
+    // prepara le foto in due toni necessarie, poi disegna
+    function refresh() {
+      if (!(photoMode && style === 'poster')) { render(); return; }
+      var jobs = ['tv', 'cd', 'rk'].map(function (k) { return duotone(PHOTOS[photoSel[k]]); });
+      if (FINISHERS[rankIdx].photo) jobs.push(portrait(FINISHERS[rankIdx].photo));
+      Promise.all(jobs).then(render);
+    }
+    document.getElementById('bg').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      photoMode = b.dataset.bg === 'photo';
+      this.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      refresh();
+    });
+    document.getElementById('grid').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-photo]'); if (!b) return;
+      var k = b.dataset.photo;
+      photoSel[k] = (photoSel[k] + Number(b.dataset.dir) + PHOTOS.length) % PHOTOS.length;
+      refresh();
+    });
+    fontsReady.then(refresh, refresh);
+  })();
+  </script>
+</body>
+</html>

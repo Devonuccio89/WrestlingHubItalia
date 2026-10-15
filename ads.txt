@@ -1,0 +1,2 @@
+# Dopo l'approvazione AdSense sostituisci pub-0000000000000000 con il tuo ID editore e rimuovi il # dalla riga sotto.
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

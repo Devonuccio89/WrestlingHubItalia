@@ -1,0 +1,130 @@
+{
+  "updated": "2026-10-14",
+  "events": [
+    {
+      "id": "wwe-crown-jewel-2026",
+      "name": "WWE Crown Jewel 2026",
+      "promotion": "WWE",
+      "date": "2026-11-07",
+      "startUtc": null,
+      "venue": "Riyadh Season Stadium, KAFD",
+      "city": "Riyadh",
+      "country": "Arabia Saudita",
+      "tickets": "https://www.webook.com",
+      "broadcastIT": "Netflix (incluso nell'abbonamento)",
+      "watchUrl": "https://www.netflix.com/it/",
+      "note": "Annunciati: Reigns vs Zayn e Morgan vs Green per i titoli Crown Jewel. Orario non ancora ufficiale. Biglietti tramite Webook (rivenditore ufficiale).",
+      "card": [
+        { "title": "Men's Crown Jewel Championship", "a": "Roman Reigns", "b": "Sami Zayn" },
+        { "title": "Women's Crown Jewel Championship", "a": "Liv Morgan", "b": "Chelsea Green" }
+      ]
+    },
+    {
+      "id": "aew-full-gear-2026",
+      "name": "AEW Full Gear 2026",
+      "promotion": "AEW",
+      "date": "2026-11-14",
+      "startUtc": null,
+      "venue": "Mortgage Matchup Center",
+      "city": "Phoenix, Arizona",
+      "country": "USA",
+      "tickets": "https://www.allelitewrestling.com/aew-events",
+      "broadcastIT": "PPV su DAZN o MyAEW (da verificare per l'Italia)",
+      "watchUrl": "https://www.dazn.com/it-IT"
+    },
+    {
+      "id": "tna-destination-x-2026",
+      "name": "TNA Destination X 2026",
+      "promotion": "TNA",
+      "date": "2026-11-15",
+      "startUtc": "2026-11-16T01:00:00Z",
+      "venue": "Edmonton EXPO Centre",
+      "city": "Edmonton, Alberta",
+      "country": "Canada",
+      "tickets": "https://edmontonexpocentre.com/events/tna-wrestling/",
+      "broadcastIT": "TNA+",
+      "watchUrl": "https://tnawrestling.com",
+      "note": "Orario indicato dal palazzetto (18:00 a Edmonton): da confermare per la diretta."
+    },
+    {
+      "id": "wwe-survivor-series-2026",
+      "name": "WWE Survivor Series: WarGames 2026",
+      "promotion": "WWE",
+      "date": "2026-11-28",
+      "startUtc": "2026-11-28T23:00:00Z",
+      "venue": "Daikin Park",
+      "city": "Houston, Texas",
+      "country": "USA",
+      "tickets": "https://www.wwe.com/article/houston-to-host-survivor-series-2026",
+      "broadcastIT": "Netflix (incluso nell'abbonamento)",
+      "watchUrl": "https://www.netflix.com/it/",
+      "note": "40ª edizione. Inizio ufficiale alle 18:00 ET: in Italia è la mezzanotte tra sabato 28 e domenica 29. Biglietti su Ticketmaster."
+    },
+    {
+      "id": "aew-worlds-end-2026",
+      "name": "AEW Worlds End 2026",
+      "promotion": "AEW",
+      "date": "2026-12-19",
+      "startUtc": "2026-12-20T00:00:00Z",
+      "venue": "Target Center",
+      "city": "Minneapolis, Minnesota",
+      "country": "USA",
+      "tickets": "https://www.allelitewrestling.com/aew-event/aew-worlds-end-2026",
+      "broadcastIT": "PPV su DAZN o MyAEW (da verificare per l'Italia)",
+      "watchUrl": "https://www.dazn.com/it-IT",
+      "note": "Finale del Continental Classic. Inizio alle 18:00 a Minneapolis: in Italia è l'01:00 di domenica 20."
+    },
+    {
+      "id": "njpw-wrestle-kingdom-21",
+      "name": "NJPW Wrestle Kingdom 21",
+      "promotion": "NJPW",
+      "date": "2027-01-04",
+      "startUtc": "2027-01-04T07:30:00Z",
+      "venue": "Tokyo Dome",
+      "city": "Tokyo",
+      "country": "Giappone",
+      "tickets": "https://www.njpw1972.com/tornament/669555",
+      "broadcastIT": "NJPW World (streaming)",
+      "watchUrl": "https://njpwworld.com",
+      "note": "55° anniversario della NJPW. Inizio alle 16:30 a Tokyo, cioè le 08:30 in Italia. Biglietti internazionali in vendita dal 14 ottobre."
+    },
+    {
+      "id": "wwe-royal-rumble-2027",
+      "name": "WWE Royal Rumble 2027",
+      "promotion": "WWE",
+      "date": "2027-02-06",
+      "dateConfirmed": false,
+      "startUtc": null,
+      "venue": "State Farm Stadium",
+      "city": "Glendale, Arizona",
+      "country": "USA",
+      "tickets": null,
+      "broadcastIT": "Netflix (incluso nell'abbonamento)",
+      "watchUrl": "https://www.netflix.com/it/",
+      "note": "WWE ha annunciato solo «febbraio 2027»: il 6 febbraio è un'indiscrezione non ufficiale."
+    },
+    {
+      "id": "wwe-wrestlemania-43",
+      "name": "WWE WrestleMania 43",
+      "promotion": "WWE",
+      "date": "2027-04-10",
+      "dateConfirmed": false,
+      "startUtc": null,
+      "venue": "Da annunciare",
+      "city": "Riyadh",
+      "country": "Arabia Saudita",
+      "tickets": null,
+      "broadcastIT": "Netflix (incluso nell'abbonamento)",
+      "watchUrl": "https://www.netflix.com/it/",
+      "note": "Data non ufficiale: si parla del 27 marzo o del weekend del 10 aprile."
+    }
+  ],
+  "weekly": [
+    { "show": "WWE Raw", "promotion": "WWE", "day": "Martedì notte", "timeIT": "02:00", "broadcastIT": "Netflix", "note": "Dal 25 ottobre al 1° novembre alle 01:00 (cambio dell'ora)" },
+    { "show": "WWE SmackDown", "promotion": "WWE", "day": "Sabato notte", "timeIT": "02:00", "broadcastIT": "Netflix", "note": "Dal 25 ottobre al 1° novembre alle 01:00 (cambio dell'ora)" },
+    { "show": "WWE NXT", "promotion": "WWE", "day": "Mercoledì notte", "timeIT": "circa 02:00", "broadcastIT": "Netflix" },
+    { "show": "AEW Dynamite", "promotion": "AEW", "day": "Giovedì notte", "timeIT": "circa 02:00", "broadcastIT": "MyAEW (nessuna TV italiana)" },
+    { "show": "TNA iMPACT", "promotion": "TNA", "day": "Venerdì notte", "timeIT": "circa 03:00", "broadcastIT": "TNA+" },
+    { "show": "NJPW", "promotion": "NJPW", "day": "Variabile", "timeIT": null, "broadcastIT": "NJPW World" }
+  ]
+}

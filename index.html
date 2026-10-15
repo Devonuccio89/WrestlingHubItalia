@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WrestlingHub Italia — Notizie wrestling WWE, AEW, TNA, NJPW</title>
+  <meta name="description" content="Tutte le notizie di wrestling dalle migliori testate italiane ed estere, aggiornate in automatico. Calendario eventi live con orari italiani, biglietti e dove vederli.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="home">
+  <header class="site-header" id="site-header"></header>
+  <main class="wrap">
+    <section class="next-event" id="next-event"></section>
+    <div class="home-grid">
+      <div>
+        <div class="section-title"><h1>Ultime notizie</h1><span class="updated" id="updated"></span></div>
+        <div class="filters" id="filters"></div>
+        <div class="news-grid" id="news"></div>
+        <button class="btn more" id="more">Carica altre notizie</button>
+      </div>
+      <aside class="sidebar">
+        <div class="box" id="side-events"></div>
+        <div class="box" id="side-weekly"></div>
+        <div class="box guide-links">
+          <h3>Da leggere</h3>
+          <a href="guide/riepilogo-settimana-2026-10-14.html">📰 Il riepilogo della settimana</a>
+          <a href="guide/campioni-attuali-wrestling.html">🏆 Tutti i campioni attuali</a>
+          <a href="guide/italiani-nel-wrestling-oggi.html">🇮🇹 Gli italiani nel wrestling oggi</a>
+          <a href="guide/wrestler-piu-grandi-di-sempre.html">I 10 wrestler più grandi di sempre</a>
+          <a href="guide/guida-wrestling-per-principianti.html">Nuovo? Guida per chi inizia</a>
+        </div>
+        <div class="box guide-links">
+          <h3>Dove vederlo in Italia</h3>
+          <a href="guide/dove-vedere-wwe-in-italia.html">WWE: Raw, SmackDown e PLE su Netflix</a>
+          <a href="guide/dove-vedere-aew-in-italia.html">AEW: Dynamite, Collision e PPV</a>
+          <a href="guide/dove-vedere-tna-in-italia.html">TNA: iMPACT su TNA+</a>
+          <a href="guide/dove-vedere-njpw-in-italia.html">NJPW e Wrestle Kingdom</a>
+          <a href="guide/orari-wrestling-in-italia.html">Orari e cambio dell'ora</a>
+        </div>
+        <div class="side-sticky" id="side-ad"></div>
+      </aside>
+    </div>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="data/news.js"></script>
+  <script src="data/events.js"></script>
+  <script src="data/pagine-eventi.js"></script>
+  <script src="data/articoli.js"></script>
+  <script src="assets/ads-config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
