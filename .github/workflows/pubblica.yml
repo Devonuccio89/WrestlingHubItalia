@@ -8,7 +8,8 @@ name: Aggiorna e pubblica
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    # minuti "dispari" (non :00 / :30): negli orari esatti GitHub e' congestionato e salta spesso le esecuzioni
+    - cron: '13,43 * * * *'
   push:
     branches: [main]
   workflow_dispatch:
