@@ -79,6 +79,20 @@ function Find-Image($item, [string]$html) {
   return ''
 }
 
+# Immagine di anteprima dalla pagina dell'articolo (og:image / twitter:image), usata quando il feed non ne ha
+function Get-PageImage([string]$url) {
+  try {
+    $html = (Invoke-WebRequest -Uri $url -UseBasicParsing -TimeoutSec 12 -UserAgent 'Mozilla/5.0 (compatible; WrestlingHubItalia/1.0; +https://wrestlinghubitalia.com)').Content
+  } catch { return '' }
+  foreach ($p in @(
+    '<meta[^>]+(?:property|name)=["''](?:og:image|og:image:url|twitter:image)["''][^>]+content=["'']([^"'']+)',
+    '<meta[^>]+content=["'']([^"'']+)["''][^>]+(?:property|name)=["''](?:og:image|og:image:url|twitter:image)["'']')) {
+    $m = [regex]::Match($html, $p, 'IgnoreCase')
+    if ($m.Success -and $m.Groups[1].Value -match '^https?://') { return [System.Net.WebUtility]::HtmlDecode($m.Groups[1].Value) }
+  }
+  return ''
+}
+
 # Federazioni riconosciute nel titolo/estratto (il primo match e' la federazione principale)
 $promoRules = [ordered]@{
   'WWE'  = '\bWWE\b|\bRaw\b|SmackDown|\bNXT\b|WrestleMania|Royal Rumble|Survivor Series|SummerSlam|Crown Jewel|Elimination Chamber|Saturday Night.s Main Event|\bTKO\b'
@@ -117,6 +131,14 @@ foreach ($src in $sources) {
     $resp.RawContentStream.Position = 0
     $resp.RawContentStream.CopyTo($ms)
     $xmlText = $utf8.GetString($ms.ToArray()).TrimStart([char]0xFEFF)
+    # alcuni feed (plugin WordPress) dichiarano due volte lo stesso attributo nel tag radice: tiene solo il primo
+    $rootTag = [regex]::Match($xmlText, '<(rss|feed)\b[^>]*>')
+    if ($rootTag.Success) {
+      $seenAttr = @{}
+      $fixedTag = [regex]::Replace($rootTag.Value, '\s([\w:.-]+)\s*=\s*("[^"]*"|''[^'']*'')', {
+        param($m) if ($seenAttr.ContainsKey($m.Groups[1].Value)) { '' } else { $seenAttr[$m.Groups[1].Value] = 1; $m.Value } })
+      if ($fixedTag -ne $rootTag.Value) { $xmlText = $xmlText.Remove($rootTag.Index, $rootTag.Length).Insert($rootTag.Index, $fixedTag) }
+    }
     $xml = New-Object System.Xml.XmlDocument
     $xml.XmlResolver = $null
     $xml.LoadXml($xmlText)
@@ -147,6 +169,10 @@ foreach ($src in $sources) {
       if ($pos -ge 0 -and $pos -le 60 -and $excerpt.Length -gt $pos + $title.Length + 20) { $excerpt = $excerpt.Substring($pos + $title.Length).Trim() }
       $excerpt = Shorten $excerpt 240
       $image = Find-Image $it ($descHtml + ' ' + $encHtml)
+      # se il feed non ha immagine, conserva quella gia' recuperata dalla pagina nelle esecuzioni precedenti
+      $old = $byLink[$link]
+      $imgTried = [bool]($old -and $old.imgTried)
+      if (-not $image -and $old -and $old.image) { $image = $old.image }
 
       $byLink[$link] = [pscustomobject]@{
         id       = Get-Id $link
@@ -158,6 +184,7 @@ foreach ($src in $sources) {
         lang     = $src.lang
         date     = $date.ToString('yyyy-MM-ddTHH:mm:ssZ', $inv)
         promos   = Get-Promotions ($title + ' ' + $excerpt)
+        imgTried = $imgTried
       }
       $count++
     }
@@ -179,6 +206,18 @@ foreach ($i in ($byLink.Values | Sort-Object { [DateTimeOffset]::Parse($_.date, 
   $items += $i
   if ($items.Count -ge $MaxItems) { break }
 }
+
+# recupera l'immagine dalla pagina dell'articolo per le notizie che ne sono prive
+# (una sola volta per articolo, al massimo 60 per esecuzione)
+$fetched = 0; $recovered = 0
+foreach ($i in $items) {
+  if ($i.image -or $i.imgTried -or $fetched -ge 60) { continue }
+  $fetched++
+  $img = Get-PageImage $i.link
+  if ($img) { $i.image = $img; $recovered++ }
+  $i | Add-Member -NotePropertyName imgTried -NotePropertyValue $true -Force
+}
+if ($fetched) { $report += "Immagini recuperate dalle pagine: $recovered su $fetched" }
 
 $news = [pscustomobject]@{ updated = $now.ToString('yyyy-MM-ddTHH:mm:ssZ', $inv); items = $items }
 $newsJson = $news | ConvertTo-Json -Depth 6 -Compress

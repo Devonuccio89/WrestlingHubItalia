@@ -129,7 +129,8 @@
     var tags = (n.promos || []).slice(0, 2).map(function (p) { return '<span class="tag ' + p + '">' + p + '</span>'; }).join('');
     var thumb = n.image
       ? '<div class="thumb" style="background-image:url(\'' + esc(n.image).replace(/'/g, '%27') + '\')"><div class="tags">' + tags + '</div></div>'
-      : '<div class="thumb ph">WHI<div class="tags">' + tags + '</div></div>';
+      : '<div class="thumb ph ' + esc((n.promos || [])[0] || '') + '"><span class="ph-src">' + esc(n.source) + '</span>' +
+        '<span class="ph-brand">WrestlingHub Italia</span><div class="tags">' + tags + '</div></div>';
     return '<a class="news-card' + (lead ? ' lead' : '') + '" href="' + esc(n.link) + '" target="_blank" rel="noopener">' + thumb +
       '<div class="body"><h3>' + esc(n.title) + '</h3><p>' + esc(n.excerpt) + '</p>' +
       '<div class="foot"><span><span class="src">' + esc(n.source) + '</span><span class="lang">' + esc((n.lang || '').toUpperCase()) + '</span></span>' +

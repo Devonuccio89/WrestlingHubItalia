@@ -64,7 +64,13 @@ img { max-width: 100%; display: block; }
 .news-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: transform .15s, border-color .15s; }
 .news-card:hover { transform: translateY(-2px); border-color: #444; }
 .news-card .thumb { aspect-ratio: 16/9; background: #222 center/cover no-repeat; position: relative; }
-.news-card .thumb.ph { display: flex; align-items: center; justify-content: center; font-family: var(--head); font-size: 28px; color: rgba(255,255,255,.25); background: linear-gradient(135deg, #26262e, #15151a); }
+/* Segnaposto per le notizie senza immagine: colore della federazione + nome della fonte */
+.news-card .thumb.ph { --ph: #3a3a46; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; padding: 0 16px;
+  background: radial-gradient(circle at 25% 15%, color-mix(in srgb, var(--ph) 55%, transparent), transparent 60%), linear-gradient(135deg, #1f1f27, #121216); border-bottom: 2px solid var(--ph); }
+.news-card .thumb.ph.WWE { --ph: var(--wwe); } .news-card .thumb.ph.AEW { --ph: var(--aew); } .news-card .thumb.ph.TNA { --ph: var(--tna); }
+.news-card .thumb.ph.NJPW { --ph: var(--njpw); } .news-card .thumb.ph.ROH { --ph: var(--roh); } .news-card .thumb.ph.Altre { --ph: var(--altre); }
+.ph-src { font-family: var(--head); text-transform: uppercase; font-size: 26px; letter-spacing: 1px; line-height: 1.1; color: #fff; }
+.ph-brand { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.55); }
 .news-card .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
 .news-card h3 { font-size: 16px; line-height: 1.3; margin: 0; }
 .news-card p { color: var(--muted); font-size: 13.5px; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
