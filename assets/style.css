@@ -215,6 +215,15 @@ img { max-width: 100%; display: block; }
 .reader .facts ul { margin: 0; padding-left: 18px; }
 .reader .sources { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; margin-top: 28px; word-break: break-word; }
 .reader .sources a { color: var(--gold); }
+/* Foto in testa agli articoli, con credito dell'autore */
+.reader .hero { margin: 0 0 22px; }
+.reader .hero img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--line); background: var(--bg-2); }
+.reader .hero figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.reader .hero figcaption a { color: var(--muted); text-decoration: underline; }
+/* Miniatura nelle card degli articoli (indice guide, "Leggi anche") */
+.article-card.has-thumb { padding-top: 0; overflow: hidden; }
+.article-card .ac-thumb { display: block; margin: 0 -18px 6px; aspect-ratio: 1200 / 630; background: #222 center / cover no-repeat; border-bottom: 1px solid var(--line); }
+
 /* Guide (pagine statiche) */
 .reader .crumbs { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
 .reader .crumbs a:hover, .reader p a, .reader li a { color: var(--gold); }

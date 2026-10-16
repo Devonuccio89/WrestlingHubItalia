@@ -16,6 +16,31 @@ function HtmlEnc([string]$s) { return [System.Net.WebUtility]::HtmlEncode($s) }
 function J([string]$s) { return ($s -replace '\\', '\\' -replace '"', '\"') }
 function Write-Utf8($path, $text) { [IO.File]::WriteAllText($path, $text, $utf8) }
 
+# ---------- immagini degli articoli ----------
+# data/immagini.json: foto con licenza libera (Wikimedia Commons) per slug/id, con autore e licenza.
+# Se un articolo non ha foto si usa la copertina grafica assets/img/copertine/<slug>.jpg (genera-copertine.ps1).
+$imgData = @{}
+$imgFile = Join-Path $root 'data/immagini.json'
+if (Test-Path $imgFile) {
+  ([IO.File]::ReadAllText($imgFile, $utf8) | ConvertFrom-Json).PSObject.Properties | ForEach-Object { $imgData[$_.Name] = $_.Value }
+}
+function Get-Img([string]$slug) {
+  $p = $imgData[$slug]
+  if ($p -and $p.file -and (Test-Path (Join-Path $root $p.file))) {
+    return [pscustomobject]@{ src = $p.file; alt = $p.alt; photo = $true; author = $p.author; license = $p.license; licenseUrl = $p.licenseUrl; source = $p.source }
+  }
+  $cover = "assets/img/copertine/$slug.jpg"
+  if (Test-Path (Join-Path $root $cover)) { return [pscustomobject]@{ src = $cover; alt = ''; photo = $false } }
+  return $null
+}
+# foto in testa all'articolo con il credito dell'autore (le copertine grafiche non si ripetono nella pagina)
+function Hero-Html($img) {
+  if (-not $img -or -not $img.photo) { return '' }
+  $lic = if ($img.licenseUrl) { '<a href="' + (HtmlEnc $img.licenseUrl) + '" target="_blank" rel="noopener license">' + (HtmlEnc $img.license) + '</a>' } else { HtmlEnc $img.license }
+  return '      <figure class="hero"><img src="' + $img.src + '" alt="' + (HtmlEnc $img.alt) + '" width="1280" height="720" loading="eager">' +
+    '<figcaption>Foto: <a href="' + (HtmlEnc $img.source) + '" target="_blank" rel="noopener">' + (HtmlEnc $img.author) + '</a>, ' + $lic + ', via Wikimedia Commons</figcaption></figure>'
+}
+
 $head = @'
 <!doctype html>
 <html lang="it">
@@ -31,6 +56,7 @@ $head = @'
   <meta property="og:description" content="{DESC}">
   <meta property="og:url" content="{URL}">
   <meta property="og:locale" content="it_IT">
+{OGIMAGE}
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/style.css">
 {JSONLD}
@@ -49,10 +75,13 @@ $foot = @'
 </html>
 '@
 
-function Page($meta, $url, $ogType, $jsonLd, $body, $page) {
-  $h = $head.Replace('{TITLE}', (HtmlEnc $meta.title)).Replace('{DESC}', (HtmlEnc $meta.description)).Replace('{URL}', $url).Replace('{OGTYPE}', $ogType).Replace('{JSONLD}', $jsonLd).Replace('{PAGE}', $page)
+function Page($meta, $url, $ogType, $jsonLd, $body, $page, $img = $null) {
+  # anteprima per social e WhatsApp (immagine con indirizzo completo)
+  $og = if ($img) { '  <meta property="og:image" content="' + "$site/$($img.src)" + '">' + "`n" + '  <meta name="twitter:card" content="summary_large_image">' } else { '  <meta name="twitter:card" content="summary">' }
+  $h = $head.Replace('{TITLE}', (HtmlEnc $meta.title)).Replace('{DESC}', (HtmlEnc $meta.description)).Replace('{URL}', $url).Replace('{OGTYPE}', $ogType).Replace('{OGIMAGE}', $og).Replace('{JSONLD}', $jsonLd).Replace('{PAGE}', $page)
   return $h + $body + "`n" + $foot
 }
+function JsonLd-Image($img) { if ($img) { return ',"image":"' + "$site/$($img.src)" + '"' } else { return '' } }
 
 function Read-Content($dir) {
   $list = @()
@@ -77,7 +106,9 @@ function Fmt-Date([string]$iso) { return [datetime]::ParseExact($iso, 'yyyy-MM-d
 
 function Guide-Card($g, [switch]$WithRead) {
   $read = if ($WithRead) { '<span class="read">Leggi &middot; ' + $g.minutes + ' min &rarr;</span>' } else { '' }
-  return '<a class="article-card" href="guide/' + $g.slug + '.html"><span class="kick">' + (HtmlEnc $g.kicker) + '</span><h3>' + (HtmlEnc $g.title) +
+  $img = Get-Img $g.slug
+  $thumb = if ($img) { '<span class="ac-thumb" style="background-image:url(''' + $img.src + ''')"></span>' } else { '' }
+  return '<a class="article-card' + $(if ($img) { ' has-thumb' } else { '' }) + '" href="guide/' + $g.slug + '.html">' + $thumb + '<span class="kick">' + (HtmlEnc $g.kicker) + '</span><h3>' + (HtmlEnc $g.title) +
     '</h3><p>' + (HtmlEnc $g.description) + '</p>' + $read + '</a>'
 }
 
@@ -88,9 +119,10 @@ $guides = @(Read-Content (Join-Path $root 'contenuti/guide') | Sort-Object { [in
 
 foreach ($g in $guides) {
   $url = "$site/guide/$($g.slug)"
+  $img = Get-Img $g.slug
   $jsonLd = '  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"' + (J $g.title) +
-    '","description":"' + (J $g.description) + '","dateModified":"' + $g.updated + '","inLanguage":"it-IT","mainEntityOfPage":"' + $url +
-    '","author":{"@type":"Organization","name":"WrestlingHub Italia"},"publisher":{"@type":"Organization","name":"WrestlingHub Italia","url":"' + $site + '"}}</script>'
+    '","description":"' + (J $g.description) + '","dateModified":"' + $g.updated + '","inLanguage":"it-IT","mainEntityOfPage":"' + $url + '"' + (JsonLd-Image $img) +
+    ',"author":{"@type":"Organization","name":"WrestlingHub Italia"},"publisher":{"@type":"Organization","name":"WrestlingHub Italia","url":"' + $site + '"}}</script>'
   # correlati: prima la stessa sezione, poi le altre (massimo 4)
   $others = @($guides | Where-Object { $_.slug -ne $g.slug })
   $related = @($others | Where-Object { $_.section -eq $g.section }) + @($others | Where-Object { $_.section -ne $g.section })
@@ -102,6 +134,7 @@ foreach ($g in $guides) {
       <h1>$(HtmlEnc $g.title)</h1>
       <p class="lede">$(HtmlEnc $g.description)</p>
       <div class="byline">Redazione WrestlingHub Italia &middot; Aggiornato il $(Fmt-Date $g.updated) &middot; $($g.minutes) min di lettura</div>
+$(Hero-Html $img)
 $($g.body)
     </article>
     <div class="section-title"><h2>Leggi anche</h2></div>
@@ -109,7 +142,7 @@ $($g.body)
 $relatedHtml
     </div>
 "@
-  Write-Utf8 (Join-Path $guideDir "$($g.slug).html") (Page $g $url 'article' $jsonLd $body 'guide')
+  Write-Utf8 (Join-Path $guideDir "$($g.slug).html") (Page $g $url 'article' $jsonLd $body 'guide' $img)
 }
 
 # indice delle guide, diviso per sezione (ordine: sezione con l'articolo di ordine piu' basso prima)
@@ -118,18 +151,41 @@ $sectionsHtml = ($sections | ForEach-Object {
   "    <div class=""section-title""><h2>$(HtmlEnc $_.Name)</h2></div>`n    <div class=""articles"">`n" +
   (($_.Group | ForEach-Object { Guide-Card $_ -WithRead }) -join "`n") + "`n    </div>"
 }) -join "`n"
-$indexMeta = @{ title = 'Guide al wrestling: dove vederlo in Italia, per chi inizia e classifiche'; description = 'Le guide di WrestlingHub Italia: dove vedere WWE, AEW, TNA e NJPW in Italia, orari, guida per principianti, glossario e classifiche dei match e delle mosse più famose.' }
+$indexMeta = @{ title = 'Guide al wrestling: dove vederlo in Italia, per chi inizia e classifiche'; description = 'Le guide di WrestlingHub Italia: dove vedere WWE, AEW, TNA e NJPW in Italia, orari, guida per principianti, glossario e classifiche dei match e delle mosse pi' + [char]0x00F9 + ' famose.' }
 $indexBody = @"
     <div class="section-title"><h1>Guide</h1><span class="updated">Dove vederlo, per chi inizia, classifiche</span></div>
 $sectionsHtml
 "@
 Write-Utf8 (Join-Path $guideDir 'index.html') (Page $indexMeta "$site/guide/" 'website' '' $indexBody 'guide')
 
+# pagina dei crediti fotografici (licenze Creative Commons: autore e licenza per ogni foto usata)
+$titles = @{}; foreach ($g in $guides) { $titles[$g.slug] = @("guide/$($g.slug).html", $g.title) }
+foreach ($c in (Read-Content (Join-Path $root 'contenuti/eventi'))) { $titles[$c.file] = @("eventi/$($c.file).html", $c.title) }
+$creditRows = ($imgData.Keys | Sort-Object | Where-Object { $titles[$_] -and (Test-Path (Join-Path $root $imgData[$_].file)) } | ForEach-Object {
+  $p = $imgData[$_]; $t = $titles[$_]
+  $lic = if ($p.licenseUrl) { '<a href="' + (HtmlEnc $p.licenseUrl) + '" target="_blank" rel="noopener license">' + (HtmlEnc $p.license) + '</a>' } else { HtmlEnc $p.license }
+  '<tr><td><img src="' + $p.file + '" alt="" width="96" height="54" loading="lazy" style="object-fit:cover;border-radius:4px"></td><td><a href="' + $t[0] + '">' + (HtmlEnc $t[1]) + '</a></td><td><a href="' + (HtmlEnc $p.source) + '" target="_blank" rel="noopener">' + (HtmlEnc $p.author) + '</a></td><td>' + $lic + '</td></tr>'
+}) -join "`n"
+$creditMeta = @{ title = 'Crediti fotografici'; description = 'Autori e licenze delle fotografie usate negli articoli di WrestlingHub Italia.' }
+$creditBody = @"
+    <div class="section-title"><h1>Crediti fotografici</h1></div>
+    <div class="prose privacy">
+      <p>Le fotografie degli articoli originali di WrestlingHub Italia provengono da <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> e sono pubblicate con licenze libere (Creative Commons o pubblico dominio). Ringraziamo gli autori. Le immagini delle notizie appartengono alle testate che le pubblicano; le copertine grafiche sono realizzate dalla redazione.</p>
+      <div class="table-wrap"><table class="weekly">
+        <thead><tr><th></th><th>Articolo</th><th>Autore</th><th>Licenza</th></tr></thead>
+        <tbody>
+$creditRows
+        </tbody>
+      </table></div>
+    </div>
+"@
+Write-Utf8 (Join-Path $guideDir 'crediti-foto.html') (Page $creditMeta "$site/guide/crediti-foto" 'website' '' $creditBody 'guide')
+
 # articoli originali da mostrare nel flusso notizie della home (riepilogo piu' recente prima, poi le classifiche)
 $feedSections = @('Riepilogo settimanale', 'Classifiche ed elenchi')
 $feedItems = @($guides | Where-Object { $feedSections -contains $_.section } |
   Sort-Object @{ e = { $feedSections.IndexOf($_.section) } }, @{ e = { if ($_.section -eq 'Riepilogo settimanale') { $_.updated } else { '' } }; Descending = $true }, @{ e = { [int]$_.order } } |
-  ForEach-Object { [ordered]@{ url = "guide/$($_.slug).html"; title = $_.title; description = $_.description; kicker = $_.kicker; section = $_.section; updated = $_.updated; minutes = $_.minutes } })
+  ForEach-Object { $im = Get-Img $_.slug; [ordered]@{ url = "guide/$($_.slug).html"; title = $_.title; description = $_.description; kicker = $_.kicker; section = $_.section; updated = $_.updated; minutes = $_.minutes; image = $(if ($im) { $im.src } else { '' }); photo = [bool]($im -and $im.photo) } })
 Write-Utf8 (Join-Path $root 'data/articoli.js') ('window.WH_ARTICLES = ' + (ConvertTo-Json @($feedItems) -Depth 3 -Compress) + ';')
 
 # =================== EVENTI ===================
@@ -145,6 +201,7 @@ $pageMap = [ordered]@{}
 foreach ($ev in $withPages) {
   $c = $eventContent[$ev.id]
   $url = "$site/eventi/$($ev.id)"
+  $img = Get-Img $ev.id
   $pageMap[$ev.id] = "eventi/$($ev.id).html"
 
   function Day-Text([datetime]$d) { $t = $d.ToString('dddd d MMMM yyyy', $it); return $t.Substring(0, 1).ToUpper() + $t.Substring(1) }
@@ -167,7 +224,7 @@ foreach ($ev in $withPages) {
   $jsonLd = '  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SportsEvent","name":"' + (J $ev.name) +
     '","description":"' + (J $c.description) + '","startDate":"' + $startIso + '","eventStatus":"https://schema.org/EventScheduled",' +
     '"eventAttendanceMode":"https://schema.org/MixedEventAttendanceMode","location":{"@type":"Place","name":"' + (J $ev.venue) +
-    '","address":"' + (J ((@($ev.city, $ev.country) | Where-Object { $_ }) -join ', ')) + '"},"organizer":{"@type":"Organization","name":"' + (J $ev.promotion) + '"}' + $offers + '}</script>'
+    '","address":"' + (J ((@($ev.city, $ev.country) | Where-Object { $_ }) -join ', ')) + '"},"organizer":{"@type":"Organization","name":"' + (J $ev.promotion) + '"}' + $offers + (JsonLd-Image $img) + '}</script>'
 
   $otherEvents = ($withPages | Where-Object { $_.id -ne $ev.id } | ForEach-Object {
     $d = [datetime]::ParseExact($_.date, 'yyyy-MM-dd', $null)
@@ -183,6 +240,7 @@ foreach ($ev in $withPages) {
       <h1>$(HtmlEnc $c.title)</h1>
       <p class="lede">$(HtmlEnc $c.description)</p>
       <div class="byline">Redazione WrestlingHub Italia &middot; Aggiornato il $(Fmt-Date $c.updated)</div>
+$(Hero-Html $img)
       <section class="event-box $(HtmlEnc $ev.promotion)">
         <div><span>Quando</span>$whenHtml</div>
         <div><span>Dove</span>$(HtmlEnc $where)</div>
@@ -196,7 +254,7 @@ $($c.body)
 $otherEvents
     </div>
 "@
-  Write-Utf8 (Join-Path $eventDir "$($ev.id).html") (Page $meta $url 'article' $jsonLd $body 'evento')
+  Write-Utf8 (Join-Path $eventDir "$($ev.id).html") (Page $meta $url 'article' $jsonLd $body 'evento' $img)
 }
 Write-Utf8 (Join-Path $root 'data/pagine-eventi.js') ('window.WH_EVENT_PAGES = ' + ($pageMap | ConvertTo-Json -Compress) + ';')
 

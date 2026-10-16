@@ -94,7 +94,7 @@
     $('#site-footer').innerHTML =
       '<div class="wrap"><div>© ' + new Date().getFullYear() + ' WrestlingHubItalia.com — aggregatore di notizie. ' +
       'I contenuti appartengono alle rispettive testate, linkate in ogni articolo.</div>' +
-      '<div><a href="fonti.html">Fonti</a> · <a href="privacy.html">Privacy e cookie</a></div></div>';
+      '<div><a href="fonti.html">Fonti</a> · <a href="guide/crediti-foto.html">Crediti foto</a> · <a href="privacy.html">Privacy e cookie</a></div></div>';
     // banner orizzontale sotto l'header, su tutte le pagine
     var main = document.querySelector('main');
     if (main) main.insertAdjacentHTML('afterbegin', adSlot('top'));
@@ -140,9 +140,12 @@
   // Card per gli articoli originali (classifiche, elenchi, riepilogo) mescolati alle notizie
   function articleCard(a) {
     var icon = a.section === 'Riepilogo settimanale' ? '📰' : (a.kicker === 'Classifica' ? '🏆' : '📋');
-    return '<a class="news-card original" href="' + esc(a.url) + '">' +
-      '<div class="thumb orig-thumb"><span class="orig-icon">' + icon + '</span><span class="orig-kick">' + esc(a.kicker) + '</span>' +
-      '<div class="tags"><span class="tag orig">Originale WHI</span></div></div>' +
+    // con foto o copertina grafica mostra l'immagine, altrimenti il riquadro con icona e categoria
+    var thumb = a.image
+      ? '<div class="thumb" style="background-image:url(\'' + esc(a.image).replace(/'/g, '%27') + '\')"><div class="tags"><span class="tag orig">Originale WHI</span></div></div>'
+      : '<div class="thumb orig-thumb"><span class="orig-icon">' + icon + '</span><span class="orig-kick">' + esc(a.kicker) + '</span>' +
+        '<div class="tags"><span class="tag orig">Originale WHI</span></div></div>';
+    return '<a class="news-card original" href="' + esc(a.url) + '">' + thumb +
       '<div class="body"><h3>' + esc(a.title) + '</h3><p>' + esc(a.description) + '</p>' +
       '<div class="foot"><span class="src">WrestlingHub Italia</span><span>Leggi · ' + esc(a.minutes) + ' min →</span></div></div></a>';
   }
