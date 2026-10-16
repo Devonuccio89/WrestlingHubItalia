@@ -256,7 +256,11 @@ $otherEvents
 "@
   Write-Utf8 (Join-Path $eventDir "$($ev.id).html") (Page $meta $url 'article' $jsonLd $body 'evento' $img)
 }
-Write-Utf8 (Join-Path $root 'data/pagine-eventi.js') ('window.WH_EVENT_PAGES = ' + ($pageMap | ConvertTo-Json -Compress) + ';')
+# immagine di ogni evento del calendario (foto o copertina) per la locandina e la striscia della home
+$evImages = [ordered]@{}
+# solo foto vere: le copertine grafiche contengono gia' il titolo e si sovrapporrebbero al testo della card
+foreach ($e in $eventsData.events) { $im = Get-Img $e.id; if ($im -and $im.photo) { $evImages[$e.id] = $im.src } }
+Write-Utf8 (Join-Path $root 'data/pagine-eventi.js') ('window.WH_EVENT_PAGES = ' + ($pageMap | ConvertTo-Json -Compress) + ";`nwindow.WH_EVENT_IMAGES = " + ($evImages | ConvertTo-Json -Compress) + ';')
 
 # =================== SITEMAP E ROBOTS ===================
 # indirizzi senza .html: Cloudflare Pages reindirizza /pagina.html a /pagina

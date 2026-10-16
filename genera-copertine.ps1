@@ -110,9 +110,9 @@ foreach ($f in (Get-ChildItem (Join-Path $root 'contenuti/guide') -Filter *.html
   $accent = if ($accentBy[$m.section]) { $accentBy[$m.section] } else { $red }
   New-Cover $out $m.kicker $m.title $accent; $made++
 }
-foreach ($f in (Get-ChildItem (Join-Path $root 'contenuti/eventi') -Filter *.html)) {
-  $m = Read-Header $f.FullName; $ev = $events[$m.file]; if (-not $ev) { continue }
-  $out = Join-Path $outDir "$($m.file).jpg"
+# tutti gli eventi del calendario (anche quelli senza scheda), per la locandina e la striscia in home
+foreach ($ev in $evJson.events) {
+  $out = Join-Path $outDir "$($ev.id).jpg"
   if ((Test-Path $out) -and -not $Tutte) { continue }
   $d = [datetime]::ParseExact($ev.date, 'yyyy-MM-dd', $null).ToString('d MMMM yyyy', [Globalization.CultureInfo]'it-IT')
   $kick = "$($ev.promotion) " + [char]0x00B7 + " $d"   # punto medio scritto come codice: lo script resta solo ASCII

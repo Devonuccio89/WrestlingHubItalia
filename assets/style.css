@@ -46,6 +46,54 @@ img { max-width: 100%; display: block; }
 .countdown b { display: block; font-family: var(--head); font-size: 28px; line-height: 1; }
 .countdown small { color: var(--muted); font-size: 11px; text-transform: uppercase; }
 
+/* Locandina del prossimo evento: foto di sfondo velata, colore della federazione */
+.next-event.poster { --pc: var(--accent); position: relative; display: block; min-height: 380px; padding: 0; border: 1px solid #2a2a33; border-bottom: 3px solid var(--pc); background: #0d0d10; isolation: isolate; }
+.next-event.poster.WWE { --pc: var(--wwe); } .next-event.poster.AEW { --pc: var(--aew); } .next-event.poster.TNA { --pc: var(--tna); }
+.next-event.poster.NJPW { --pc: var(--njpw); } .next-event.poster.ROH { --pc: var(--roh); }
+.poster-bg { position: absolute; inset: 0; z-index: -1; background: center 30% / cover no-repeat; }
+.poster-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(13,13,16,.96) 0%, rgba(13,13,16,.82) 42%, rgba(13,13,16,.25) 100%), linear-gradient(0deg, rgba(13,13,16,.9) 0%, transparent 45%); }
+.poster-body { position: relative; padding: 32px 32px 28px; max-width: 720px; min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; }
+.next-event.poster .label { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--gold); }
+.next-event.poster h2 { font-size: 54px; margin: 0; line-height: 1; letter-spacing: .5px; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
+.next-event.poster h2 a:hover { color: var(--gold); }
+.next-event.poster .meta { font-size: 15px; color: #e4e4ea; }
+.poster-card { display: grid; gap: 8px; margin-top: 4px; }
+.pm { background: rgba(0,0,0,.55); border-left: 3px solid var(--pc); padding: 8px 12px; backdrop-filter: blur(4px); }
+.pm-title { display: block; font-family: var(--head); text-transform: uppercase; letter-spacing: 1px; font-size: 11px; color: var(--gold); }
+.pm-vs { font-family: var(--head); text-transform: uppercase; font-size: 18px; line-height: 1.25; }
+.pm-vs i { font-style: normal; color: var(--pc); margin: 0 4px; }
+.poster-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+.poster-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.next-event.poster .countdown div { background: rgba(0,0,0,.6); border-color: rgba(255,255,255,.12); min-width: 58px; padding: 8px 10px; }
+.next-event.poster .countdown b { font-size: 24px; }
+.live-badge, .soon-badge { font-family: var(--head); letter-spacing: 1px; font-size: 12px; padding: 3px 9px; border-radius: 4px; color: #fff; }
+.live-badge { background: var(--accent); animation: livePulse 1.4s ease-in-out infinite; }
+.live-badge::before { content: '\25CF  '; }
+.soon-badge { background: #fff; color: #111; }
+@keyframes livePulse { 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) { .live-badge { animation: none; } }
+
+/* Striscia dei prossimi eventi (scorrevole su telefono) */
+.event-strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 1fr); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: -8px 0 24px; padding-bottom: 6px; scrollbar-width: thin; }
+.strip-card { --pc: #555; position: relative; display: flex; align-items: flex-end; min-height: 150px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); border-top: 3px solid var(--pc); background: var(--card); scroll-snap-align: start; isolation: isolate; transition: transform .15s, border-color .15s; }
+.strip-card:hover { transform: translateY(-2px); }
+.strip-card.WWE { --pc: var(--wwe); } .strip-card.AEW { --pc: var(--aew); } .strip-card.TNA { --pc: var(--tna); } .strip-card.NJPW { --pc: var(--njpw); } .strip-card.ROH { --pc: var(--roh); }
+.strip-img { position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 80% 10%, color-mix(in srgb, var(--pc) 45%, transparent), transparent 65%), #1b1b22; background-position: center; background-size: cover; background-repeat: no-repeat; }
+.strip-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(13,13,16,.95) 10%, rgba(13,13,16,.15) 75%); }
+.strip-date { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,.7); border-radius: 6px; padding: 4px 8px; text-align: center; font-family: var(--head); text-transform: uppercase; font-size: 11px; line-height: 1.1; color: var(--gold); }
+.strip-date b { display: block; font-size: 22px; color: #fff; }
+.strip-info { padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.strip-name { font-family: var(--head); text-transform: uppercase; font-size: 16px; line-height: 1.15; }
+.strip-all { align-items: center; justify-content: center; border-top-color: var(--gold); font-family: var(--head); text-transform: uppercase; color: var(--gold); }
+@media (max-width: 640px) {
+  .next-event.poster, .poster-body { min-height: 440px; }
+  .poster-body { padding: 20px 16px 18px; }
+  .poster-bg::after { background: linear-gradient(0deg, rgba(13,13,16,.97) 35%, rgba(13,13,16,.4) 100%); }
+  .next-event.poster h2 { font-size: 36px; }
+  .pm-vs { font-size: 15px; }
+  .event-strip { grid-auto-columns: 70%; }
+}
+
 /* Sezioni */
 .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 28px 0 14px; flex-wrap: wrap; }
 .section-title h1, .section-title h2 { font-family: var(--head); text-transform: uppercase; font-size: 28px; margin: 0; border-left: 4px solid var(--accent); padding-left: 10px; }

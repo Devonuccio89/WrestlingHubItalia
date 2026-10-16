@@ -35,13 +35,34 @@
   // Data di riferimento dell'evento: orario d'inizio se noto, altrimenti la data (mezzogiorno UTC)
   function eventDate(ev) { return new Date(ev.startUtc || (ev.date + 'T12:00:00Z')); }
 
+  var LIVE_HOURS = 5; // un evento resta "in diretta" (e in home) fino a 5 ore dopo l'inizio
+
   function upcomingEvents() {
     var data = window.WH_EVENTS || { events: [] };
     var startOfToday = new Date(); startOfToday.setHours(0, 0, 0, 0);
+    var now = Date.now();
     return (data.events || [])
-      .filter(function (e) { return new Date(e.date + 'T23:59:59') >= startOfToday; })
+      .filter(function (e) {
+        // con l'orario: visibile fino alla fine della diretta (uno show USA da noi cade spesso il giorno dopo)
+        if (e.startUtc) return new Date(e.startUtc).getTime() + LIVE_HOURS * 3600 * 1000 > now;
+        return new Date(e.date + 'T23:59:59') >= startOfToday;
+      })
       .sort(function (a, b) { return eventDate(a) - eventDate(b); });
   }
+
+  // Stato dell'evento rispetto a adesso: 'live', 'soon' (entro 24 ore) o ''
+  function eventState(ev) {
+    if (!ev.startUtc) return '';
+    var diff = new Date(ev.startUtc).getTime() - Date.now();
+    if (diff <= 0 && diff > -LIVE_HOURS * 3600 * 1000) return 'live';
+    if (diff > 0 && diff < 24 * 3600 * 1000) return 'soon';
+    return '';
+  }
+  function soonLabel(ev) {
+    var h = Number(fmt(eventDate(ev), { hour: '2-digit', hour12: false }));
+    return (h >= 21 || h < 6) ? 'Stanotte' : 'Oggi';
+  }
+  function eventImage(ev) { return (window.WH_EVENT_IMAGES || {})[ev.id] || ''; }
 
   function whenText(ev) {
     var d = eventDate(ev);
@@ -103,25 +124,57 @@
   }
 
   // ---------- prossimo evento + countdown ----------
+  // Locandina del prossimo evento (foto di sfondo, match principali, conto alla rovescia)
+  // + striscia degli eventi successivi, inserita subito sotto.
   function renderNextEvent(el) {
-    var ev = upcomingEvents()[0];
+    var list = upcomingEvents();
+    var ev = list[0];
     if (!el || !ev) { if (el) el.remove(); return; }
+    var img = eventImage(ev);
+    var link = eventPage(ev) || 'calendario.html#' + esc(ev.id);
+    var where = [ev.venue, ev.city].filter(function (x) { return x && x !== 'Da annunciare'; }).join(', ');
+    var matches = (ev.card || []).slice(0, 2).map(function (m) {
+      return '<div class="pm"><span class="pm-title">' + esc(m.title) + '</span><span class="pm-vs">' + esc(m.a) + ' <i>vs</i> ' + esc(m.b) + '</span></div>';
+    }).join('');
+
+    el.className = 'next-event poster ' + esc(ev.promotion);
     el.innerHTML =
-      '<div><div class="label">Prossimo grande evento · ' + esc(ev.promotion) + '</div>' +
-      '<h2>' + esc(ev.name) + '</h2>' +
-      '<div class="meta">' + esc(whenText(ev)) + '<br>' + esc([ev.venue, ev.city, ev.country].filter(Boolean).join(', ')) +
-      (ev.broadcastIT ? '<br>In Italia: <b>' + esc(ev.broadcastIT) + '</b>' : '') + '</div>' +
-      '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">' +
-      (ev.tickets ? '<a class="btn primary" target="_blank" rel="noopener" href="' + esc(ev.tickets) + '">Biglietti</a>' : '') +
-      '<a class="btn" href="' + (eventPage(ev) || 'calendario.html#' + esc(ev.id)) + '">Card e dettagli</a></div></div>' +
-      '<div class="countdown" id="cd"></div>';
+      (img ? '<div class="poster-bg" style="background-image:url(\'' + esc(img).replace(/'/g, '%27') + '\')"></div>' : '') +
+      '<div class="poster-body">' +
+        '<div class="label"><span class="tag ' + esc(ev.promotion) + '">' + esc(ev.promotion) + '</span> Prossimo grande evento <span id="ev-state"></span></div>' +
+        '<h2><a href="' + link + '">' + esc(ev.name) + '</a></h2>' +
+        '<div class="meta">' + esc(whenText(ev)) + (where ? ' · ' + esc(where) : '') +
+          (ev.broadcastIT ? '<br>In Italia: <b>' + esc(ev.broadcastIT) + '</b>' : '') + '</div>' +
+        (matches ? '<div class="poster-card">' + matches + '</div>' : '') +
+        '<div class="poster-actions"><div class="countdown" id="cd"></div><div class="poster-btns">' +
+          (ev.tickets ? '<a class="btn primary" target="_blank" rel="noopener" href="' + esc(ev.tickets) + '">Biglietti</a>' : '') +
+          '<a class="btn" href="' + link + '">Card e dettagli</a></div></div>' +
+      '</div>';
+
     var target = eventDate(ev);
     function tick() {
+      var state = eventState(ev);
+      $('#ev-state').innerHTML = state === 'live' ? '<span class="live-badge">In diretta ora</span>'
+        : state === 'soon' ? '<span class="soon-badge">' + soonLabel(ev) + '</span>' : '';
+      if (state === 'live') { $('#cd').innerHTML = ''; return; }
       var s = Math.max(0, Math.floor((target - Date.now()) / 1000));
       var parts = [[Math.floor(s / 86400), 'giorni'], [Math.floor(s % 86400 / 3600), 'ore'], [Math.floor(s % 3600 / 60), 'min'], [s % 60, 'sec']];
+      if (parts[0][0] === 0) parts.shift(); // nell'ultimo giorno niente "0 giorni"
       $('#cd').innerHTML = parts.map(function (p) { return '<div><b>' + p[0] + '</b><small>' + p[1] + '</small></div>'; }).join('');
     }
     tick(); setInterval(tick, 1000);
+
+    // striscia dei prossimi eventi
+    var next = list.slice(1, 6);
+    if (next.length) {
+      el.insertAdjacentHTML('afterend', '<div class="event-strip" aria-label="Prossimi eventi">' + next.map(function (e) {
+        var im = eventImage(e), d = eventDate(e);
+        return '<a class="strip-card ' + esc(e.promotion) + '" href="' + (eventPage(e) || 'calendario.html#' + esc(e.id)) + '">' +
+          '<span class="strip-img"' + (im ? ' style="background-image:url(\'' + esc(im).replace(/'/g, '%27') + '\')"' : '') + '></span>' +
+          '<span class="strip-date"><b>' + fmt(d, { day: 'numeric' }) + '</b>' + fmt(d, { month: 'short' }) + '</span>' +
+          '<span class="strip-info"><span class="tag ' + esc(e.promotion) + '">' + esc(e.promotion) + '</span><span class="strip-name">' + esc(e.name) + '</span></span></a>';
+      }).join('') + '<a class="strip-card strip-all" href="calendario.html"><span>Calendario completo →</span></a></div>');
+    }
   }
 
   // ---------- notizie ----------
