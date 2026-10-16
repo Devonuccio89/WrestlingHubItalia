@@ -158,5 +158,13 @@
                                 "license":  "CC BY-SA 2.0",
                                 "licenseUrl":  "https://creativecommons.org/licenses/by-sa/2.0",
                                 "source":  "https://commons.wikimedia.org/wiki/File:WWE_Wrestlemania_34,_New_Orleans,_LA_2018.jpg"
-                            }
+                            },
+    "aew-wrestledream-2026":  {
+                                  "file":  "assets/img/articoli/aew-wrestledream-2026.jpg",
+                                  "alt":  "Mercedes Moné festeggia con la cintura sul ring di AEW All In 2024",
+                                  "author":  "McPhail",
+                                  "license":  "CC0 (pubblico dominio)",
+                                  "licenseUrl":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                                  "source":  "https://commons.wikimedia.org/wiki/File:Mercedes_Mon%C3%A9_as_AEW_TBS_Champion_at_All_In_2024.jpg"
+                              }
 }

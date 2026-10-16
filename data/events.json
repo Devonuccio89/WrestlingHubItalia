@@ -1,6 +1,52 @@
 {
-  "updated": "2026-10-14",
+  "updated": "2026-10-16",
   "events": [
+    {
+      "id": "aew-wrestledream-2026",
+      "name": "AEW WrestleDream 2026",
+      "promotion": "AEW",
+      "date": "2026-10-17",
+      "startUtc": "2026-10-18T00:00:00Z",
+      "venue": "Addition Financial Arena",
+      "city": "Orlando, Florida",
+      "country": "USA",
+      "tickets": "https://www.ticketmaster.com/event/220064F081A01BAC",
+      "broadcastIT": "PPV su DAZN o MyAEW (da verificare per l'Italia)",
+      "watchUrl": "https://www.dazn.com/it-IT",
+      "note": "Main card alle 02:00 italiane; pre-show (Tailgate Brawl e Buy-In) dall'01:00. In palio il titolo mondiale nel primo Clockwork Carnage della storia.",
+      "card": [
+        { "title": "AEW World Championship - Clockwork Carnage", "a": "Will Ospreay (c)", "b": "Joe, Bailey, Copeland, Takeshita, Okada, Ricochet, Allin" },
+        { "title": "AEW Women's World Championship", "a": "Mercedes Moné (c)", "b": "Thekla" }
+      ]
+    },
+    {
+      "id": "nxt-halloween-havoc-2026",
+      "name": "WWE NXT Halloween Havoc 2026",
+      "promotion": "WWE",
+      "date": "2026-10-31",
+      "startUtc": null,
+      "venue": "Da annunciare",
+      "city": "",
+      "country": "USA",
+      "tickets": null,
+      "broadcastIT": "Netflix (incluso nell'abbonamento)",
+      "watchUrl": "https://www.netflix.com/it/",
+      "note": "Data annunciata in TV dal general manager di NXT Robert Stone; sede non ancora comunicata. Tony D'Angelo è il primo sfidante al titolo NXT."
+    },
+    {
+      "id": "roh-final-battle-2026",
+      "name": "ROH Final Battle 2026",
+      "promotion": "ROH",
+      "date": "2026-12-04",
+      "startUtc": null,
+      "venue": "Boeing Center at Tech Port",
+      "city": "San Antonio, Texas",
+      "country": "USA",
+      "tickets": null,
+      "broadcastIT": "HonorClub (streaming ROH)",
+      "watchUrl": "https://www.honorclub.com",
+      "note": "Data e sede pubblicizzate dall'arena e su Ticketmaster; annuncio ufficiale AEW/ROH atteso a breve."
+    },
     {
       "id": "wwe-crown-jewel-2026",
       "name": "WWE Crown Jewel 2026",
