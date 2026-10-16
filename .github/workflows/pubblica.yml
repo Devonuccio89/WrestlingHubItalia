@@ -57,7 +57,7 @@ jobs:
         run: |
           mkdir -p dist/data
           cp index.html calendario.html italia.html fonti.html privacy.html dist/
-          cp ads.txt robots.txt sitemap.xml dist/
+          cp ads.txt robots.txt sitemap.xml favicon.ico dist/
           cp -r assets guide eventi dist/
           cp data/news.js data/events.js data/pagine-eventi.js data/articoli.js data/italia.js data/sources.js dist/data/
           echo "File pubblicati:" && find dist -type f | sort

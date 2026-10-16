@@ -28,9 +28,9 @@ img { max-width: 100%; display: block; }
 /* Header */
 .site-header { position: sticky; top: 0; z-index: 20; background: rgba(13,13,16,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
-.logo { font-family: var(--head); font-weight: 700; font-size: 22px; letter-spacing: .5px; text-transform: uppercase; white-space: nowrap; }
-.logo span { color: var(--accent); }
-.logo small { color: var(--gold); font-size: 13px; margin-left: 4px; }
+.logo { display: flex; align-items: center; flex-shrink: 0; }
+.logo img { height: 40px; width: auto; display: block; }
+@media (max-width: 640px) { .logo img { height: 32px; } }
 .nav { display: flex; gap: 4px; }
 .nav a { font-family: var(--head); text-transform: uppercase; letter-spacing: .5px; font-size: 15px; padding: 8px 12px; border-radius: 6px; color: var(--muted); }
 .nav a:hover { color: var(--text); background: var(--bg-2); }

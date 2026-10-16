@@ -47,6 +47,10 @@ $head = @'
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/img/logo/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/logo/favicon-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/logo/apple-touch-icon.png">
+  <meta name="theme-color" content="#0d0d10">
   <base href="/">
   <title>{TITLE} | WrestlingHub Italia</title>
   <meta name="description" content="{DESC}">

@@ -111,7 +111,7 @@
       return '<a href="' + l[0] + '"' + (on ? ' class="active"' : '') + '>' + l[1] + '</a>';
     }).join('');
     $('#site-header').innerHTML =
-      '<div class="wrap"><a class="logo" href="index.html">Wrestling<span>Hub</span><small>Italia</small></a><nav class="nav">' + nav + '</nav></div>';
+      '<div class="wrap"><a class="logo" href="index.html" aria-label="WrestlingHub Italia, home"><img src="assets/img/logo/whi-lettering.svg" alt="WrestlingHub Italia" width="1382" height="256"></a><nav class="nav">' + nav + '</nav></div>';
     $('#site-footer').innerHTML =
       '<div class="wrap"><div>© ' + new Date().getFullYear() + ' WrestlingHubItalia.com — aggregatore di notizie. ' +
       'I contenuti appartengono alle rispettive testate, linkate in ogni articolo.</div>' +
