@@ -51,12 +51,16 @@ jobs:
         shell: pwsh
         run: ./genera-guide.ps1
 
+      # Viene pubblicato SOLO questo elenco: tutto il resto (social/, contenuti/, script, appunti,
+      # file .json di lavoro) resta fuori dal sito. Una nuova pagina va aggiunta qui per andare online.
       - name: Prepara i file del sito
         run: |
           mkdir -p dist/data
-          cp *.html ads.txt robots.txt sitemap.xml dist/
+          cp index.html calendario.html italia.html fonti.html privacy.html dist/
+          cp ads.txt robots.txt sitemap.xml dist/
           cp -r assets guide eventi dist/
-          cp data/*.js dist/data/
+          cp data/news.js data/events.js data/pagine-eventi.js data/articoli.js data/italia.js data/sources.js dist/data/
+          echo "File pubblicati:" && find dist -type f | sort
 
       - name: Pubblica su Cloudflare Pages
         env:

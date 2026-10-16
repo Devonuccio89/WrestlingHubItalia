@@ -135,6 +135,24 @@
     .poster.rk .who { display: inline-block; background: #ff2a1a; color: #fff; padding: 6px 16px; font: 800 44px Inter, sans-serif; }
     .poster.rk .why { font: 600 38px/1.4 Inter, sans-serif; opacity: 1; }
 
+    /* ===== Modello Locandina: immagine AI a tutto schermo + testo stile poster cinematografico ===== */
+    .lc { background: #0a0606; color: #efe6d2; }
+    .lc .lc-img { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+    .lc .lc-shade-top { position: absolute; left: 0; right: 0; top: 0; height: 560px; background: linear-gradient(180deg, rgba(8,4,4,.92) 0%, rgba(8,4,4,.75) 45%, rgba(8,4,4,0) 100%); }
+    .lc .lc-shade-bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: linear-gradient(0deg, rgba(8,4,4,.95) 0%, rgba(8,4,4,.7) 55%, rgba(8,4,4,0) 100%); }
+    .lc .lc-series, .lc .lc-tag { position: absolute; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 26px; text-transform: uppercase; }
+    .lc .lc-series { top: 46px; font: 500 30px Oswald, sans-serif; letter-spacing: 9px; }
+    .lc .lc-series i, .lc .lc-tag i { display: block; width: 130px; height: 3px; background: #e01e1e; }
+    .lc .lc-num { position: absolute; left: 60px; top: 104px; font: 400 330px/1 Anton, sans-serif; color: #d9a93a; text-shadow: 0 6px 0 #6b4a10, 0 14px 30px rgba(0,0,0,.6); }
+    .lc .lc-title { position: absolute; top: 112px; font-family: Anton, sans-serif; line-height: 1; text-transform: uppercase; color: #efe6d2; text-shadow: 0 8px 24px rgba(0,0,0,.7); white-space: nowrap; }
+    .lc .lc-names { position: absolute; top: 382px; font: 700 50px Oswald, sans-serif; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 4px 14px rgba(0,0,0,.8); }
+    .lc .lc-names b { color: #e01e1e; margin: 0 16px; }
+    .lc .lc-tag { bottom: 120px; font: 700 46px Oswald, sans-serif; text-transform: none; letter-spacing: .5px; }
+    .lc .lc-foot { position: absolute; left: 60px; right: 60px; bottom: 40px; display: flex; justify-content: space-between; align-items: center; font: 600 26px Inter, sans-serif; color: #b9b1a2; }
+    .lc .lc-foot em { font-style: normal; color: #e01e1e; }
+    .lc .lc-foot b { background: #e01e1e; color: #fff; padding: 6px 16px; }
+    .upl { border: 1px solid #f5b700; color: #f5b700; font: 600 13px Inter, sans-serif; padding: 7px 12px; border-radius: 6px; cursor: pointer; }
+
     /* ===== Classifica con foto grande (stile B) ===== */
     .rkp .rkp-photo { position: absolute; left: 0; top: 0; width: 1080px; height: 820px; z-index: 0; }
     .rkp .brand, .rkp .kicker { z-index: 3; }
@@ -343,6 +361,34 @@
       { n: 'Rock Bottom', w: 'The Rock', why: 'La mossa che vince i match. Lo spettacolo, invece, ce lo mette la People\'s Elbow.',
         photo: { file: 'Dwayne Johnson-1764 (cropped).jpg', by: 'Harald Krichel', lic: 'CC BY-SA 4.0', focus: .25 } }
     ];
+    // ----- Modello 4: Locandina (immagine generata con AI, senza testo; il testo lo aggiunge il modello) -----
+    var LOCANDINE = [
+      { pos: 7, series: 'Le mosse finali iconiche', title: 'Spear', names: ['Goldberg', 'Edge', 'Roman Reigns'], tag: 'Tre icone. Un impatto.',
+        img: 'immagini/spear-prova-fumetto.webp', ai: true,
+        why: 'Una carica a testa bassa come un placcaggio del football: Goldberg, Edge e Roman Reigns l\'hanno resa leggendaria, ognuno a modo suo.' }
+    ];
+    var lcIdx = 0, lcUpload = null;
+    function lcPost() {
+      var l = LOCANDINE[lcIdx];
+      var digits = String(l.pos).length;
+      var left = 60 + digits * 150 + 30, room = 1080 - left - 60;
+      var size = Math.min(250, Math.floor(room / (l.title.length * 0.46))); // il titolo si adatta alla larghezza
+      var html = '<div class="post lc">' +
+        '<img class="lc-img" src="' + esc(lcUpload || l.img) + '" alt="">' +
+        '<div class="lc-shade-top"></div><div class="lc-shade-bottom"></div>' +
+        '<div class="lc-series"><i></i>' + esc(l.series) + '<i></i></div>' +
+        '<div class="lc-num">' + l.pos + '</div>' +
+        '<div class="lc-title" style="left:' + left + 'px;font-size:' + size + 'px">' + esc(l.title) + '</div>' +
+        '<div class="lc-names" style="left:' + left + 'px">' + l.names.map(esc).join('<b>•</b>') + '</div>' +
+        '<div class="lc-tag"><i></i>' + esc(l.tag) + '<i></i></div>' +
+        '<div class="lc-foot"><span>Wrestling<em>Hub</em> Italia · wrestlinghubitalia.com</span><b>Link in bio</b></div>' +
+        '</div>';
+      var caption = '🏆 N. ' + l.pos + ' — ' + l.series + ': la ' + l.title.toUpperCase() + '!\n\n' + l.why +
+        '\n\nChi la eseguiva meglio? ' + l.names.join(', ') + '… scrivilo nei commenti 👇\nLa classifica completa: link in bio.' +
+        (l.ai ? '\n\n🎨 Immagine creata con l\'AI.' : '') + '\n\n#wrestling #wwe #spear #classifica #wrestlingitalia #wrestlinghubitalia';
+      return { title: 'Locandina (immagine AI + testo del sito)', html: html, caption: caption, file: 'locandina-' + l.title.toLowerCase().replace(/[^a-z]+/g, '-'), upload: true };
+    }
+
     var rankIdx = 0;
     var portraitCache = {};
     // Scarica la miniatura da Commons e la ritaglia a 1080x820 (a colori, contrasto leggermente aumentato)
@@ -402,18 +448,19 @@
     // ----- rendering della pagina -----
     var style = 'poster';
     function render() {
-      var posts = [['tv', tvPost], ['cd', cdPost], ['rk', rkPost]].map(function (t) {
+      var posts = [['lc', lcPost], ['tv', tvPost], ['cd', cdPost], ['rk', rkPost]].map(function (t) {
         var p = t[1](style); if (p) p.kind = t[0]; return p;
       }).filter(Boolean);
       var usePhoto = photoMode && style === 'poster';
       document.getElementById('grid').innerHTML = posts.map(function (p, i) {
         var ph = PHOTOS[photoSel[p.kind]];
-        var photoTools = usePhoto && p.html.indexOf('rkp') < 0 ? '<div class="photo-credit"><button data-photo="' + p.kind + '" data-dir="-1">◀</button> Foto: ' + esc(ph.desc) +
+        var photoTools = usePhoto && photoSel[p.kind] !== undefined && p.html.indexOf('rkp') < 0 ? '<div class="photo-credit"><button data-photo="' + p.kind + '" data-dir="-1">◀</button> Foto: ' + esc(ph.desc) +
           ' — <a href="https://unsplash.com/photos/' + ph.id + '" target="_blank" rel="noopener">Unsplash</a> <button data-photo="' + p.kind + '" data-dir="1">▶</button></div>' : '';
         return '<div class="item"><h2>' + esc(p.title) + '</h2>' + photoTools + '<div class="frame" id="f' + i + '">' + p.html + '</div>' +
           '<div class="tools"><button class="primary" data-dl="' + i + '" data-file="' + p.file + '-' + style + '">Scarica PNG</button>' +
           '<button data-copy="' + i + '">Copia didascalia</button>' +
-          (p.nav ? '<button data-rank="-1">◀ Posizione</button><button data-rank="1">Posizione ▶</button>' : '') + '</div>' +
+          (p.nav ? '<button data-rank="-1">◀ Posizione</button><button data-rank="1">Posizione ▶</button>' : '') +
+          (p.upload ? '<label class="upl">Carica la tua immagine AI<input type="file" accept="image/*" id="lc-file" hidden></label>' : '') + '</div>' +
           '<textarea id="c' + i + '" readonly>' + esc(p.caption) + '</textarea></div>';
       }).join('');
     }
@@ -474,6 +521,13 @@
       var k = b.dataset.photo;
       photoSel[k] = (photoSel[k] + Number(b.dataset.dir) + PHOTOS.length) % PHOTOS.length;
       refresh();
+    });
+    // anteprima con un'immagine caricata dal computer (resta solo nel browser, non viene inviata da nessuna parte)
+    document.getElementById('grid').addEventListener('change', function (e) {
+      if (e.target.id !== 'lc-file' || !e.target.files[0]) return;
+      var r = new FileReader();
+      r.onload = function () { lcUpload = r.result; render(); };
+      r.readAsDataURL(e.target.files[0]);
     });
     fontsReady.then(refresh, refresh);
   })();

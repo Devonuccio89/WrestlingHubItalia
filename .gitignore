@@ -1,3 +1,6 @@
 # impostazioni locali dell'anteprima e cartella temporanea della pubblicazione
 .claude/
 dist/
+
+# immagini di prova e di riferimento per i post social: restano solo sul PC, non vanno su GitHub
+social/immagini/

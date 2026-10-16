@@ -1,0 +1,23 @@
+PROMPT "LOCANDINA" — SPEAR (n. 7, Le mosse finali iconiche)
+Stile di riferimento: social/immagini/spear-riferimento-stile.webp
+Il testo lo aggiunge il modello del sito: l'immagine va generata SENZA scritte.
+
+--- Prompt ---
+Create a vertical 4:5 image (1080x1350), photorealistic cinematic movie-poster style, like an official wrestling event key art.
+
+Mood and lighting: dark arena, deep black and crimson red tones, red stage spotlights shining down through haze, warm rim light on skin, high contrast, film grain, ultra detailed.
+
+Layout (very important):
+- TOP 30% of the image: almost empty, dark smoky background with red spotlights only. NO people, NO text there (title text will be added later).
+- MIDDLE: three large, dramatic chest-up portraits side by side, looking intense toward the camera, fading into the dark background: on the left a bald muscular man with a dark goatee (Goldberg), in the center a man with long wavy blond-brown hair and a beard wearing a black studded leather vest (Edge), on the right a man with long black hair pulled back and a beard, a tribal tattoo on his right shoulder and arm (Roman Reigns).
+- BOTTOM 40%: inside a wrestling ring with red ropes and a packed crowd behind, a SPEAR in action: a bald muscular wrestler in plain black trunks, black kneepads and black boots launched horizontally, his shoulder driving into the stomach of a generic opponent with both arms wrapped around the opponent's waist; the opponent (a fictional wrestler with short dark hair, plain grey trunks) is bent backwards in a C-shape, feet lifting off the mat, mouth open. Sweat spray at the point of impact.
+
+Do NOT include: any text, letters, numbers, logos, brand symbols, stars or "R" emblems on clothing, championship belts. The opponent must not resemble any real wrestler. Correct anatomy: exactly two arms and two legs per person.
+
+--- Correzioni rapide (se serve) ---
+"Keep the same image but remove every letter, logo and symbol from the clothes."
+"Keep the same image but leave the top 30% empty: only dark smoke and red spotlights."
+"Keep the same image, but the attacker's shoulder must hit the opponent's stomach and both arms must wrap around his waist."
+
+--- Al momento di pubblicare ---
+Spuntare "Etichetta AI" su Instagram (immagine realistica generata con AI).
