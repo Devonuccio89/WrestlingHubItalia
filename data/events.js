@@ -11,8 +11,8 @@ window.WH_EVENTS = {
       "city": "Orlando, Florida",
       "country": "USA",
       "tickets": "https://www.ticketmaster.com/event/220064F081A01BAC",
-      "broadcastIT": "PPV su DAZN o MyAEW (da verificare per l'Italia)",
-      "watchUrl": "https://www.dazn.com/it-IT",
+      "broadcastIT": "PPV su MyAEW o DAZN (da verificare per l'Italia)",
+      "watchUrl": "https://myaew.com/",
       "note": "Main card alle 02:00 italiane; pre-show (Tailgate Brawl e Buy-In) dall'01:00. In palio il titolo mondiale nel primo Clockwork Carnage della storia.",
       "card": [
         { "title": "AEW World Championship - Clockwork Carnage", "a": "Will Ospreay (c)", "b": "Joe, Bailey, Copeland, Takeshita, Okada, Ricochet, Allin" },
