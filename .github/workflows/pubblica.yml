@@ -60,6 +60,11 @@ jobs:
           cp ads.txt robots.txt sitemap.xml favicon.ico dist/
           cp -r assets guide eventi dist/
           cp data/news.js data/events.js data/pagine-eventi.js data/articoli.js data/italia.js data/sources.js dist/data/
+          # Versione nei link a JS/CSS/dati (es. app.js?v=123): Cloudflare fa tenere questi file ai browser
+          # per 4 ore, ma le pagine HTML non vanno in cache, quindi con un indirizzo nuovo a ogni esecuzione
+          # i visitatori ricevono subito codice e notizie aggiornati.
+          find dist -name '*.html' -exec sed -i -E "s#(src|href)=\"((assets|data)/[^\"?]+\.(js|css))\"#\1=\"\2?v=${GITHUB_RUN_ID}\"#g" {} +
+          echo "Link con versione: $(grep -o '?v=[0-9]*' dist/index.html | sort -u)"
           echo "File pubblicati:" && find dist -type f | sort
 
       - name: Pubblica su Cloudflare Pages
