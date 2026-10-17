@@ -134,6 +134,13 @@ img { max-width: 100%; display: block; }
 .tag.orig { background: var(--gold); color: #111; }
 .news-card.original h3 { font-family: var(--head); text-transform: uppercase; font-size: 19px; line-height: 1.15; }
 .news-card.original .foot span:last-child { color: var(--gold); font-weight: 700; }
+/* anteprima dell'evento imminente, in cima alle notizie */
+.news-card.original.featured { border-width: 2px; }
+.news-card.original.featured .thumb { aspect-ratio: 21 / 9; }
+.news-card.original.featured h3 { font-size: 30px; }
+.news-card.original.featured p { -webkit-line-clamp: 2; font-size: 15px; }
+.news-card .tags .live-badge, .news-card .tags .soon-badge { font-size: 11px; padding: 2px 7px; }
+@media (max-width: 900px) { .news-card.original.featured h3 { font-size: 22px; } .news-card.original.featured .thumb { aspect-ratio: 16 / 9; } }
 .news-card.lead h3 { font-size: 22px; }
 .tags { position: absolute; left: 8px; top: 8px; display: flex; gap: 4px; }
 .tag { font-family: var(--head); font-size: 11px; letter-spacing: .5px; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; background: #333; color: #fff; }

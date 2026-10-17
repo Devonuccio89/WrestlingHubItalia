@@ -190,7 +190,7 @@ $feedSections = @('Riepilogo settimanale', 'Classifiche ed elenchi')
 $feedItems = @($guides | Where-Object { $feedSections -contains $_.section } |
   Sort-Object @{ e = { $feedSections.IndexOf($_.section) } }, @{ e = { if ($_.section -eq 'Riepilogo settimanale') { $_.updated } else { '' } }; Descending = $true }, @{ e = { [int]$_.order } } |
   ForEach-Object { $im = Get-Img $_.slug; [ordered]@{ url = "guide/$($_.slug).html"; title = $_.title; description = $_.description; kicker = $_.kicker; section = $_.section; updated = $_.updated; minutes = $_.minutes; image = $(if ($im) { $im.src } else { '' }); photo = [bool]($im -and $im.photo) } })
-Write-Utf8 (Join-Path $root 'data/articoli.js') ('window.WH_ARTICLES = ' + (ConvertTo-Json @($feedItems) -Depth 3 -Compress) + ';')
+# (data/articoli.js viene scritto dopo la sezione eventi, per includere anche le anteprime degli eventi)
 
 # =================== EVENTI ===================
 $eventDir = Join-Path $root 'eventi'
@@ -265,6 +265,17 @@ $evImages = [ordered]@{}
 # solo foto vere: le copertine grafiche contengono gia' il titolo e si sovrapporrebbero al testo della card
 foreach ($e in $eventsData.events) { $im = Get-Img $e.id; if ($im -and $im.photo) { $evImages[$e.id] = $im.src } }
 Write-Utf8 (Join-Path $root 'data/pagine-eventi.js') ('window.WH_EVENT_PAGES = ' + ($pageMap | ConvertTo-Json -Compress) + ";`nwindow.WH_EVENT_IMAGES = " + ($evImages | ConvertTo-Json -Compress) + ';')
+
+# articoli originali per il flusso della home: riepilogo, anteprime degli eventi (in ordine di data), classifiche.
+# Con "start" la home mette in cima l'evento imminente e nasconde le anteprime di eventi gia' passati.
+$evItems = @($withPages | ForEach-Object {
+  $c = $eventContent[$_.id]; $im = Get-Img $_.id
+  [ordered]@{ url = "eventi/$($_.id).html"; title = $c.title; description = $c.description; kicker = 'Anteprima evento'; section = 'Eventi'; updated = $c.updated; minutes = 4
+    image = $(if ($im) { $im.src } else { '' }); photo = [bool]($im -and $im.photo); promotion = $_.promotion
+    start = $(if ($_.startUtc) { $_.startUtc } else { "$($_.date)T12:00:00Z" }) }
+})
+$allFeed = @($feedItems | Where-Object { $_.section -eq 'Riepilogo settimanale' }) + $evItems + @($feedItems | Where-Object { $_.section -ne 'Riepilogo settimanale' })
+Write-Utf8 (Join-Path $root 'data/articoli.js') ('window.WH_ARTICLES = ' + (ConvertTo-Json @($allFeed) -Depth 3 -Compress) + ';')
 
 # =================== SITEMAP E ROBOTS ===================
 # indirizzi senza .html: Cloudflare Pages reindirizza /pagina.html a /pagina

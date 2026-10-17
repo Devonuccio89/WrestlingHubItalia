@@ -191,14 +191,20 @@
   }
 
   // Card per gli articoli originali (classifiche, elenchi, riepilogo) mescolati alle notizie
-  function articleCard(a) {
-    var icon = a.section === 'Riepilogo settimanale' ? '📰' : (a.kicker === 'Classifica' ? '🏆' : '📋');
+  function articleCard(a, lead) {
+    var icon = a.section === 'Eventi' ? '🎟️' : a.section === 'Riepilogo settimanale' ? '📰' : (a.kicker === 'Classifica' ? '🏆' : '📋');
+    // anteprima di un evento: badge "In diretta ora" / "Stanotte" / "Oggi" quando è vicino
+    var badge = '';
+    if (a.start) {
+      var st = eventState({ startUtc: a.start });
+      badge = st === 'live' ? '<span class="live-badge">In diretta ora</span>' : st === 'soon' ? '<span class="soon-badge">' + soonLabel({ startUtc: a.start }) + '</span>' : '';
+    }
+    var tags = '<div class="tags"><span class="tag orig">Originale WHI</span>' + (a.promotion ? '<span class="tag ' + esc(a.promotion) + '">' + esc(a.promotion) + '</span>' : '') + badge + '</div>';
     // con foto o copertina grafica mostra l'immagine, altrimenti il riquadro con icona e categoria
     var thumb = a.image
-      ? '<div class="thumb" style="background-image:url(\'' + esc(a.image).replace(/'/g, '%27') + '\')"><div class="tags"><span class="tag orig">Originale WHI</span></div></div>'
-      : '<div class="thumb orig-thumb"><span class="orig-icon">' + icon + '</span><span class="orig-kick">' + esc(a.kicker) + '</span>' +
-        '<div class="tags"><span class="tag orig">Originale WHI</span></div></div>';
-    return '<a class="news-card original" href="' + esc(a.url) + '">' + thumb +
+      ? '<div class="thumb" style="background-image:url(\'' + esc(a.image).replace(/'/g, '%27') + '\')">' + tags + '</div>'
+      : '<div class="thumb orig-thumb"><span class="orig-icon">' + icon + '</span><span class="orig-kick">' + esc(a.kicker) + '</span>' + tags + '</div>';
+    return '<a class="news-card original' + (lead ? ' lead featured' : '') + '" href="' + esc(a.url) + '">' + thumb +
       '<div class="body"><h3>' + esc(a.title) + '</h3><p>' + esc(a.description) + '</p>' +
       '<div class="foot"><span class="src">WrestlingHub Italia</span><span>Leggi · ' + esc(a.minutes) + ' min →</span></div></div></a>';
   }
@@ -237,19 +243,27 @@
         if (state.q && (n.title + ' ' + n.excerpt).toLowerCase().indexOf(state.q) < 0) return false;
         return true;
       });
-      // articoli originali: visibili con "Tutte" le federazioni e non in "Solo estero"; la ricerca filtra anche loro
+      // articoli originali: visibili con "Tutte" le federazioni (le anteprime evento anche col filtro della
+      // loro federazione), non in "Solo estero"; la ricerca filtra anche loro.
+      // Le anteprime di eventi ormai finiti spariscono da sole.
+      var now = Date.now();
       var articles = (window.WH_ARTICLES || []).filter(function (a) {
-        if (state.promo !== 'Tutte' || state.lang === 'en') return false;
+        if (state.lang === 'en') return false;
+        if (a.start && new Date(a.start).getTime() + LIVE_HOURS * 3600 * 1000 < now) return false;
+        if (state.promo !== 'Tutte' && !(a.promotion && a.promotion === state.promo)) return false;
         return !state.q || (a.title + ' ' + a.description).toLowerCase().indexOf(state.q) >= 0;
       });
+      // evento imminente (entro 3 giorni) o in corso: la sua anteprima va in cima, in grande
+      var featured = articles.filter(function (a) { return a.start && new Date(a.start).getTime() - now < 3 * 86400 * 1000; })[0];
+      if (featured) articles = articles.filter(function (a) { return a !== featured; });
       var every = ADS.infeedEvery || 8;
       var ARTICLE_FIRST = 2, ARTICLE_EVERY = 5; // il primo dopo 2 notizie, poi uno ogni 5
-      var html = list.slice(0, state.shown).map(function (n, i) {
+      var html = (featured ? articleCard(featured, true) : '') + list.slice(0, state.shown).map(function (n, i) {
         var k = (i + 1 - ARTICLE_FIRST) / ARTICLE_EVERY;
         var art = (k >= 0 && k % 1 === 0 && articles[k]) ? articleCard(articles[k]) : '';
-        return card(n, i === 0 && !!n.image) + art + ((i + 1) % every === 0 ? adSlot('infeed', 'news-ad') : '');
+        return card(n, !featured && i === 0 && !!n.image) + art + ((i + 1) % every === 0 ? adSlot('infeed', 'news-ad') : '');
       }).join('');
-      if (!list.length && articles.length) html = articles.map(articleCard).join('');
+      if (!list.length && (articles.length || featured)) html = (featured ? articleCard(featured, true) : '') + articles.map(function (a) { return articleCard(a); }).join('');
       $('#news').innerHTML = html || '<div class="empty">Nessuna notizia trovata con questi filtri.</div>';
       $('#more').style.display = list.length > state.shown ? '' : 'none';
       fillAds();
