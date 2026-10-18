@@ -453,4 +453,16 @@
   if (page === 'italia') renderItalia();
   if (page === 'fonti') renderSources();
   fillAds();
+
+  // Trailer ufficiali: l'anteprima diventa il video YouTube (versione senza cookie) solo quando il visitatore preme play
+  function playTrailer(box) {
+    var id = box.getAttribute('data-yt');
+    if (!/^[\w-]{11}$/.test(id)) return;
+    box.outerHTML = '<div class="yt yt-on"><iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0" title="Trailer ufficiale" ' +
+      'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
+  }
+  document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('.yt[data-yt]'); if (b) playTrailer(b); });
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('.yt[data-yt]')) { e.preventDefault(); playTrailer(e.target); }
+  });
 })();

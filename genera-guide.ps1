@@ -33,8 +33,23 @@ function Get-Img([string]$slug) {
   if (Test-Path (Join-Path $root $cover)) { return [pscustomobject]@{ src = $cover; alt = ''; photo = $false } }
   return $null
 }
+# Immagine principale di un evento: la locandina ufficiale (campo "poster" in data/events.json) se c'e',
+# altrimenti la foto o la copertina dell'evento. La locandina resta sul sito della federazione.
+function Event-Img($ev) {
+  if ($ev.poster -and $ev.poster.url) {
+    return [pscustomobject]@{ src = $ev.poster.url; alt = "Locandina ufficiale di $($ev.name)"; photo = $false; poster = $true; credit = $ev.poster.credit; page = $ev.poster.page }
+  }
+  return Get-Img $ev.id
+}
+# indirizzo completo di un'immagine (le locandine hanno gia' un indirizzo esterno)
+function Abs-Src($img) { if ($img.src -match '^https?://') { return $img.src } else { return "$site/$($img.src)" } }
+
 # foto in testa all'articolo con il credito dell'autore (le copertine grafiche non si ripetono nella pagina)
 function Hero-Html($img) {
+  if ($img -and $img.poster) {
+    return '      <figure class="hero hero-poster"><img src="' + (HtmlEnc $img.src) + '" alt="' + (HtmlEnc $img.alt) + '" width="1280" height="720" loading="eager" referrerpolicy="no-referrer">' +
+      '<figcaption>Locandina ufficiale &copy; ' + (HtmlEnc $img.credit) + ' &middot; <a href="' + (HtmlEnc $img.page) + '" target="_blank" rel="noopener">fonte</a></figcaption></figure>'
+  }
   if (-not $img -or -not $img.photo) { return '' }
   $lic = if ($img.licenseUrl) { '<a href="' + (HtmlEnc $img.licenseUrl) + '" target="_blank" rel="noopener license">' + (HtmlEnc $img.license) + '</a>' } else { HtmlEnc $img.license }
   return '      <figure class="hero"><img src="' + $img.src + '" alt="' + (HtmlEnc $img.alt) + '" width="1280" height="720" loading="eager">' +
@@ -81,11 +96,11 @@ $foot = @'
 
 function Page($meta, $url, $ogType, $jsonLd, $body, $page, $img = $null) {
   # anteprima per social e WhatsApp (immagine con indirizzo completo)
-  $og = if ($img) { '  <meta property="og:image" content="' + "$site/$($img.src)" + '">' + "`n" + '  <meta name="twitter:card" content="summary_large_image">' } else { '  <meta name="twitter:card" content="summary">' }
+  $og = if ($img) { '  <meta property="og:image" content="' + (HtmlEnc (Abs-Src $img)) + '">' + "`n" + '  <meta name="twitter:card" content="summary_large_image">' } else { '  <meta name="twitter:card" content="summary">' }
   $h = $head.Replace('{TITLE}', (HtmlEnc $meta.title)).Replace('{DESC}', (HtmlEnc $meta.description)).Replace('{URL}', $url).Replace('{OGTYPE}', $ogType).Replace('{OGIMAGE}', $og).Replace('{JSONLD}', $jsonLd).Replace('{PAGE}', $page)
   return $h + $body + "`n" + $foot
 }
-function JsonLd-Image($img) { if ($img) { return ',"image":"' + "$site/$($img.src)" + '"' } else { return '' } }
+function JsonLd-Image($img) { if ($img) { return ',"image":"' + (J (Abs-Src $img)) + '"' } else { return '' } }
 
 function Read-Content($dir) {
   $list = @()
@@ -204,12 +219,27 @@ $eventContent = @{}
 foreach ($c in (Read-Content (Join-Path $root 'contenuti/eventi'))) { $eventContent[$c.file] = $c }
 $guideFor = @{ WWE = 'dove-vedere-wwe-in-italia'; AEW = 'dove-vedere-aew-in-italia'; TNA = 'dove-vedere-tna-in-italia'; NJPW = 'dove-vedere-njpw-in-italia' }
 
+# Video ufficiale (campo "trailer" in data/events.json): YouTube del canale ufficiale, caricato solo al clic
+# (nessun contatto con YouTube prima). La locandina ufficiale e' invece l'immagine principale (Event-Img / Hero-Html).
+function Media-Html($ev) {
+  $parts = @()
+  if ($ev.trailer -and $ev.trailer.id) {
+    $id = HtmlEnc $ev.trailer.id
+    $label = if ($ev.trailer.label) { $ev.trailer.label } else { 'Trailer ufficiale' }
+    $parts += '<figure class="official-trailer"><div class="yt" data-yt="' + $id + '" role="button" tabindex="0" aria-label="' + (HtmlEnc $label) + ': ' + (HtmlEnc $ev.trailer.title) + '">' +
+      '<span class="yt-label"><small>' + (HtmlEnc $label) + '</small>' + (HtmlEnc $ev.name) + '</span><span class="yt-play">&#9654;</span></div>' +
+      '<figcaption>' + (HtmlEnc $label) + ' &middot; canale YouTube ' + (HtmlEnc $ev.trailer.channel) + '. Premendo play il video viene caricato da YouTube.</figcaption></figure>'
+  }
+  if (-not $parts.Count) { return '' }
+  return "      <section class=""official-media"">`n        <h2>Video ufficiale</h2>`n        <div class=""official-grid"">" + ($parts -join '') + "</div>`n      </section>"
+}
+
 $withPages = @($eventsData.events | Where-Object { $eventContent.ContainsKey($_.id) } | Sort-Object date)
 $pageMap = [ordered]@{}
 foreach ($ev in $withPages) {
   $c = $eventContent[$ev.id]
   $url = "$site/eventi/$($ev.id)"
-  $img = Get-Img $ev.id
+  $img = Event-Img $ev
   $pageMap[$ev.id] = "eventi/$($ev.id).html"
 
   function Day-Text([datetime]$d) { $t = $d.ToString('dddd d MMMM yyyy', $it); return $t.Substring(0, 1).ToUpper() + $t.Substring(1) }
@@ -255,6 +285,7 @@ $(Hero-Html $img)
         <div><span>In TV / streaming in Italia</span>$(HtmlEnc $ev.broadcastIT)</div>
         <div class="event-box-actions">$($buttons -join ' ')</div>
       </section>
+$(Media-Html $ev)
 $($c.body)
     </article>
     <div class="section-title"><h2>Altri eventi in arrivo</h2><a class="updated" href="calendario.html">Calendario completo &rarr;</a></div>
@@ -273,7 +304,7 @@ Write-Utf8 (Join-Path $root 'data/pagine-eventi.js') ('window.WH_EVENT_PAGES = '
 # articoli originali per il flusso della home: riepilogo, anteprime degli eventi (in ordine di data), classifiche.
 # Con "start" la home mette in cima l'evento imminente e nasconde le anteprime di eventi gia' passati.
 $evItems = @($withPages | ForEach-Object {
-  $c = $eventContent[$_.id]; $im = Get-Img $_.id
+  $c = $eventContent[$_.id]; $im = Event-Img $_
   [ordered]@{ url = "eventi/$($_.id).html"; title = $c.title; description = $c.description; kicker = 'Anteprima evento'; section = 'Eventi'; updated = $c.updated; minutes = 4
     image = $(if ($im) { $im.src } else { '' }); photo = [bool]($im -and $im.photo); promotion = $_.promotion
     start = $(if ($_.startUtc) { $_.startUtc } else { "$($_.date)T12:00:00Z" }) }

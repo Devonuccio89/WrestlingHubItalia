@@ -49,17 +49,18 @@
     },
     {
       "id": "wwe-crown-jewel-2026",
+      "poster": { "url": "https://www.wwe.com/f/styles/og_image/public/2026/10/20261012_CJ26_RomanSami_16x9_Date.jpg", "credit": "WWE", "page": "https://www.wwe.com/shows/wwe-crown-jewel/crown-jewel-2026" },
       "name": "WWE Crown Jewel 2026",
       "promotion": "WWE",
       "date": "2026-11-07",
-      "startUtc": null,
+      "startUtc": "2026-11-07T17:00:00Z",
       "venue": "Riyadh Season Stadium, KAFD",
       "city": "Riyadh",
       "country": "Arabia Saudita",
       "tickets": "https://www.webook.com",
       "broadcastIT": "Netflix (incluso nell'abbonamento)",
       "watchUrl": "https://www.netflix.com/it/",
-      "note": "Annunciati: Reigns vs Zayn e Morgan vs Green per i titoli Crown Jewel. Orario non ancora ufficiale. Biglietti tramite Webook (rivenditore ufficiale).",
+      "note": "Annunciati: Reigns vs Zayn e Morgan vs Green per i titoli Crown Jewel. Inizio alle 12:00 ET (dalla locandina ufficiale WWE): in Italia le 18:00. Biglietti tramite Webook (rivenditore ufficiale).",
       "card": [
         { "title": "Men's Crown Jewel Championship", "a": "Roman Reigns", "b": "Sami Zayn" },
         { "title": "Women's Crown Jewel Championship", "a": "Liv Morgan", "b": "Chelsea Green" }
@@ -67,6 +68,8 @@
     },
     {
       "id": "aew-full-gear-2026",
+      "poster": { "url": "https://static.wixstatic.com/media/815952_5101fc2290494358bc0f6fec0cc05f87~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_90/AEW-11-14-26-Full-Gear-X2.jpg", "credit": "All Elite Wrestling", "page": "https://www.allelitewrestling.com/aew-event/aew-full-gear-2026" },
+      "trailer": { "id": "vuVcwRPow1I", "title": "#AEWFullGear Phoenix", "channel": "All Elite Wrestling", "label": "Promo ufficiale" },
       "name": "AEW Full Gear 2026",
       "promotion": "AEW",
       "date": "2026-11-14",
@@ -80,6 +83,7 @@
     },
     {
       "id": "tna-destination-x-2026",
+      "poster": { "url": "https://djnvkc60dme4l.cloudfront.net/events/posters/3282abf7388d0d97888e497baedcffc5-1-1.jpg", "credit": "TNA Wrestling", "page": "https://tnawrestling.com/events/tna-in-edmonton-November-15-2026" },
       "name": "TNA Destination X 2026",
       "promotion": "TNA",
       "date": "2026-11-15",
@@ -94,6 +98,8 @@
     },
     {
       "id": "wwe-survivor-series-2026",
+      "poster": { "url": "https://www.wwe.com/f/styles/og_image/public/2026/08/20260710_SurvivorSeries_Announcement_16x9.jpg", "credit": "WWE", "page": "https://www.wwe.com/shows/survivor-series-wargames/2026" },
+      "trailer": { "id": "STZjstREHHU", "title": "Survivor Series set for Daikin Park in Houston on Saturday, Nov. 28", "channel": "WWE", "label": "Annuncio ufficiale" },
       "name": "WWE Survivor Series: WarGames 2026",
       "promotion": "WWE",
       "date": "2026-11-28",
@@ -108,6 +114,7 @@
     },
     {
       "id": "aew-worlds-end-2026",
+      "poster": { "url": "https://static.wixstatic.com/media/815952_b927befb4f6b47eb99d18fe583e93b01~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_90/12-19-26-AEW-Worlds-End-X.jpg", "credit": "All Elite Wrestling", "page": "https://www.allelitewrestling.com/aew-event/aew-worlds-end-2026" },
       "name": "AEW Worlds End 2026",
       "promotion": "AEW",
       "date": "2026-12-19",
@@ -122,6 +129,8 @@
     },
     {
       "id": "njpw-wrestle-kingdom-21",
+      "poster": { "url": "https://wrestlekingdom.njpw.co.jp/assets/images/ogp/wk21-ogp-v3.jpg", "credit": "New Japan Pro-Wrestling", "page": "https://wrestlekingdom.njpw.co.jp/en/" },
+      "trailer": { "id": "hW06vNBl61s", "title": "Annuncio di Wrestle Kingdom 21 al Tokyo Dome (in giapponese)", "channel": "NJPW", "label": "Annuncio ufficiale" },
       "name": "NJPW Wrestle Kingdom 21",
       "promotion": "NJPW",
       "date": "2027-01-04",
@@ -151,6 +160,7 @@
     },
     {
       "id": "wwe-wrestlemania-43",
+      "trailer": { "id": "ZjtX-ykaRV4", "title": "Triple H and Turki Alalshikh announce WrestleMania 43 is heading to Saudi Arabia", "channel": "WWE", "label": "Annuncio ufficiale" },
       "name": "WWE WrestleMania 43",
       "promotion": "WWE",
       "date": "2027-04-10",
