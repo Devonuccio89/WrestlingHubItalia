@@ -192,7 +192,7 @@
 
   // Card per gli articoli originali (classifiche, elenchi, riepilogo) mescolati alle notizie
   function articleCard(a, lead) {
-    var icon = a.section === 'Eventi' ? '🎟️' : a.section === 'Riepilogo settimanale' ? '📰' : (a.kicker === 'Classifica' ? '🏆' : '📋');
+    var icon = a.section === 'Eventi' ? '🎟️' : a.section === 'Risultati' ? '🏁' : a.section === 'Riepilogo settimanale' ? '📰' : (a.kicker === 'Classifica' ? '🏆' : '📋');
     // anteprima di un evento: badge "In diretta ora" / "Stanotte" / "Oggi" quando è vicino
     var badge = '';
     if (a.start) {
@@ -253,8 +253,10 @@
         if (state.promo !== 'Tutte' && !(a.promotion && a.promotion === state.promo)) return false;
         return !state.q || (a.title + ' ' + a.description).toLowerCase().indexOf(state.q) >= 0;
       });
-      // evento imminente (entro 3 giorni) o in corso: la sua anteprima va in cima, in grande
-      var featured = articles.filter(function (a) { return a.start && new Date(a.start).getTime() - now < 3 * 86400 * 1000; })[0];
+      // in cima, in grande: prima un articolo "in evidenza" (es. i risultati di un evento appena concluso),
+      // altrimenti l'anteprima dell'evento imminente (entro 3 giorni) o in corso
+      var featured = articles.filter(function (a) { return a.featuredUntil && new Date(a.featuredUntil).getTime() > now; })[0] ||
+        articles.filter(function (a) { return a.start && new Date(a.start).getTime() - now < 3 * 86400 * 1000; })[0];
       if (featured) articles = articles.filter(function (a) { return a !== featured; });
       var every = ADS.infeedEvery || 8;
       var ARTICLE_FIRST = 2, ARTICLE_EVERY = 5; // il primo dopo 2 notizie, poi uno ogni 5

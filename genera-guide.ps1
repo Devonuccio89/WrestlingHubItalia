@@ -186,10 +186,14 @@ $creditRows
 Write-Utf8 (Join-Path $guideDir 'crediti-foto.html') (Page $creditMeta "$site/guide/crediti-foto" 'website' '' $creditBody 'guide')
 
 # articoli originali da mostrare nel flusso notizie della home (riepilogo piu' recente prima, poi le classifiche)
-$feedSections = @('Riepilogo settimanale', 'Classifiche ed elenchi')
+$feedSections = @('Risultati', 'Riepilogo settimanale', 'Classifiche ed elenchi')
 $feedItems = @($guides | Where-Object { $feedSections -contains $_.section } |
-  Sort-Object @{ e = { $feedSections.IndexOf($_.section) } }, @{ e = { if ($_.section -eq 'Riepilogo settimanale') { $_.updated } else { '' } }; Descending = $true }, @{ e = { [int]$_.order } } |
-  ForEach-Object { $im = Get-Img $_.slug; [ordered]@{ url = "guide/$($_.slug).html"; title = $_.title; description = $_.description; kicker = $_.kicker; section = $_.section; updated = $_.updated; minutes = $_.minutes; image = $(if ($im) { $im.src } else { '' }); photo = [bool]($im -and $im.photo) } })
+  Sort-Object @{ e = { $feedSections.IndexOf($_.section) } }, @{ e = { if ($_.section -ne 'Classifiche ed elenchi') { $_.updated } else { '' } }; Descending = $true }, @{ e = { [int]$_.order } } |
+  ForEach-Object { $im = Get-Img $_.slug; $item = [ordered]@{ url = "guide/$($_.slug).html"; title = $_.title; description = $_.description; kicker = $_.kicker; section = $_.section; updated = $_.updated; minutes = $_.minutes; image = $(if ($im) { $im.src } else { '' }); photo = [bool]($im -and $im.photo) }
+    # "evidenza: AAAA-MM-GG" nell'intestazione: l'articolo resta in cima alle notizie fino a quel giorno compreso
+    if ($_.evidenza) { $item.featuredUntil = "$($_.evidenza)T23:59:59+02:00" }
+    if ($_.federazione) { $item.promotion = $_.federazione }   # etichetta e filtro per federazione in home
+    $item })
 # (data/articoli.js viene scritto dopo la sezione eventi, per includere anche le anteprime degli eventi)
 
 # =================== EVENTI ===================
@@ -274,7 +278,7 @@ $evItems = @($withPages | ForEach-Object {
     image = $(if ($im) { $im.src } else { '' }); photo = [bool]($im -and $im.photo); promotion = $_.promotion
     start = $(if ($_.startUtc) { $_.startUtc } else { "$($_.date)T12:00:00Z" }) }
 })
-$allFeed = @($feedItems | Where-Object { $_.section -eq 'Riepilogo settimanale' }) + $evItems + @($feedItems | Where-Object { $_.section -ne 'Riepilogo settimanale' })
+$allFeed = @($feedItems | Where-Object { $_.section -in 'Risultati', 'Riepilogo settimanale' }) + $evItems + @($feedItems | Where-Object { $_.section -notin 'Risultati', 'Riepilogo settimanale' })
 Write-Utf8 (Join-Path $root 'data/articoli.js') ('window.WH_ARTICLES = ' + (ConvertTo-Json @($allFeed) -Depth 3 -Compress) + ';')
 
 # =================== SITEMAP E ROBOTS ===================
