@@ -128,7 +128,8 @@
   // + striscia degli eventi successivi, inserita subito sotto.
   function renderNextEvent(el) {
     var list = upcomingEvents();
-    var ev = list[0];
+    // in locandina solo le grandi federazioni internazionali; gli show italiani (ICW, SIW…) vanno nella striscia
+    var ev = list.filter(function (e) { return PROMOS.indexOf(e.promotion) >= 0; })[0] || list[0];
     if (!el || !ev) { if (el) el.remove(); return; }
     var img = eventImage(ev);
     var link = eventPage(ev) || 'calendario.html#' + esc(ev.id);
@@ -165,7 +166,7 @@
     tick(); setInterval(tick, 1000);
 
     // striscia dei prossimi eventi
-    var next = list.slice(1, 6);
+    var next = list.filter(function (e) { return e !== ev; }).slice(0, 5);
     if (next.length) {
       el.insertAdjacentHTML('afterend', '<div class="event-strip" aria-label="Prossimi eventi">' + next.map(function (e) {
         var im = eventImage(e), d = eventDate(e);
@@ -306,6 +307,8 @@
     var all = upcomingEvents();
     var state = { promo: 'Tutte' };
     var present = PROMOS.filter(function (p) { return all.some(function (e) { return e.promotion === p; }); });
+    // federazioni presenti solo nel calendario (es. le italiane ICW, SIW): filtro aggiunto in coda
+    all.forEach(function (e) { if (present.indexOf(e.promotion) < 0 && PROMOS.indexOf(e.promotion) < 0) present.push(e.promotion); });
     $('#filters').innerHTML = ['Tutte'].concat(present).map(function (p) { return '<button class="chip" data-promo="' + p + '">' + p + '</button>'; }).join('');
     $('#filters').addEventListener('click', function (e) {
       var b = e.target.closest('.chip'); if (!b) return; state.promo = b.dataset.promo; draw();

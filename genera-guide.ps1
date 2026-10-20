@@ -309,7 +309,9 @@ $evItems = @($withPages | ForEach-Object {
     image = $(if ($im) { $im.src } else { '' }); photo = [bool]($im -and $im.photo); promotion = $_.promotion
     start = $(if ($_.startUtc) { $_.startUtc } else { "$($_.date)T12:00:00Z" }) }
 })
-$allFeed = @($feedItems | Where-Object { $_.section -in 'Risultati', 'Riepilogo settimanale' }) + $evItems + @($feedItems | Where-Object { $_.section -notin 'Risultati', 'Riepilogo settimanale' })
+# in home solo il riepilogo settimanale piu' recente (gli altri restano nella pagina Guide)
+$lastRecap = @($feedItems | Where-Object { $_.section -eq 'Riepilogo settimanale' } | Sort-Object { $_.updated } -Descending | Select-Object -First 1)
+$allFeed = @($feedItems | Where-Object { $_.section -eq 'Risultati' }) + $lastRecap + $evItems + @($feedItems | Where-Object { $_.section -notin 'Risultati', 'Riepilogo settimanale' })
 Write-Utf8 (Join-Path $root 'data/articoli.js') ('window.WH_ARTICLES = ' + (ConvertTo-Json @($allFeed) -Depth 3 -Compress) + ';')
 
 # =================== SITEMAP E ROBOTS ===================

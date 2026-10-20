@@ -147,6 +147,11 @@ img { max-width: 100%; display: block; }
 .tag { font-family: var(--head); font-size: 11px; letter-spacing: .5px; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; background: #333; color: #fff; }
 .tag.WWE { background: var(--wwe); } .tag.AEW { background: var(--aew); color: #111; } .tag.TNA { background: var(--tna); }
 .tag.NJPW { background: var(--njpw); } .tag.ROH { background: var(--roh); } .tag.Altre { background: var(--altre); color: #111; }
+/* Federazioni italiane (ICW, SIW): verde tricolore */
+:root { --ita: #0b8a3e; }
+.tag.ICW, .tag.SIW { background: var(--ita); }
+.event.ICW, .event.SIW { border-left-color: var(--ita); }
+.strip-card.ICW, .strip-card.SIW, .next-event.poster.ICW, .next-event.poster.SIW { --pc: var(--ita); }
 .lang { font-size: 10px; font-weight: 700; border: 1px solid var(--line); border-radius: 3px; padding: 0 4px; margin-left: 6px; color: var(--muted); }
 .more { display: block; margin: 22px auto 0; }
 .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 6px; font-weight: 700; font-size: 14px; cursor: pointer; border: 1px solid var(--line); background: var(--bg-2); color: var(--text); font-family: var(--body); }
