@@ -1,5 +1,5 @@
 {
-    "updated":  "2026-10-20",
+    "updated":  "2026-10-21",
     "events":  [
                    {
                        "id":  "aew-wrestledream-2026",
@@ -256,16 +256,21 @@
                    },
                    {
                        "id":  "icw-la-numero-uno-2026",
+                       "poster":  {
+                                      "url":  "https://www.icwwrestling.it/wp-content/uploads/2026/09/La-Numero-Uno-website-news.jpg",
+                                      "credit":  "ICW Italian Championship Wrestling",
+                                      "page":  "https://www.icwwrestling.it/2026/10/la-icw-presenta-la-numero-uno-il-24-ottobre-torna-lo-show-di-wrestling-tutto-al-femminile/"
+                                  },
                        "name":  "ICW La Numero Uno 2026",
                        "promotion":  "ICW",
                        "date":  "2026-10-24",
                        "startUtc":  "2026-10-24T18:30:00Z",
-                       "venue":  "Centro Sportivo",
+                       "venue":  "Centro Sportivo (PalaTecnochimica)",
                        "city":  "Comun Nuovo (BG)",
                        "country":  "Italia",
-                       "tickets":  "https://www.icwwrestling.it/shows/prossimi-show/",
-                       "broadcastIT":  "Dal vivo",
-                       "watchUrl":  "https://www.icwwrestling.it",
+                       "tickets":  "https://www.ticketone.it/event/icw-la-numero-uno-2026-centro-sportivo-comun-nuovo-22190353/",
+                       "broadcastIT":  "Solo dal vivo (nessuna diretta streaming annunciata)",
+                       "watchUrl":  "https://www.icwwrestling.it/2026/10/la-icw-presenta-la-numero-uno-il-24-ottobre-torna-lo-show-di-wrestling-tutto-al-femminile/",
                        "note":  "Show tutto al femminile della Italian Championship Wrestling, ore 20:30. Info e biglietti: 335 1208244."
                    },
                    {
