@@ -1,5 +1,5 @@
 {
-    "updated":  "2026-10-21",
+    "updated":  "2026-11-03",
     "events":  [
                    {
                        "id":  "aew-wrestledream-2026",
@@ -78,13 +78,13 @@
                        "promotion":  "WWE",
                        "date":  "2026-11-07",
                        "startUtc":  "2026-11-07T17:00:00Z",
-                       "venue":  "Riyadh Season Stadium, KAFD",
+                       "venue":  "The Venue (ANB Arena)",
                        "city":  "Riyadh",
                        "country":  "Arabia Saudita",
                        "tickets":  "https://webook.com/en/SA/RUH/sports-event/events/ww-crown-jewel-rs27",
                        "broadcastIT":  "Netflix (incluso nell'abbonamento)",
                        "watchUrl":  "https://www.netflix.com/it/",
-                       "note":  "Inizio alle 12:00 ET, cioè le 18:00 in Italia. La sfidante di Liv Morgan sarà la campionessa WWE: si decide il 30 ottobre a SmackDown tra Chelsea Green e Nikki Bella. Biglietti su Webook (rivenditore ufficiale).",
+                       "note":  "Inizio alle 12:00 ET, cioè le 18:00 in Italia. Spostato al coperto nell'ANB Arena per motivi di sicurezza (annuncio Riyadh Season del 28 ottobre): biglietti rimborsati e rimessi in vendita su Webook.",
                        "card":  [
                                     {
                                         "title":  "Men's Crown Jewel Championship",
@@ -94,7 +94,17 @@
                                     {
                                         "title":  "Women's Crown Jewel Championship",
                                         "a":  "Liv Morgan",
-                                        "b":  "Campionessa WWE (Green o Bella)"
+                                        "b":  "Chelsea Green"
+                                    },
+                                    {
+                                        "title":  "Last Man Standing",
+                                        "a":  "Cody Rhodes",
+                                        "b":  "Randy Orton"
+                                    },
+                                    {
+                                        "title":  "World Tag Team Championship",
+                                        "a":  "The Vision (c)",
+                                        "b":  "Penta, Je'Von Evans"
                                     }
                                 ]
                    },
@@ -114,14 +124,46 @@
                        "name":  "AEW Full Gear 2026",
                        "promotion":  "AEW",
                        "date":  "2026-11-14",
-                       "startUtc":  null,
+                       "startUtc":  "2026-11-15T01:00:00Z",
                        "venue":  "Mortgage Matchup Center",
                        "city":  "Phoenix, Arizona",
                        "country":  "USA",
                        "tickets":  "https://www.allelitewrestling.com/aew-events",
-                       "broadcastIT":  "PPV su DAZN o MyAEW (da verificare per l'Italia)",
-                       "watchUrl":  "https://www.dazn.com/it-IT",
-                       "note":  "Nessun match ufficiale dopo WrestleDream. La locandina è stata aggiornata in ricordo di PAC."
+                       "broadcastIT":  "PPV su DAZN (o MyAEW)",
+                       "watchUrl":  "https://www.allelitewrestling.com/aewonppv",
+                       "note":  "Inizio alle 20:00 ET, cioè le 02:00 italiane di domenica 15 novembre. La locandina è stata aggiornata in ricordo di PAC.",
+                       "card":  [
+                                    {
+                                        "title":  "AEW World Championship",
+                                        "a":  "Will Ospreay (c)",
+                                        "b":  "Kyle Fletcher"
+                                    },
+                                    {
+                                        "title":  "AEW Women's World Championship",
+                                        "a":  "Mercedes Moné (c)",
+                                        "b":  "Marina Shafir"
+                                    },
+                                    {
+                                        "title":  "AEW World Tag Team Championship",
+                                        "a":  "Young Bucks (c)",
+                                        "b":  "Mark Davis, Jake Doyle"
+                                    },
+                                    {
+                                        "title":  "AEW Women's World Tag Team Championship",
+                                        "a":  "Brawling Birds (c)",
+                                        "b":  "Wrathlander"
+                                    },
+                                    {
+                                        "title":  "AEW World Trios Championship",
+                                        "a":  "Hangman Page, Brodido (c)",
+                                        "b":  "Swerve Strickland, The New Level"
+                                    },
+                                    {
+                                        "title":  "Anarchy in the Arena",
+                                        "a":  "Death Riders",
+                                        "b":  "The Cut"
+                                    }
+                                ]
                    },
                    {
                        "id":  "tna-destination-x-2026",
@@ -138,14 +180,19 @@
                        "city":  "Edmonton, Alberta",
                        "country":  "Canada",
                        "tickets":  "https://edmontonexpocentre.com/events/tna-wrestling/",
-                       "broadcastIT":  "TNA+",
+                       "broadcastIT":  "TNA+ (anche in PPV)",
                        "watchUrl":  "https://tnawrestling.com",
-                       "note":  "Orario indicato dal palazzetto (18:00 a Edmonton): da confermare per la diretta.",
+                       "note":  "Orario indicato dal palazzetto (18:00 a Edmonton): da confermare per la diretta. Nella World X-Cup c'è anche l'italiano Fabian Aichner.",
                        "card":  [
                                     {
                                         "title":  "TNA World Championship",
                                         "a":  "Leon Slater (c)",
                                         "b":  "Trey Miguel"
+                                    },
+                                    {
+                                        "title":  "TNA Knockouts World Championship",
+                                        "a":  "Indi Hartwell (c)",
+                                        "b":  "Shayna Baszler"
                                     }
                                 ]
                    },
@@ -285,7 +332,7 @@
                        "tickets":  null,
                        "broadcastIT":  "NJPW World (streaming)",
                        "watchUrl":  "https://njpwworld.com",
-                       "note":  "Se Omega vince il match a tre, sfiderà Tsuji per il titolo IWGP (probabilmente a Wrestle Kingdom 21). Ritorno di Jon Moxley in NJPW.",
+                       "note":  "Risultati: Omega ha schienato Tsuji nel match a tre e ha chiesto il titolo IWGP per Wrestle Kingdom 21. I Knock Out Brothers hanno tenuto i titoli di coppia (vittoria per squalifica). Gabe Kidd ha difeso il titolo IWGP Global contro Taichi.",
                        "card":  [
                                     {
                                         "title":  "Match a tre (senza titolo in palio)",
@@ -301,31 +348,41 @@
                    },
                    {
                        "id":  "icw-wrestling-live-marmirolo-2026",
-                       "name":  "ICW Wrestling Live",
+                       "poster":  {
+                                      "url":  "https://www.icwwrestling.it/wp-content/uploads/2026/10/Power-Clash-2026-website-news-web.jpg",
+                                      "credit":  "ICW Italian Championship Wrestling",
+                                      "page":  "https://www.icwwrestling.it/2026/10/icw-power-clash-nuovo-grande-evento-di-wrestling-il-14-novembre-a-mantova/"
+                                  },
+                       "name":  "ICW Power Clash 2026",
                        "promotion":  "ICW",
                        "date":  "2026-11-14",
                        "startUtc":  "2026-11-14T19:30:00Z",
                        "venue":  "Palazzetto dello Sport",
                        "city":  "Marmirolo (MN)",
                        "country":  "Italia",
-                       "tickets":  "https://www.icwwrestling.it/shows/prossimi-show/",
-                       "broadcastIT":  "Dal vivo",
-                       "watchUrl":  "https://www.icwwrestling.it",
-                       "note":  "Ore 20:30. Info e biglietti sul sito ICW o al 335 1208244."
+                       "tickets":  "https://www.ticketone.it/event/icw-wrestling-live-a-mantova-palazzetto-dello-sport-22359953/",
+                       "broadcastIT":  "Solo dal vivo (nessuna diretta streaming annunciata)",
+                       "watchUrl":  "https://www.icwwrestling.it/2026/10/icw-power-clash-nuovo-grande-evento-di-wrestling-il-14-novembre-a-mantova/",
+                       "note":  "Cancelli alle 20:00, inizio alle 20:30. Biglietti da 13 euro su TicketOne, all'ingresso o prenotando al 335 1208244."
                    },
                    {
                        "id":  "icw-fight-forever-64",
-                       "name":  "ICW Fight Forever #64",
+                       "poster":  {
+                                      "url":  "https://www.icwwrestling.it/wp-content/uploads/2026/10/Fight-Forever-64-website-news.jpeg",
+                                      "credit":  "ICW Italian Championship Wrestling",
+                                      "page":  "https://www.icwwrestling.it/2026/10/la-icw-wrestling-torna-a-milano-con-fight-forever-verso-la-gloria-il-21-novembre/"
+                                  },
+                       "name":  "ICW Fight Forever #64: Verso la Gloria",
                        "promotion":  "ICW",
                        "date":  "2026-11-21",
                        "startUtc":  "2026-11-21T19:30:00Z",
                        "venue":  "Sport Village",
                        "city":  "Carpiano (MI)",
                        "country":  "Italia",
-                       "tickets":  "https://www.icwwrestling.it/shows/prossimi-show/",
-                       "broadcastIT":  "Dal vivo",
-                       "watchUrl":  "https://www.icwwrestling.it",
-                       "note":  "Ore 20:30. Info e biglietti sul sito ICW o al 335 1208244."
+                       "tickets":  "https://www.ticketone.it/event/icw-wrestling-live-a-milano-sport-village-carpiano-22365136/",
+                       "broadcastIT":  "Dal vivo (episodi su YouTube nelle settimane successive)",
+                       "watchUrl":  "https://www.youtube.com/@ICWitalianwrestling",
+                       "note":  "Tappa verso Pandemonium: Riot, primo sfidante al Titolo Italiano, e la faida con Tony Castano. Cancelli alle 20:00, inizio alle 20:30."
                    },
                    {
                        "id":  "wwe-wrestlepalooza-perth-2026",
@@ -339,10 +396,29 @@
                        "tickets":  "https://www.livenation.com.au/event/wrestlepalooza-perth-perth-tickets-edp1696213",
                        "broadcastIT":  "Netflix (incluso nell'abbonamento)",
                        "watchUrl":  "https://www.netflix.com/it/",
-                       "note":  "Premium Live Event in Australia: con il fuso orario, in Italia andrà in onda di mattina o di giorno (orario da annunciare)."
+                       "note":  "Premium Live Event in Australia. Orario non ancora ufficiale: secondo indiscrezioni (WrestleVotes) alle 6:00 ET, cioè le 12:00 italiane di sabato 12 dicembre."
+                   },
+                   {
+                       "id":  "nxt-tlc-2026",
+                       "name":  "WWE NXT TLC 2026",
+                       "promotion":  "WWE",
+                       "date":  "2026-12-12",
+                       "startUtc":  "2026-12-13T00:00:00Z",
+                       "venue":  "WWE Performance Center",
+                       "city":  "Orlando, Florida",
+                       "country":  "USA",
+                       "tickets":  null,
+                       "broadcastIT":  "Netflix (incluso nell'abbonamento)",
+                       "watchUrl":  "https://www.netflix.com/it/",
+                       "note":  "Primo NXT TLC della storia (tavoli, scale e sedie), annunciato a Halloween Havoc. Inizio alle 19:00 ET: in Italia è l'01:00 di domenica 13 dicembre."
                    },
                    {
                        "id":  "icw-pandemonium-xxiv",
+                       "poster":  {
+                                      "url":  "https://www.icwwrestling.it/wp-content/uploads/2026/10/ICW-Pandemonium-XXIV-website-news.jpg",
+                                      "credit":  "ICW Italian Championship Wrestling",
+                                      "page":  "https://www.icwwrestling.it/2026/10/annunciato-icw-pandemonium-xxiv-la-notte-dove-nascono-leggende-il-19-dicembre-a-brescia/"
+                                  },
                        "name":  "ICW Pandemonium XXIV",
                        "promotion":  "ICW",
                        "date":  "2026-12-19",
@@ -350,10 +426,59 @@
                        "venue":  "Palazzetto Polivalente \"C. Corcione\"",
                        "city":  "Gussago (BS)",
                        "country":  "Italia",
+                       "tickets":  "https://www.ticketone.it/event/icw-wrestling-live-a-brescia-palazzetto-polivalente-c-corcione-22354559/",
+                       "broadcastIT":  "Dal vivo",
+                       "watchUrl":  "https://www.icwwrestling.it/2026/10/annunciato-icw-pandemonium-xxiv-la-notte-dove-nascono-leggende-il-19-dicembre-a-brescia/",
+                       "note":  "\"La Notte dove Nascono Leggende\": lo show più importante dell'anno ICW. Cancelli alle 20:00, inizio alle 20:30.",
+                       "card":  [
+                                    {
+                                        "title":  "Titolo Italiano di Wrestling",
+                                        "a":  "Tony Castano (c)",
+                                        "b":  "Riot"
+                                    }
+                                ]
+                   },
+                   {
+                       "id":  "aew-blood-and-guts-2026",
+                       "name":  "AEW Dynamite: Blood & Guts 2026",
+                       "promotion":  "AEW",
+                       "date":  "2026-11-04",
+                       "startUtc":  null,
+                       "venue":  "VyStar Veterans Memorial Arena",
+                       "city":  "Jacksonville, Florida",
+                       "country":  "USA",
+                       "tickets":  "https://www.allelitewrestling.com/aew-events",
+                       "broadcastIT":  "Nessuna TV italiana: in diretta su TBS e HBO Max negli USA, collaborazione con Twitch",
+                       "watchUrl":  "https://www.allelitewrestling.com",
+                       "note":  "Puntata speciale di Dynamite con due gabbie Blood & Guts: Copeland, Steven Borden, Darby Allin, Young Bucks e Ospreay contro la Don Callis Family, più la versione femminile. In Italia è la notte tra mercoledì 4 e giovedì 5 novembre."
+                   },
+                   {
+                       "id":  "njpw-world-tag-league-2026-final",
+                       "name":  "NJPW World Tag League 2026: finale",
+                       "promotion":  "NJPW",
+                       "date":  "2026-12-13",
+                       "startUtc":  null,
+                       "venue":  "Grand Messe Kumamoto",
+                       "city":  "Kumamoto",
+                       "country":  "Giappone",
+                       "tickets":  null,
+                       "broadcastIT":  "NJPW World (streaming)",
+                       "watchUrl":  "https://njpwworld.com",
+                       "note":  "Finale del torneo di coppia, iniziato il 23 novembre a Yokohama (16 serate). Orario da annunciare."
+                   },
+                   {
+                       "id":  "icw-brawl-after-christmas-2026",
+                       "name":  "ICW Brawl After Christmas 2026",
+                       "promotion":  "ICW",
+                       "date":  "2026-12-27",
+                       "startUtc":  "2026-12-27T18:00:00Z",
+                       "venue":  "Centro Sportivo BarT",
+                       "city":  "Borgo San Giovanni (LO)",
+                       "country":  "Italia",
                        "tickets":  "https://www.icwwrestling.it/shows/prossimi-show/",
                        "broadcastIT":  "Dal vivo",
-                       "watchUrl":  "https://www.icwwrestling.it",
-                       "note":  "Il grande evento di fine anno della ICW, ore 20:30. Info e biglietti sul sito ICW o al 335 1208244."
+                       "watchUrl":  "https://www.icwwrestling.it/shows/prossimi-show/",
+                       "note":  "Show natalizio della ICW, ore 19:00. Info e biglietti sul sito ICW o al 335 1208244."
                    }
                ],
     "weekly":  [
