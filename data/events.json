@@ -1,5 +1,5 @@
 {
-    "updated":  "2026-11-03",
+    "updated":  "2026-11-13",
     "events":  [
                    {
                        "id":  "aew-wrestledream-2026",
@@ -65,7 +65,14 @@
                        "tickets":  null,
                        "broadcastIT":  "HonorClub (streaming ROH)",
                        "watchUrl":  "https://www.honorclub.com",
-                       "note":  "Annunciato ufficialmente da Tony Khan. Biglietti in vendita dal 23 ottobre (prevendita dal 21). Orario e match non ancora comunicati."
+                       "note":  "Annunciato ufficialmente da Tony Khan. Orario non ancora ufficiale. Primo match annunciato: Athena difende il titolo mondiale femminile ROH contro Hyan.",
+                       "card":  [
+                                    {
+                                        "title":  "ROH Women's World Championship",
+                                        "a":  "Athena (c)",
+                                        "b":  "Hyan"
+                                    }
+                                ]
                    },
                    {
                        "id":  "wwe-crown-jewel-2026",
@@ -84,7 +91,7 @@
                        "tickets":  "https://webook.com/en/SA/RUH/sports-event/events/ww-crown-jewel-rs27",
                        "broadcastIT":  "Netflix (incluso nell'abbonamento)",
                        "watchUrl":  "https://www.netflix.com/it/",
-                       "note":  "Inizio alle 12:00 ET, cioè le 18:00 in Italia. Spostato al coperto nell'ANB Arena per motivi di sicurezza (annuncio Riyadh Season del 28 ottobre): biglietti rimborsati e rimessi in vendita su Webook.",
+                       "note":  "Risultati: Reigns batte Zayn, Green batte Morgan ma Tiffany Stratton incassa il Money in the Bank ed è la nuova campionessa WWE, Penta ed Evans nuovi campioni di coppia, Rhodes vince il Last Man Standing.",
                        "card":  [
                                     {
                                         "title":  "Men's Crown Jewel Championship",
@@ -131,7 +138,7 @@
                        "tickets":  "https://www.allelitewrestling.com/aew-events",
                        "broadcastIT":  "PPV su DAZN (o MyAEW)",
                        "watchUrl":  "https://www.allelitewrestling.com/aewonppv",
-                       "note":  "Inizio alle 20:00 ET, cioè le 02:00 italiane di domenica 15 novembre. La locandina è stata aggiornata in ricordo di PAC.",
+                       "note":  "Inizio alle 20:00 ET, cioè le 02:00 italiane di domenica 15 novembre; pre-show Tailgate Brawl all'01:00 con il titolo TBS in palio. La locandina è stata aggiornata in ricordo di PAC.",
                        "card":  [
                                     {
                                         "title":  "AEW World Championship",
@@ -154,13 +161,23 @@
                                         "b":  "Wrathlander"
                                     },
                                     {
-                                        "title":  "AEW World Trios Championship",
+                                        "title":  "AEW World Trios Championship · Texas Death",
                                         "a":  "Hangman Page, Brodido (c)",
                                         "b":  "Swerve Strickland, The New Level"
                                     },
                                     {
+                                        "title":  "AEW International Championship",
+                                        "a":  "Kazuchika Okada (c)",
+                                        "b":  "Adam Copeland"
+                                    },
+                                    {
+                                        "title":  "AEW National Championship",
+                                        "a":  "Tommaso Ciampa (c)",
+                                        "b":  "Ilja Dragunov"
+                                    },
+                                    {
                                         "title":  "Anarchy in the Arena",
-                                        "a":  "Death Riders",
+                                        "a":  "Death Riders, The Conglomeration",
                                         "b":  "The Cut"
                                     }
                                 ]
@@ -175,14 +192,14 @@
                        "name":  "TNA Destination X 2026",
                        "promotion":  "TNA",
                        "date":  "2026-11-15",
-                       "startUtc":  "2026-11-16T01:00:00Z",
+                       "startUtc":  "2026-11-16T00:00:00Z",
                        "venue":  "Edmonton EXPO Centre",
                        "city":  "Edmonton, Alberta",
                        "country":  "Canada",
                        "tickets":  "https://edmontonexpocentre.com/events/tna-wrestling/",
                        "broadcastIT":  "TNA+ (anche in PPV)",
                        "watchUrl":  "https://tnawrestling.com",
-                       "note":  "Orario indicato dal palazzetto (18:00 a Edmonton): da confermare per la diretta. Nella World X-Cup c'è anche l'italiano Fabian Aichner.",
+                       "note":  "Pre-show alle 00:00 italiane con il primo turno della World X-Cup: l'italiano Fabian Aichner affronta Jason Hotch e Rey Horus. Card principale all'01:00.",
                        "card":  [
                                     {
                                         "title":  "TNA World Championship",
@@ -193,6 +210,16 @@
                                         "title":  "TNA Knockouts World Championship",
                                         "a":  "Indi Hartwell (c)",
                                         "b":  "Shayna Baszler"
+                                    },
+                                    {
+                                        "title":  "TNA World Tag Team Championship",
+                                        "a":  "The Nemeths (c)",
+                                        "b":  "syX, Matt Hardy e Moose"
+                                    },
+                                    {
+                                        "title":  "World X-Cup (primo turno, pre-show)",
+                                        "a":  "Fabian Aichner",
+                                        "b":  "Jason Hotch, Rey Horus"
                                     }
                                 ]
                    },
@@ -219,7 +246,24 @@
                        "tickets":  "https://www.wwe.com/article/houston-to-host-survivor-series-2026",
                        "broadcastIT":  "Netflix (incluso nell'abbonamento)",
                        "watchUrl":  "https://www.netflix.com/it/",
-                       "note":  "40ª edizione. Inizio ufficiale alle 18:00 ET: in Italia è la mezzanotte tra sabato 28 e domenica 29. Biglietti su Ticketmaster."
+                       "note":  "40ª edizione. Inizio ufficiale alle 18:00 ET: in Italia è la mezzanotte tra sabato 28 e domenica 29. Biglietti su Ticketmaster.",
+                       "card":  [
+                                    {
+                                        "title":  "WarGames maschile",
+                                        "a":  "The Bloodline",
+                                        "b":  "The 946"
+                                    },
+                                    {
+                                        "title":  "Women's World Championship",
+                                        "a":  "Liv Morgan (c)",
+                                        "b":  "Becky Lynch"
+                                    },
+                                    {
+                                        "title":  "Survivor Series 5 contro 5",
+                                        "a":  "Team USA",
+                                        "b":  "Team Mexico"
+                                    }
+                                ]
                    },
                    {
                        "id":  "aew-worlds-end-2026",
@@ -263,7 +307,39 @@
                        "tickets":  "https://www.njpw1972.com/tornament/669555",
                        "broadcastIT":  "NJPW World (streaming)",
                        "watchUrl":  "https://njpwworld.com",
-                       "note":  "55° anniversario della NJPW. Inizio alle 16:30 a Tokyo, cioè le 08:30 in Italia. Biglietti internazionali in vendita dal 14 ottobre."
+                       "note":  "55° anniversario della NJPW. Inizio alle 16:30 a Tokyo, cioè le 08:30 in Italia. Biglietti internazionali in vendita dal 14 ottobre.",
+                       "card":  [
+                                    {
+                                        "title":  "IWGP Heavyweight Championship",
+                                        "a":  "Yota Tsuji (c)",
+                                        "b":  "Kenny Omega"
+                                    },
+                                    {
+                                        "title":  "IWGP Global Heavyweight Championship",
+                                        "a":  "Gabe Kidd (c)",
+                                        "b":  "Yuya Uemura"
+                                    },
+                                    {
+                                        "title":  "IWGP Junior Heavyweight Championship",
+                                        "a":  "YOH (c)",
+                                        "b":  "SHO"
+                                    },
+                                    {
+                                        "title":  "Singolo",
+                                        "a":  "Jon Moxley",
+                                        "b":  "Shingo Takagi"
+                                    },
+                                    {
+                                        "title":  "Singolo",
+                                        "a":  "Will Ospreay",
+                                        "b":  "Callum Newman"
+                                    },
+                                    {
+                                        "title":  "Singolo",
+                                        "a":  "MJF",
+                                        "b":  "Ryohei Oiwa"
+                                    }
+                                ]
                    },
                    {
                        "id":  "wwe-royal-rumble-2027",
@@ -318,7 +394,7 @@
                        "tickets":  "https://www.ticketone.it/event/icw-la-numero-uno-2026-centro-sportivo-comun-nuovo-22190353/",
                        "broadcastIT":  "Solo dal vivo (nessuna diretta streaming annunciata)",
                        "watchUrl":  "https://www.icwwrestling.it/2026/10/la-icw-presenta-la-numero-uno-il-24-ottobre-torna-lo-show-di-wrestling-tutto-al-femminile/",
-                       "note":  "Show tutto al femminile della Italian Championship Wrestling, ore 20:30. Info e biglietti: 335 1208244."
+                       "note":  "Torneo femminile vinto da Miss Monica, che in finale ha battuto la campionessa Queen Maya. Lo show esce su YouTube in quattro episodi."
                    },
                    {
                        "id":  "njpw-power-struggle-2026",
@@ -363,7 +439,7 @@
                        "tickets":  "https://www.ticketone.it/event/icw-wrestling-live-a-mantova-palazzetto-dello-sport-22359953/",
                        "broadcastIT":  "Solo dal vivo (nessuna diretta streaming annunciata)",
                        "watchUrl":  "https://www.icwwrestling.it/2026/10/icw-power-clash-nuovo-grande-evento-di-wrestling-il-14-novembre-a-mantova/",
-                       "note":  "Cancelli alle 20:00, inizio alle 20:30. Biglietti da 13 euro su TicketOne, all'ingresso o prenotando al 335 1208244."
+                       "note":  "Cancelli alle 20:00, inizio alle 20:30. Annunciati, senza match ufficiali, Tony Castano, Mirko Mori, Nico Inverardi, Flamingo, Manuel Majoli, Double Speed, Machete e Luca Bjorn. Biglietti da 13 euro."
                    },
                    {
                        "id":  "icw-fight-forever-64",
@@ -396,7 +472,7 @@
                        "tickets":  "https://www.livenation.com.au/event/wrestlepalooza-perth-perth-tickets-edp1696213",
                        "broadcastIT":  "Netflix (incluso nell'abbonamento)",
                        "watchUrl":  "https://www.netflix.com/it/",
-                       "note":  "Premium Live Event in Australia. Orario non ancora ufficiale: secondo indiscrezioni (WrestleVotes) alle 6:00 ET, cioè le 12:00 italiane di sabato 12 dicembre."
+                       "note":  "Premium Live Event in Australia. Orario non ancora ufficiale: le indiscrezioni indicano la tarda mattinata italiana di sabato 12 dicembre, tra le 11:30 e le 12:00."
                    },
                    {
                        "id":  "nxt-tlc-2026",
@@ -450,7 +526,7 @@
                        "tickets":  "https://www.allelitewrestling.com/aew-events",
                        "broadcastIT":  "Nessuna TV italiana: in diretta su TBS e HBO Max negli USA, collaborazione con Twitch",
                        "watchUrl":  "https://www.allelitewrestling.com",
-                       "note":  "Puntata speciale di Dynamite con due gabbie Blood & Guts: Copeland, Steven Borden, Darby Allin, Young Bucks e Ospreay contro la Don Callis Family, più la versione femminile. In Italia è la notte tra mercoledì 4 e giovedì 5 novembre."
+                       "note":  "Risultati: la Don Callis Family vince la Blood & Guts maschile con la resa di Adam Copeland; nella femminile vince la squadra di Statlander, Cameron, Hayter, Windsor, Queen Aminata e Willow."
                    },
                    {
                        "id":  "njpw-world-tag-league-2026-final",
@@ -468,6 +544,11 @@
                    },
                    {
                        "id":  "icw-brawl-after-christmas-2026",
+                       "poster":  {
+                                      "url":  "https://www.icwwrestling.it/wp-content/uploads/2026/11/Brawl-After-Christmas-2026-website-news.jpg",
+                                      "credit":  "ICW Italian Championship Wrestling",
+                                      "page":  "https://www.icwwrestling.it/shows/prossimi-show/"
+                                  },
                        "name":  "ICW Brawl After Christmas 2026",
                        "promotion":  "ICW",
                        "date":  "2026-12-27",
@@ -475,10 +556,66 @@
                        "venue":  "Centro Sportivo BarT",
                        "city":  "Borgo San Giovanni (LO)",
                        "country":  "Italia",
-                       "tickets":  "https://www.icwwrestling.it/shows/prossimi-show/",
+                       "tickets":  "https://www.ticketone.it/event/icw-wrestling-live-a-lodi-centro-sportivo-bart-22396728/",
                        "broadcastIT":  "Dal vivo",
                        "watchUrl":  "https://www.icwwrestling.it/shows/prossimi-show/",
-                       "note":  "Show natalizio della ICW, ore 19:00. Info e biglietti sul sito ICW o al 335 1208244."
+                       "note":  "Show natalizio della ICW: cancelli alle 18:30, inizio alle 19:00. Info e biglietti su TicketOne o al 335 1208244."
+                   },
+                   {
+                       "id":  "nwe-european-warrior-cup-2026",
+                       "name":  "NWE European Warrior Cup 2026",
+                       "promotion":  "NWE",
+                       "date":  "2026-11-26",
+                       "startUtc":  null,
+                       "venue":  "Palapartenope",
+                       "city":  "Napoli",
+                       "country":  "Italia",
+                       "tickets":  "https://www.ticketone.it/eventseries/nwe-wrestling-legends-tour-4128850/",
+                       "broadcastIT":  "Dal vivo (registrazione TV)",
+                       "watchUrl":  "https://www.napolike.it/wrestling-napoli-palapartenope-european-warrior-cup-2026",
+                       "note":  "Prima edizione della European Warrior Cup della New Wrestling Evolution: battle royal a otto con Raja Dhesi, Chris Masters, A-Buck, Mil Muertes e Vampiro (altri tre da annunciare). Orario da comunicare."
+                   },
+                   {
+                       "id":  "aew-winter-is-coming-2026",
+                       "name":  "AEW Dynamite: Winter Is Coming 2026",
+                       "promotion":  "AEW",
+                       "date":  "2026-12-09",
+                       "startUtc":  null,
+                       "venue":  "Arena Monterrey",
+                       "city":  "Monterrey",
+                       "country":  "Messico",
+                       "tickets":  "https://www.allelitewrestling.com/aew-events",
+                       "broadcastIT":  "Nessuna TV italiana: in diretta su TBS e HBO Max negli USA",
+                       "watchUrl":  "https://www.allelitewrestling.com",
+                       "note":  "Dynamite speciale dal Messico con match del Continental Classic. Collision viene registrato la stessa sera e va in onda il 12 dicembre."
+                   },
+                   {
+                       "id":  "wwe-john-cena-classic-2026",
+                       "name":  "WWE Raw: John Cena Classic",
+                       "promotion":  "WWE",
+                       "date":  "2026-12-14",
+                       "startUtc":  null,
+                       "venue":  "ESPN Wide World of Sports Complex, Walt Disney World",
+                       "city":  "Orlando, Florida",
+                       "country":  "USA",
+                       "tickets":  "https://www.wwe.com/event/john-cena-classic",
+                       "broadcastIT":  "Netflix (incluso nell'abbonamento)",
+                       "watchUrl":  "https://www.netflix.com/it/",
+                       "note":  "Puntata speciale di Raw con il torneo di John Cena e un nuovo titolo, il John Cena Classic Championship. Invitati finora: Cody Rhodes, Zilla Fatu, Noam Dar, Romeo Moreno e Kelani Jordan. Orario della diretta da confermare."
+                   },
+                   {
+                       "id":  "wwe-worlds-collide-doomsday-2026",
+                       "name":  "WWE Worlds Collide: Doomsday",
+                       "promotion":  "WWE",
+                       "date":  "2026-12-15",
+                       "startUtc":  null,
+                       "venue":  "ESPN Wide World of Sports Complex, Walt Disney World",
+                       "city":  "Orlando, Florida",
+                       "country":  "USA",
+                       "tickets":  "https://www.wwe.com/article/wwe-walt-disney-company-john-cena-classic-avenger-doomsday-worlds-collide",
+                       "broadcastIT":  "Da confermare",
+                       "watchUrl":  "https://www.wwe.com/article/wwe-walt-disney-company-john-cena-classic-avenger-doomsday-worlds-collide",
+                       "note":  "Show speciale a tema Avengers: Doomsday, la sera dopo il John Cena Classic e nello stesso complesso Disney. Orario e trasmissione da confermare."
                    }
                ],
     "weekly":  [
